@@ -10,32 +10,40 @@
     <section class="mb-5 px-md-5 px-4">
         <div class="row row-cols-1 row-cols-md-4">
             <div class="col d-flex flex-row flex-md-column align-items-center justify-content-center">
-                <img src="https://images.unsplash.com/photo-1487070183336-b863922373d4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="步驟一" class="mb-3 img-fluid">
-                <div class="d-flex flex-column align-items-center text-md-center ms-4 ms-md-0">
+                <div class="col">
+                    <img src="https://images.unsplash.com/photo-1487070183336-b863922373d4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="步驟一" class="mb-3 img-fluid">
+                </div>
+                <div class="d-flex flex-column align-items-center text-md-center ms-4 ms-md-0 col">
                     <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP1</p>
                     <h2 class="fw-bold fs-5 mb-3 me-auto mx-md-auto">選擇產品</h2>
                     <p class="me-auto mx-md-auto">瀏覽我們的網站<br>選擇您喜愛的花卉產品</p>
                 </div>
             </div>
             <div class="col d-flex flex-row flex-md-column align-items-center justify-content-center">
-                <img src="https://images.unsplash.com/photo-1628927124199-a8a2a5394392?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="步驟二" class="mb-3 img-fluid">
-                <div class="d-flex flex-column align-items-center text-md-center ms-4 ms-md-0">
+                <div class="col">
+                    <img src="https://images.unsplash.com/photo-1628927124199-a8a2a5394392?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="步驟二" class="mb-3 img-fluid">
+                </div>
+                <div class="d-flex flex-column align-items-center text-md-center ms-4 ms-md-0 col">
                     <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP2</p>
                     <h2 class="fw-bold fs-5 mb-3 me-auto mx-md-auto">確認訂單</h2>
                     <p class="me-auto mx-md-auto">填寫訂購信息和收貨地址<br>確認訂單內容</p>
                 </div>
             </div>
             <div class="col d-flex flex-row flex-md-column align-items-center justify-content-center">
-                <img src="https://plus.unsplash.com/premium_photo-1661771649674-0879d59b8791?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="步驟四" class="mb-3 img-fluid">
-                <div class="d-flex flex-column align-items-center text-md-center ms-4 ms-md-0">
+                <div class="col">
+                    <img src="https://plus.unsplash.com/premium_photo-1661771649674-0879d59b8791?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="步驟四" class="mb-3 img-fluid">
+                </div>
+                <div class="d-flex flex-column align-items-center text-md-center ms-4 ms-md-0 col">
                     <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP3</p>
                     <h2 class="fw-bold fs-5 mb-3 me-auto mx-md-auto">付款</h2>
                     <p class="me-auto mx-md-auto text-nowrap">支持多種支付方式<br>方便快捷</p>
                 </div>
             </div>
             <div class="col d-flex flex-row flex-md-column align-items-center justify-content-center">
-                <img src="https://images.unsplash.com/photo-1567696153410-7ae55f32e4dc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="步驟三" class="mb-3 img-fluid">
-                <div class="d-flex flex-column align-items-center text-md-center ms-4 ms-md-0">
+                <div class="col">
+                    <img src="https://images.unsplash.com/photo-1567696153410-7ae55f32e4dc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="步驟三" class="mb-3 img-fluid">
+                </div>
+                <div class="d-flex flex-column align-items-center text-md-center ms-4 ms-md-0 col">
                     <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP4</p>
                     <h2 class="fw-bold fs-5 mb-3 me-auto mx-md-auto">等待收花</h2>
                     <p class="me-auto mx-md-auto">我們會在您選擇的時間內<br>準時送達。</p>

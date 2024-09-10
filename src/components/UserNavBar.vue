@@ -12,7 +12,7 @@
           <router-link to="/" class="nav-link">首頁</router-link>
           <router-link to="/products" class="nav-link">產品</router-link>
           <router-link to="/orders" class="nav-link">歷史訂單</router-link>
-          <button class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click.prevent="getCart(), addCouponCode()">購物車</button>
+          <button class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click.prevent="getCart(), addCouponCode()"><p class="text-start mb-0">購物車</p></button>
           <router-link to="/user/login" class="nav-link" v-if="this.loginStatus === 0">訪客登入</router-link>
           <router-link @click.prevent="logout" to="/" class="nav-link" v-else>訪客登出</router-link>
           <router-link to="/login" class="nav-link">後台</router-link>

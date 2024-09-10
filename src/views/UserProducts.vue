@@ -1,14 +1,31 @@
 <template>
 <UserLoading :active="isLoading"></UserLoading>
-<section class="container pb-5 pt-5">
+<section class="container pb-5 pt-md-5">
 <div class="row">
-    <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch p-3 col-md-4 sticky-top h-100 bg-pageBack" style="top: 56px;">
-    <nav class="nav nav-pills flex-column" v-for="(value, index) in flowerType" :key="value+index">
+  <!-- 電腦導覽列 -->
+    <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch p-3 col-md-4 sticky-top h-100 bg-pageBack d-none d-md-block" style="top: 56px;">
+    <nav class="nav nav-pills flex-md-column" v-for="(value, index) in flowerType" :key="value+index">
         <a class="nav-link  text-dark" :href="`#item-${index+1}`" @click.prevent="scrollIntoView(`item-${index+1}`)">{{ Object.keys(value)[0] }}</a>
         <nav class="flex-column nav nav-pills" v-for="(value1, key1) in Object.values(value)[0]" :key="key1">
         <a class="nav-link ms-3 my-1 btn btn-one" :href="`#item-${index+1}-${key1+1}`" @click.prevent="scrollIntoView(`item-${index+1}-${key1+1}`)"><span>{{value1}}</span></a>
         </nav>
     </nav>
+    </nav>
+    <!-- 手機導覽列 -->
+    <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch p-3 col-md-4 sticky-top h-100 bg-pageBack d-md-none" style="top: 56px;">
+    <nav class="nav nav-pills flex-md-column" v-for="(value, index) in flowerType" :key="value+index">
+        <a class="nav-link text-dark" :href="`#item-${index+1}`" @click.prevent="scrollIntoView(`item-${index+1}`)">{{ Object.keys(value)[0] }}</a>
+        <nav class="flex-column nav nav-pills" v-for="(value1, key1) in Object.values(value)[0]" :key="key1">
+        <a class="nav-link ms-3 my-1 btn btn-one" :href="`#item-${index+1}-${key1+1}`" @click.prevent="scrollIntoView(`item-${index+1}-${key1+1}`)"><span>{{value1}}</span></a>
+        </nav>
+    </nav>
+    <!-- <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>
+        <li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>
+      </ul> -->
     </nav>
 
     <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0" class="col-md-8">
@@ -16,7 +33,7 @@
         <h4 style="padding-top: 56px; margin-top: -56px;" :id="`item-${index+1}`">{{ Object.keys(value)[0] }}</h4>
         <div v-for="(value1, key1) in Object.values(value)[0]" :key="key1">
           <h5 style="padding-top: 56px; margin-top: -56px;" :id="`item-${index+1}-${key1+1}`">{{value1}}</h5>
-          <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="row row-cols-2 row-cols-md-3 g-4">
             <template v-for="item in products" :key="item.id">
               <div class="col mb-2" v-if="item.category.includes(`${value1}`)">
                 <div class="card h-100">
