@@ -3,7 +3,7 @@
 <section class="container pb-5 pt-md-5">
 <div class="row">
   <!-- 電腦導覽列 -->
-    <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch p-3 col-md-4 sticky-top h-100 bg-pageBack d-none d-md-block" style="top: 56px;">
+    <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch p-3 col-md-4 sticky-top h-100 bg-pageBack d-none d-md-block" style="top: 57px;">
     <nav class="nav nav-pills flex-md-column" v-for="(value, index) in flowerType" :key="value+index">
         <a class="nav-link  text-dark" :href="`#item-${index+1}`" @click.prevent="scrollIntoView(`item-${index+1}`)">{{ Object.keys(value)[0] }}</a>
         <nav class="flex-column nav nav-pills" v-for="(value1, key1) in Object.values(value)[0]" :key="key1">
@@ -12,13 +12,15 @@
     </nav>
     </nav>
     <!-- 手機導覽列 -->
-    <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch p-3 col-md-4 sticky-top h-100 bg-pageBack d-md-none" style="top: 56px;">
-    <nav class="nav nav-pills flex-md-column" v-for="(value, index) in flowerType" :key="value+index">
-        <a class="nav-link text-dark" :href="`#item-${index+1}`" @click.prevent="scrollIntoView(`item-${index+1}`)">{{ Object.keys(value)[0] }}</a>
-        <nav class="flex-column nav nav-pills" v-for="(value1, key1) in Object.values(value)[0]" :key="key1">
+    <nav id="navbar-example3" class="navbar navbar-light bg-light p-3 sticky-top h-100 bg-pageBack d-md-none row" style="top: 57px;">
+      <template v-for="(value, index) in flowerType" :key="value+index">
+        <nav class="nav nav-pills col-4" v-for="(value1, key1) in Object.values(value)[0]" :key="key1">
         <a class="nav-link ms-3 my-1 btn btn-one" :href="`#item-${index+1}-${key1+1}`" @click.prevent="scrollIntoView(`item-${index+1}-${key1+1}`)"><span>{{value1}}</span></a>
         </nav>
-    </nav>
+      </template>
+    <!-- <nav class="nav nav-pills" v-for="(value, index) in flowerType" :key="value+index"> -->
+        <!-- <a class="nav-link text-dark" :href="`#item-${index+1}`" @click.prevent="scrollIntoView(`item-${index+1}`)">{{ Object.keys(value)[0] }}</a> -->
+    <!-- </nav> -->
     <!-- <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
       <ul class="dropdown-menu">
         <li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>

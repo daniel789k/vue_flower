@@ -1,9 +1,9 @@
 <template>
     <UserLoading :active="isLoading"></UserLoading>
-<div class="row">
+<div class="row container">
   <!-- 表單 -->
-  <div class="col-md-7">
-      <div class="my-4 row justify-content-center ms-4">
+  <div class="col-md-6">
+      <div class="my-4 row justify-content-center">
           <UserForm class="col-md-8" v-slot="{ errors }"
               @submit="createOrder">
             <div class="mb-3">
@@ -52,7 +52,7 @@
       </div>
   </div>
   <!-- 購買商品 -->
-  <div class="col-md-4 sticky-top h-100" style="top: 56px;">
+  <div class="col-md-6 sticky-top h-100 mb-3 mt-3" style="top: 56px;">
     <table class="table align-middle">
       <thead>
         <tr>
@@ -138,6 +138,7 @@ export default {
       }
     }
   },
+  inject: ['$httpMessageState'],
   methods: {
     createOrder () {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`
@@ -145,6 +146,8 @@ export default {
       this.$http.post(url, { data: order })
         .then((res) => {
           console.log(res)
+          this.$httpMessageState(res, '建立訂單')
+          this.$router.push('/orders')
         })
     },
     getCart () {

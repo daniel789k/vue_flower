@@ -1,6 +1,6 @@
 <template>
     <Loading :active="isLoading"></Loading>
-    <div class="my-5 row justify-content-center">
+    <div class="py-5 row justify-content-center container">
       <form class="col-md-6" @submit.prevent="payOrder">
         <table class="table align-middle">
           <thead>
