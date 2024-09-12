@@ -48,7 +48,7 @@
 
                 <div class="btn-group btn-group-sm">
                   <button type="button" class="btn btn-outline-secondary"
-                          @click="getProduct(item.id)">
+                          @click="getrecommend(item.id)">
                     查看更多
                   </button>
                   <button type="button" class="btn btn-outline-danger"
@@ -112,6 +112,11 @@ export default {
         }
       })
     },
+    getrecommend (id) {
+      this.id = id
+      this.$router.push(`/product/${id}`)
+      this.getProduct()
+    },
     getrecommendP () {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`
       this.isLoading = true
@@ -161,6 +166,9 @@ export default {
     this.id = this.$route.params.productId
     this.getProduct()
     this.getrecommendP()
+  },
+  updated () {
+    window.scroll(0, 0)
   }
 }
 </script>

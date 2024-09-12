@@ -150,7 +150,7 @@ export default {
         this.isLoading = false
         if (this.cart.carts.length !== 0) {
           if (this.coupon_code === '') {
-            if ('code' in this.cart.carts[0]) {
+            if ('code' in this.cart.carts[0].coupon) {
               this.coupon_code = this.cart.carts[0].coupon.code
             }
           }
