@@ -18,16 +18,6 @@
         <a class="nav-link ms-3 my-1 btn btn-one" :href="`#item-${index+1}-${key1+1}`" @click.prevent="scrollIntoView(`item-${index+1}-${key1+1}`)"><span>{{value1}}</span></a>
         </nav>
       </template>
-    <!-- <nav class="nav nav-pills" v-for="(value, index) in flowerType" :key="value+index"> -->
-        <!-- <a class="nav-link text-dark" :href="`#item-${index+1}`" @click.prevent="scrollIntoView(`item-${index+1}`)">{{ Object.keys(value)[0] }}</a> -->
-    <!-- </nav> -->
-    <!-- <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>
-        <li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>
-      </ul> -->
     </nav>
 
     <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0" class="col-md-8">
@@ -38,7 +28,9 @@
           <div class="row row-cols-2 row-cols-md-3 g-4">
             <template v-for="item in products" :key="item.id">
               <div class="col mb-2" v-if="item.category.includes(`${value1}`)">
-                <div class="card h-100">
+                <div class="card h-100 position-relative" style="overflow: hidden;">
+                  <div class="position-absolute top-0 start-100 bg-white" style="width: 60px; height: 60px; transform: translate(-50%,-50%) rotate(45deg);"></div>
+                  <i class="bi bi-heart position-absolute" style="top: 2px; right: 5px;" @click="changeHeart($event)"></i>
                   <img :src=item.imageUrl class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
                   <div class="card-body">
                     <h5 class="card-title">{{ item.title }}</h5>
@@ -183,6 +175,11 @@ export default {
     },
     scrollIntoView (id) {
       document.getElementById(id).scrollIntoView()
+    },
+    changeHeart: (event) => {
+      event.target.classList.toggle('bi-heart')
+      event.target.classList.toggle('bi-heart-fill')
+      event.target.classList.toggle('text-danger')
     }
   },
   created () {
