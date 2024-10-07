@@ -1,5 +1,44 @@
 <template>
     <UserLoading :active="isLoading"></UserLoading>
+
+<div class="container-fluid">
+  <div class="container-fluid p-3 align-items-center">
+    <div class="d-flex justify-content-center">
+      <button
+        class="btn bg-success text-white btn-sm rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        1
+      </button>
+      <p class="ms-2 my-auto text-success">訂購資料</p>
+      <span
+        class="bg-white w-25 rounded my-auto mx-3"
+        style="height: 0.2rem"
+      >
+      </span>
+      <button
+        class="btn bg-white text-black btn-sm rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        2
+      </button>
+      <p class="ms-2 my-auto text-black">確認付款</p>
+      <span
+        class="bg-white w-25 rounded my-auto mx-3"
+        style="height: 0.2rem"
+      >
+      </span>
+      <button
+        class="btn bg-white text-black btn-sm rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        3
+      </button>
+      <p class="ms-2 my-auto text-black">完成訂單</p>
+    </div>
+  </div>
+</div>
+
 <div class="row container">
   <!-- 表單 -->
   <div class="col-md-6">
@@ -135,7 +174,8 @@ export default {
       isLoading: false,
       status: {
         loadingItem: ''
-      }
+      },
+      products: []
     }
   },
   inject: ['$httpMessageState'],

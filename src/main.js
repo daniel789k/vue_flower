@@ -16,6 +16,16 @@ import App from './App.vue'
 import router from './router'
 import { currency, date } from './methods/filters'
 
+/* 引入aos动画库相关文件 */
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
+/* aos动画初始化 */
+AOS.init({
+  duration: 1000,
+  easing: 'ease-in-out-back'
+})
+
 const app = createApp(App)
 app.config.globalProperties.$filters = {
   currency,

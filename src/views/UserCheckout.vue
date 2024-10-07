@@ -1,5 +1,54 @@
 <template>
     <Loading :active="isLoading"></Loading>
+    <div class="container-fluid">
+  <div class="container-fluid p-3 align-items-center">
+    <div class="d-flex justify-content-center">
+      <button
+        class="btn bg-success text-white btn-sm rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        1
+      </button>
+      <p class="ms-2 my-auto text-success">訂購資料</p>
+      <span
+        class="bg-success w-25 rounded my-auto mx-3"
+        style="height: 0.2rem"
+      >
+      </span>
+      <button
+        class="btn bg-success text-white btn-sm rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        2
+      </button>
+      <p class="ms-2 my-auto text-success">確認付款</p>
+      <span v-if="!order.is_paid"
+        class="bg-white w-25 rounded my-auto mx-3"
+        style="height: 0.2rem"
+      >
+      </span>
+      <span v-else
+        class="bg-success w-25 rounded my-auto mx-3"
+        style="height: 0.2rem"
+      >
+      </span>
+      <button v-if="!order.is_paid"
+        class="btn bg-white text-black btn-sm rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        3
+      </button>
+      <button v-else
+        class="btn bg-success text-white btn-sm rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        3
+      </button>
+      <p v-if="!order.is_paid" class="ms-2 my-auto text-black">完成訂單</p>
+      <p v-else class="ms-2 my-auto text-success">完成訂單</p>
+    </div>
+  </div>
+    </div>
     <div class="py-5 row justify-content-center container">
       <form class="col-md-6" @submit.prevent="payOrder">
         <table class="table align-middle">

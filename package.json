@@ -12,6 +12,7 @@
     "@popperjs/core": "^2.11.8",
     "@vee-validate/i18n": "^4.12.8",
     "@vee-validate/rules": "^4.12.8",
+    "aos": "^2.3.4",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",

@@ -9,13 +9,13 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-nav ms-auto">
-          <router-link to="/" class="nav-link">首頁</router-link>
-          <router-link to="/products" class="nav-link">產品</router-link>
-          <router-link to="/orders" class="nav-link">歷史訂單</router-link>
-          <button class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click.prevent="getCart(), addCouponCode()"><p class="text-start mb-0">購物車</p></button>
-          <router-link to="/user/login" class="nav-link" v-if="this.loginStatus === 0">訪客登入</router-link>
-          <router-link @click.prevent="logout" to="/" class="nav-link" v-else>訪客登出</router-link>
-          <router-link to="/login" class="nav-link">後台</router-link>
+          <!-- <router-link to="/" class="nav-link">首頁</router-link> -->
+          <router-link to="/products" class="nav-link"><i class="bi bi-flower2"></i>花藝商品</router-link>
+          <button class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click.prevent="getCart(), addCouponCode()"><p class="text-start mb-0"><i class="bi bi-cart2"></i>購物車</p></button>
+          <router-link to="/user/login" class="nav-link" v-if="this.loginStatus === 0"><i class="bi bi-person"></i>會員登入</router-link>
+          <router-link @click.prevent="logout" to="/" class="nav-link" v-else><i class="bi bi-person"></i>會員您好</router-link>
+          <router-link to="/orders" class="nav-link" v-if="this.loginStatus !== 0">訂單查詢</router-link>
+          <!-- <router-link to="/login" class="nav-link">後台</router-link> -->
     </div>
           </div>
         </div>

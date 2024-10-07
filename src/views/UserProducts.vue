@@ -28,15 +28,15 @@
           <div class="row row-cols-2 row-cols-md-3 g-4">
             <template v-for="item in products" :key="item.id">
               <div class="col mb-2" v-if="item.category.includes(`${value1}`)">
-                <div class="card h-100 position-relative" style="overflow: hidden;">
+                <div class="card h-100 position-relative border-0" style="overflow: hidden;">
                   <div class="position-absolute top-0 start-100 bg-white" style="width: 60px; height: 60px; transform: translate(-50%,-50%) rotate(45deg);"></div>
                   <i class="bi bi-heart position-absolute" style="top: 2px; right: 5px;" @click="changeHeart($event)"></i>
                   <img :src=item.imageUrl class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
-                  <div class="card-body">
+                  <div class="card-body bg-pageBack d-flex flex-column justify-content-between">
                     <h5 class="card-title">{{ item.title }}</h5>
                     <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
-                    <del class="h6" v-if="item.price">原價 {{ item.origin_price }} 元</del>
-                    <div class="h5" v-if="item.price">現在只要 {{ item.price }} 元</div>
+                    <del class="h6" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
+                    <div class="h5" v-if="item.price">NT$ {{ item.price }} 元</div>
 
                     <div class="btn-group btn-group-sm">
                       <button type="button" class="btn btn-outline-secondary"
