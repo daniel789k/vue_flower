@@ -10,9 +10,10 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-nav ms-auto">
           <!-- <router-link to="/" class="nav-link">首頁</router-link> -->
-          <router-link to="/products" class="nav-link"><i class="bi bi-flower2"></i>花藝商品</router-link>
-          <button class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click.prevent="getCart(), addCouponCode()"><p class="text-start mb-0"><i class="bi bi-cart2"></i>購物車</p></button>
-          <router-link to="/user/login" class="nav-link" v-if="this.loginStatus === 0"><i class="bi bi-person"></i>會員登入</router-link>
+          <router-link to="/products" class="nav-link"><i class="bi bi-flower2 me-1"></i>花藝商品</router-link>
+          <button class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click.prevent="getCart(), addCouponCode()"><p class="text-start mb-0"><i class="bi bi-cart2 me-1"></i>購物車</p></button>
+          <router-link to="/loves" class="nav-link" v-if="this.loginStatus === 0" @click.prevent="pushLove()"><i class="bi bi-heart me-1"></i>我的最愛</router-link>
+          <router-link to="/user/login" class="nav-link" v-if="this.loginStatus === 0"><i class="bi bi-person me-1"></i>會員登入</router-link>
           <router-link @click.prevent="logout" to="/" class="nav-link" v-else><i class="bi bi-person"></i>會員您好</router-link>
           <router-link to="/orders" class="nav-link" v-if="this.loginStatus !== 0">訂單查詢</router-link>
           <!-- <router-link to="/login" class="nav-link">後台</router-link> -->
@@ -23,7 +24,7 @@
 
 <!-- 購物車側欄 -->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel"
-style="background-image: url(https://images.unsplash.com/photo-1553142282-bcc4d3ec4c40?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); background-repeat: no-repeat; background-size: cover;">
+style="background-image: url(https://images.unsplash.com/photo-1553142282-bcc4d3ec4c40?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); background-repeat: no-repeat; background-size: cover; width: 530px;">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasExampleLabel">購物車</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -33,7 +34,8 @@ style="background-image: url(https://images.unsplash.com/photo-1553142282-bcc4d3
       <thead>
         <tr>
           <th></th>
-          <th>品名</th>
+          <th style="width: 120px"></th>
+          <th style="width: 120px">品名</th>
           <th style="width: 120px">數量</th>
           <th>單價</th>
         </tr>
@@ -47,6 +49,9 @@ style="background-image: url(https://images.unsplash.com/photo-1553142282-bcc4d3
                     @click="removeCartItem(item.id)">
               <i class="bi bi-x"></i>
             </button>
+          </td>
+          <td>
+            <img :src="item.product.imageUrl" alt="" class="img-fluid">
           </td>
           <td>
             {{ item.product.title }}
@@ -73,16 +78,18 @@ style="background-image: url(https://images.unsplash.com/photo-1553142282-bcc4d3
       </tbody>
       <tfoot>
       <tr>
+        <td></td>
         <td colspan="3" class="text-end">總計</td>
         <td class="text-end">{{ $filters.currency(cart.total) }}</td>
       </tr>
       <tr v-if="cart.final_total !== cart.total">
+        <td></td>
         <td colspan="3" class="text-end text-success">折扣價</td>
         <td class="text-end text-success">{{ $filters.currency(cart.final_total) }}</td>
       </tr>
       </tfoot>
     </table>
-    <div class="input-group mb-3 input-group-sm">
+    <div class="input-group mb-3 input-group-sm w-50 ms-auto">
       <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼">
       <div class="input-group-append">
         <button class="btn btn-outline-secondary" type="button" @click="addCouponCode">
@@ -110,9 +117,11 @@ export default {
       coupon_code: '',
       nowuse_coupon_code: '',
       loginStatus: 0,
-      isLoading: false
+      isLoading: false,
+      loveFlower: []
     }
   },
+  inject: ['emitter'],
   methods: {
     $httpMessageState (res, title = '更新') {
       if (res.data.success) {
@@ -219,10 +228,16 @@ export default {
             this.loginStatus = 1
           }
         })
+    },
+    pushLove () {
+      this.emitter.emit('pushLoveFlower', this.loveFlower)
     }
   },
   created () {
     this.getCart()
+    this.emitter.on('getLoveFlower', (msg) => {
+      this.loveFlower = msg
+    })
   },
   updated () {
     this.comfirmLogin()

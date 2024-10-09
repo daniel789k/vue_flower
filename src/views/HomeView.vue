@@ -82,11 +82,11 @@
             <swiper-slide class="w-25 mx-3">
                 <div class="card h-100">
                 <img :src=item.imageUrl class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
-                <div class="card-body card-body bg-pageBack d-flex flex-column justify-content-between">
+                <div class="card-body bg-pageBack d-flex flex-column justify-content-between">
                     <h5 class="card-title">{{ item.title }}</h5>
                     <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
-                    <del class="h6" v-if="item.price">原價 {{ item.origin_price }} 元</del>
-                    <div class="h5" v-if="item.price">現在只要 {{ item.price }} 元</div>
+                    <del class="h6" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
+                    <div class="h5" v-if="item.price">NT$ {{ item.price }} 元</div>
 
                     <div class="btn-group btn-group-sm">
                     <!-- <button type="button" class="btn btn-outline-secondary"

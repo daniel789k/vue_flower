@@ -91,12 +91,13 @@
       </div>
   </div>
   <!-- 購買商品 -->
-  <div class="col-md-6 sticky-top h-100 mb-3 mt-3" style="top: 56px;">
-    <table class="table align-middle">
+  <div class="col-md-6 sticky-top h-100 mb-3 mt-3 bg-transparent" style="top: 56px;">
+    <table class="table align-middle border-light table-transparent">
       <thead>
         <tr>
           <th></th>
-          <th>品名</th>
+          <th style="width: 120px"></th>
+          <th style="width: 120px">品名</th>
           <th style="width: 120px">數量</th>
           <th>單價</th>
         </tr>
@@ -110,6 +111,9 @@
                     @click="removeCartItem(item.id)">
               <i class="bi bi-x"></i>
             </button>
+          </td>
+          <td>
+            <img :src="item.product.imageUrl" alt="" class="img-fluid">
           </td>
           <td>
             {{ item.product.title }}
@@ -136,16 +140,18 @@
       </tbody>
       <tfoot>
       <tr>
+        <td></td>
         <td colspan="3" class="text-end">總計</td>
         <td class="text-end">{{ $filters.currency(cart.total) }}</td>
       </tr>
       <tr v-if="cart.final_total !== cart.total">
+        <td></td>
         <td colspan="3" class="text-end text-success">折扣價</td>
         <td class="text-end text-success">{{ $filters.currency(cart.final_total) }}</td>
       </tr>
       </tfoot>
     </table>
-    <div class="input-group input-group-sm">
+    <div class="input-group input-group-sm w-50 ms-auto">
       <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼">
       <div class="input-group-append">
         <button class="btn btn-outline-secondary" type="button" @click="addCouponCode">

@@ -19,6 +19,10 @@ const routes = [
         component: () => import('../views/UserProductDetail.vue')
       },
       {
+        path: 'loves',
+        component: () => import('../views/UserLove.vue')
+      },
+      {
         path: 'checkform',
         component: () => import('../views/UserCheckForm.vue')
       },
