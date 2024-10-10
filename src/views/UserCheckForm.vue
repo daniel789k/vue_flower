@@ -92,7 +92,7 @@
   </div>
   <!-- 購買商品 -->
   <div class="col-md-6 sticky-top h-100 mb-3 mt-3 bg-transparent" style="top: 56px;">
-    <table class="table align-middle border-light table-transparent">
+    <table class="table align-middle border-light" style="--bs-table-bg: rgba(0,0,0,0);">
       <thead>
         <tr>
           <th></th>
