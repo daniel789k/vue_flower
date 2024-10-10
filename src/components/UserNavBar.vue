@@ -12,7 +12,7 @@
           <!-- <router-link to="/" class="nav-link">首頁</router-link> -->
           <router-link to="/products" class="nav-link"><i class="bi bi-flower2 me-1"></i>花藝商品</router-link>
           <button class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click.prevent="getCart(), addCouponCode()"><p class="text-start mb-0"><i class="bi bi-cart2 me-1"></i>購物車</p></button>
-          <router-link to="/loves" class="nav-link" v-if="this.loginStatus === 0" @click.prevent="pushLove()"><i class="bi bi-heart me-1"></i>我的最愛</router-link>
+          <button @click.prevent ="pushLove()" class="border-0 bg-transparent" style="color: rgba(0,0,0,0.65);"><i class="bi bi-heart me-1"></i>我的最愛</button>
           <router-link to="/user/login" class="nav-link" v-if="this.loginStatus === 0"><i class="bi bi-person me-1"></i>會員登入</router-link>
           <router-link @click.prevent="logout" to="/" class="nav-link" v-else><i class="bi bi-person"></i>會員您好</router-link>
           <router-link to="/orders" class="nav-link" v-if="this.loginStatus !== 0">訂單查詢</router-link>
@@ -221,7 +221,7 @@ export default {
       const api = `${process.env.VUE_APP_API}api/user/check`
       this.$http.post(api, this.user)
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           if (!res.data.success) {
             this.loginStatus = 0
           } else {
@@ -230,13 +230,14 @@ export default {
         })
     },
     pushLove () {
+      this.$router.push('/loves')
       this.emitter.emit('pushLoveFlower', this.loveFlower)
     }
   },
   created () {
     this.getCart()
     this.emitter.on('getLoveFlower', (msg) => {
-      this.loveFlower = msg
+      this.loveFlower = JSON.parse(JSON.stringify(msg))
     })
   },
   updated () {

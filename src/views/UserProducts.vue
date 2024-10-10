@@ -100,7 +100,7 @@ export default {
       this.isLoading = true
       this.$http.get(url).then((response) => {
         this.products = response.data.products
-        console.log('products:', response)
+        // console.log('products:', response)
         this.isLoading = false
       })
     },
@@ -111,7 +111,7 @@ export default {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
       this.isLoading = true
       this.$http.get(url).then((response) => {
-        console.log(response)
+        // console.log(response)
         this.cart = response.data.data
         this.isLoading = false
       })
