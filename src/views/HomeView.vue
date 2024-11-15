@@ -1,6 +1,6 @@
 <template>
-    <header class="mb-5 header px-4 py-5 d-flex align-items-lg-center justify-content-center img-fluid" style="background-image: url(https://plus.unsplash.com/premium_photo-1682437497388-910fc9d39e46?q=80&w=1788&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); width: 100%; height: 80vh; background-repeat: no-repeat; background-size: cover; background-position: center center;">
-        <div class="text-white text-center">
+    <header class="mb-5 header px-4 py-5 d-flex align-items-lg-center justify-content-center img-fluid" style="background-image: url(https://images.unsplash.com/photo-1712419469265-59db5168662e?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); width: 100%; height: 80vh; background-repeat: no-repeat; background-size: cover; background-position: center center;">
+        <div class="text-white text-center bg-secondary bg-opacity-50 p-3">
             <p class="fs-5">歡迎來到花之藝</p>
             <h1 class="fw-bold">用花語傳遞心意</h1>
             <p>在花之藝花店，我們相信每一朵花都有它獨特的故事與語言。<br>我們致力於為每一位顧客提供最高品質的花卉產品和無與倫比的購物體驗。<br>無論是慶祝特別的日子，還是僅僅為了給日常生活增添一抹色彩。</p>
@@ -74,7 +74,9 @@
             modifier: 1,
             slideShadows: false,
             }"
-            :pagination="true"
+            :pagination="{
+                clickable: true,
+            }"
             :modules="modules"
             class="mySwiper pb-3"
         >
@@ -93,10 +95,10 @@
                             @click="getrecommend(item.id)">
                         查看更多
                     </button> -->
-                    <button type="button" class="btn btn-outline-danger"
+                    <button type="button" class="btn btn-outline-mainColor"
                     :disabled="this.status.loadingItem === item.id"
                     @click="addrecommend(item.id)">
-                    <div v-if="this.status.loadingItem === item.id" class="spinner-grow text-danger spinner-grow-sm" role="status">
+                    <div v-if="this.status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
                         加到購物車

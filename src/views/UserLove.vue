@@ -9,7 +9,7 @@
           <div class="col mb-2">
             <div class="card h-100 position-relative border-0" style="overflow: hidden;">
               <div class="position-absolute top-0 start-100 bg-white" style="width: 60px; height: 60px; transform: translate(-50%,-50%) rotate(45deg);"></div>
-              <i class="bi bi-heart-fill text-danger position-absolute" style="top: 2px; right: 5px;"
+              <i class="bi bi-heart-fill text-danger position-absolute" style="top: 2px; right: 5px; cursor: pointer;"
               @click="changeHeart($event), pushLoveFlower(item)"></i>
               <img :src=item.imageUrl class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
               <div class="card-body bg-pageBack d-flex flex-column justify-content-between">
@@ -23,10 +23,10 @@
                           @click="getProduct(item.id)">
                     查看更多
                   </button>
-                  <button type="button" class="btn btn-outline-danger"
+                  <button type="button" class="btn btn-outline-mainColor"
                   :disabled="this.status.loadingItem === item.id"
                   @click="addCart(item.id)">
-                  <div v-if="this.status.loadingItem === item.id" class="spinner-grow text-danger spinner-grow-sm" role="status">
+                  <div v-if="this.status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
                     <span class="visually-hidden">Loading...</span>
                   </div>
                     加到購物車

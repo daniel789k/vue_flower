@@ -19,7 +19,7 @@
           <del class="h6" v-if="product.price">原價 {{ product.origin_price }} 元</del>
           <div class="h5" v-if="product.price">現在只要 {{ product.price }} 元</div>
           <hr>
-          <button type="button" class="btn btn-outline-danger"
+          <button type="button" class="btn btn-outline-mainColor"
                   @click="addToCart(product.id)">
             加到購物車
           </button>
@@ -51,10 +51,10 @@
                           @click="getrecommend(item.id)">
                     查看更多
                   </button>
-                  <button type="button" class="btn btn-outline-danger"
+                  <button type="button" class="btn btn-outline-mainColor"
                   :disabled="this.status.loadingItem === item.id"
                   @click="addrecommend(item.id)">
-                  <div v-if="this.status.loadingItem === item.id" class="spinner-grow text-danger spinner-grow-sm" role="status">
+                  <div v-if="this.status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
                     <span class="visually-hidden">Loading...</span>
                   </div>
                     加到購物車
