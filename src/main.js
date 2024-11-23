@@ -20,12 +20,15 @@ import { currency, date } from './methods/filters'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
+import { createPinia } from 'pinia'
+
 /* aos动画初始化 */
 AOS.init({
   duration: 1000,
   easing: 'ease-in-out-back'
 })
 
+const pinia = createPinia()
 const app = createApp(App)
 app.config.globalProperties.$filters = {
   currency,
@@ -43,6 +46,7 @@ configure({
 // 設定預設語系
 setLocale('zh_TW')
 
+app.use(pinia)
 app.use(VueAxios, axios)
 app.use(router)
 app.component('UserLoading', Loading)

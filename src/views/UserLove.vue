@@ -5,7 +5,7 @@
   <h2 class="mb-4">我的最愛</h2>
     <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0" class="col-md-12">
       <div class="row row-cols-2 row-cols-md-4 g-4 mb-2">
-        <template v-for="item in loveF" :key="item.id">
+        <template v-for="item in getloveflower" :key="item.id">
           <div class="col mb-2">
             <div class="card h-100 position-relative border-0" style="overflow: hidden;">
               <div class="position-absolute top-0 start-100 bg-white" style="width: 60px; height: 60px; transform: translate(-50%,-50%) rotate(45deg);"></div>
@@ -43,6 +43,8 @@
 </template>
 
 <script>
+import { useLoveStore } from '@/stores/loveStore'
+import { mapState } from 'pinia'
 export default {
   data () {
     return {
@@ -159,30 +161,29 @@ export default {
       event.target.classList.toggle('bi-heart')
       event.target.classList.toggle('bi-heart-fill')
       event.target.classList.toggle('text-danger')
-    },
-    pushLoveFlower (item) {
-      const loveLength = this.loveF.length
-      if (loveLength === 0) {
-        this.loveF.push(item)
-      } else {
-        this.loveF.forEach((value, index) => {
-          if (value.title === item.title) {
-            this.loveF.splice(index, 1)
-          } else if (value.title !== item.title && index === loveLength - 1) {
-            this.loveF.push(item)
-          }
-        })
-      }
-      this.emitter.emit('getLoveFlower', this.loveF)
     }
+    // pushLoveFlower (item) {
+    //   const loveLength = this.loveF.length
+    //   if (loveLength === 0) {
+    //     this.loveF.push(item)
+    //   } else {
+    //     this.loveF.forEach((value, index) => {
+    //       if (value.title === item.title) {
+    //         this.loveF.splice(index, 1)
+    //       } else if (value.title !== item.title && index === loveLength - 1) {
+    //         this.loveF.push(item)
+    //       }
+    //     })
+    //   }
+    //   this.emitter.emit('getLoveFlower', this.loveF)
+    // }
+  },
+  computed: {
+    ...mapState(useLoveStore, ['pushLoveFlower', 'getloveflower'])
   },
   created () {
     this.getProducts()
     this.getCart()
-    this.emitter.on('pushLoveFlower', (msg) => {
-      this.loveF = JSON.parse(JSON.stringify(msg))
-      console.log('123', msg)
-    })
   }
 }
 </script>

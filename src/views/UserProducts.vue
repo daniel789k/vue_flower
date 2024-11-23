@@ -1,3 +1,10 @@
+<!-- <script setup>
+import { useCounterStore } from '@/stores/loveStore'
+// 可以在组件中的任意位置访问 `store` 变量 ✨
+const store = useCounterStore()
+console.log(store)
+</script> -->
+
 <template>
 <UserLoading :active="isLoading"></UserLoading>
 <section class="container pb-5 pt-md-5">
@@ -65,6 +72,8 @@
 </template>
 
 <script>
+import { useLoveStore } from '@/stores/loveStore'
+import { mapState } from 'pinia'
 export default {
   data () {
     return {
@@ -181,22 +190,25 @@ export default {
       event.target.classList.toggle('bi-heart')
       event.target.classList.toggle('bi-heart-fill')
       event.target.classList.toggle('text-danger')
-    },
-    pushLoveFlower (item) {
-      const loveLength = this.loveFlower.length
-      if (loveLength === 0) {
-        this.loveFlower.push(item)
-      } else {
-        this.loveFlower.forEach((value, index) => {
-          if (value.title === item.title) {
-            this.loveFlower.splice(index, 1)
-          } else if (value.title !== item.title && index === loveLength - 1) {
-            this.loveFlower.push(item)
-          }
-        })
-      }
-      this.emitter.emit('getLoveFlower', this.loveFlower)
     }
+    // pushLoveFlower (item) {
+    //   const loveLength = this.loveFlower.length
+    //   if (loveLength === 0) {
+    //     this.loveFlower.push(item)
+    //   } else {
+    //     this.loveFlower.forEach((value, index) => {
+    //       if (value.title === item.title) {
+    //         this.loveFlower.splice(index, 1)
+    //       } else if (value.title !== item.title && index === loveLength - 1) {
+    //         this.loveFlower.push(item)
+    //       }
+    //     })
+    //   }
+    //   this.emitter.emit('getLoveFlower', this.loveFlower)
+    // }
+  },
+  computed: {
+    ...mapState(useLoveStore, ['pushLoveFlower'])
   },
   created () {
     this.getProducts()
