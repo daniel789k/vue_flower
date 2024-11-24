@@ -37,7 +37,8 @@ console.log(store)
               <div class="col mb-2" v-if="item.category.includes(`${value1}`)">
                 <div class="card h-100 position-relative border-0" style="overflow: hidden;">
                   <div class="position-absolute top-0 start-100 bg-white" style="width: 60px; height: 60px; transform: translate(-50%,-50%) rotate(45deg);"></div>
-                  <i class="bi bi-heart position-absolute" style="top: 2px; right: 5px; cursor: pointer;" @click="changeHeart($event), pushLoveFlower(item)"></i>
+                  <i v-if="getTitle.includes(item.title)" class="bi bi-heart-fill text-danger position-absolute" style="top: 2px; right: 5px; cursor: pointer;" @click="changeHeart($event), pushLoveFlower(item)"></i>
+                  <i v-else class="bi bi-heart position-absolute" style="top: 2px; right: 5px; cursor: pointer;" @click="changeHeart($event), pushLoveFlower(item)"></i>
                   <img :src=item.imageUrl class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
                   <div class="card-body bg-pageBack d-flex flex-column justify-content-between">
                     <h5 class="card-title">{{ item.title }}</h5>
@@ -73,6 +74,7 @@ console.log(store)
 
 <script>
 import { useLoveStore } from '@/stores/loveStore'
+// import { get } from 'jquery';
 import { mapState } from 'pinia'
 export default {
   data () {
@@ -208,7 +210,7 @@ export default {
     // }
   },
   computed: {
-    ...mapState(useLoveStore, ['pushLoveFlower'])
+    ...mapState(useLoveStore, ['pushLoveFlower', 'getloveflower', 'getTitle'])
   },
   created () {
     this.getProducts()
