@@ -221,7 +221,7 @@ export default {
 
 <style>
 .btn-one {
-color: #fff !important;
+color: #5a0c0c !important;
 transition: all 0.3s;
 position: relative;
 }

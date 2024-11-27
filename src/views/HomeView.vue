@@ -119,7 +119,7 @@
             <div class="col-lg-3 d-flex align-items-center">
                 <div>
                     <h2>會員計劃</h2>
-                    <p class="lh-lg text-secondary">成為我們的會員<br>享受專屬優惠和生日禮物。</p>
+                    <p class="lh-lg text-subColor1">成為我們的會員<br>享受專屬優惠和生日禮物。</p>
                 </div>
             </div>
             <div class="col-lg-3 d-flex align-items-center">
@@ -128,7 +128,7 @@
             <div class="col-lg-3 d-flex align-items-center">
                 <div>
                     <h2>同城速遞</h2>
-                    <p class="lh-lg text-secondary">當天送達，讓心意不再等待。</p>
+                    <p class="lh-lg text-subColor1">當天送達，讓心意不再等待。</p>
                 </div>
             </div>
         </div>

@@ -30,7 +30,7 @@ style="background-image: url(https://images.unsplash.com/photo-1553142282-bcc4d3
     <h5 class="offcanvas-title" id="offcanvasExampleLabel">購物車</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-  <div class="offcanvas-body">
+  <div class="offcanvas-body pt-0">
     <table class="table align-middle">
       <thead>
         <tr>
