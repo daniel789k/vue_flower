@@ -39,11 +39,11 @@
   </div>
 </div>
 
-<div class="row container">
+<div class="row container mx-auto">
   <!-- 表單 -->
   <div class="col-md-6">
       <div class="my-4 row justify-content-center">
-          <UserForm class="col-md-8" v-slot="{ errors }"
+          <UserForm class="col-md-11" v-slot="{ errors }"
               @submit="createOrder">
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
