@@ -97,7 +97,7 @@ export default {
       loveFlower: []
     }
   },
-  inject: ['emitter', '$httpMessageState'],
+  inject: ['$httpMessageState'],
   methods: {
     getProducts () {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`
@@ -186,21 +186,6 @@ export default {
       event.target.classList.toggle('bi-heart-fill')
       event.target.classList.toggle('text-danger')
     }
-    // pushLoveFlower (item) {
-    //   const loveLength = this.loveFlower.length
-    //   if (loveLength === 0) {
-    //     this.loveFlower.push(item)
-    //   } else {
-    //     this.loveFlower.forEach((value, index) => {
-    //       if (value.title === item.title) {
-    //         this.loveFlower.splice(index, 1)
-    //       } else if (value.title !== item.title && index === loveLength - 1) {
-    //         this.loveFlower.push(item)
-    //       }
-    //     })
-    //   }
-    //   this.emitter.emit('getLoveFlower', this.loveFlower)
-    // }
   },
   computed: {
     ...mapState(useLoveStore, ['pushLoveFlower', 'getloveflower', 'getTitle'])
