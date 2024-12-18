@@ -1,8 +1,6 @@
 <template>
-<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
 ref="modal">
-  <!-- 請同學自行新增 v-model -->
 <div class="modal-dialog modal-xl" role="document">
   <div class="modal-content border-0">
     <div class="modal-header bg-dark text-white">
@@ -27,7 +25,6 @@ ref="modal">
             <input type="file" id="customFile" class="form-control" @change="uploadFile" ref="fileInput">
           </div>
           <img class="img-fluid" alt="">
-          <!-- 延伸技巧，多圖 -->
           <div class="mt-5">
             <div class="mb-3 input-group" >
               <input type="url" class="form-control form-control"
