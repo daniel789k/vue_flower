@@ -32,7 +32,7 @@
       </div>
     </form>
   </div>
-  <ToastMessages></ToastMessages>
+  <ToastMessages/>
   <router-view/>
 </template>
 

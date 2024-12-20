@@ -1,12 +1,12 @@
 <template>
-  <NavBar></NavBar>
+  <NavBar/>
 
   <div>
-    <ToastMessages></ToastMessages>
+    <ToastMessages/>
     <router-view/>
   </div>
 
-  <FooTer></FooTer>
+  <FooTer/>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <UserLoading :active="isLoading"></UserLoading>
+  <UserLoading :active="isLoading"/>
   <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-navBack">
     <div class="container">
       <a class="navbar-brand" href="#">

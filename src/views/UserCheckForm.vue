@@ -1,5 +1,5 @@
 <template>
-  <UserLoading :active="isLoading"></UserLoading>
+  <UserLoading :active="isLoading"/>
 
   <div class="container-fluid">
     <div class="container-fluid p-3 align-items-center">

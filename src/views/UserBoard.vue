@@ -1,11 +1,11 @@
 <template>
-  <NavBar></NavBar>
+  <NavBar/>
   <div class="bg-pageBack">
     <ToastMessages></ToastMessages>
     <router-view/>
   </div>
 
-  <FooTer></FooTer>
+  <FooTer/>
 </template>
 
 <script>

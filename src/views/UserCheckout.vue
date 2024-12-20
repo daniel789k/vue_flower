@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading"></Loading>
+  <Loading :active="isLoading"/>
   <div class="container-fluid">
     <div class="container-fluid p-3 align-items-center">
       <div class="d-flex justify-content-center">

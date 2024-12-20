@@ -1,5 +1,5 @@
 <template>
-  <UserLoading :active="isLoading"></UserLoading>
+  <UserLoading :active="isLoading"/>
   <table class="table mt-4">
     <thead>
       <tr>
@@ -34,11 +34,9 @@
       </tr>
     </tbody>
   </table>
-  <UserPagination :pages="pagination" @emit-pages="getProducts"></UserPagination>
-  <ProductModal ref="productModal" :product="tempProduct" @update-product="updatedProduct"></ProductModal>
-  <DelModal ref="delModal" :item="tempProduct"
-  @delete-product="deleteProduct">
-  </DelModal>
+  <UserPagination :pages="pagination" @emit-pages="getProducts"/>
+  <ProductModal ref="productModal" :product="tempProduct" @update-product="updatedProduct"/>
+  <DelModal ref="delModal" :item="tempProduct" @delete-product="deleteProduct"/>
 </template>
 
 <script>

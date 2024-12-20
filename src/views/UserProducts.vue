@@ -1,5 +1,5 @@
 <template>
-  <UserLoading :active="isLoading"></UserLoading>
+  <UserLoading :active="isLoading"/>
   <section class="container pb-5 pt-md-5">
     <div class="row">
       <!-- 電腦導覽列 -->
