@@ -11,7 +11,7 @@
                 <div class="position-absolute top-0 start-100 bg-white" style="width: 60px; height: 60px; transform: translate(-50%,-50%) rotate(45deg);"></div>
                 <i class="bi bi-heart-fill text-danger position-absolute" style="top: 2px; right: 5px; cursor: pointer;"
                 @click="changeHeart($event), pushLoveFlower(item)"></i>
-                <img :src=item.imageUrl class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
+                <img :src=item.imageUrl class="card-img-top" alt="最愛商品圖片" style="height: 200px; object-fit: cover;">
                 <div class="card-body bg-pageBack d-flex flex-column justify-content-between">
                   <h5 class="card-title">{{ item.title }}</h5>
                   <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>

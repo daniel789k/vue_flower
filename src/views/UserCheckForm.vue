@@ -113,7 +113,7 @@
                 </button>
               </td>
               <td>
-                <img :src="item.product.imageUrl" alt="" class="img-fluid">
+                <img :src="item.product.imageUrl" alt="商品圖片" class="img-fluid">
               </td>
               <td>
                 {{ item.product.title }}

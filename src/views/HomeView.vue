@@ -84,7 +84,7 @@
       <template v-for="item in recommendP" :key="item.id">
         <swiper-slide class="w-25 mx-3">
           <div class="card h-100">
-            <img :src=item.imageUrl class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
+            <img :src=item.imageUrl class="card-img-top" alt="推薦商品" style="height: 200px; object-fit: cover;">
             <div class="card-body bg-pageBack d-flex flex-column justify-content-between">
               <h5 class="card-title">{{ item.title }}</h5>
               <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
@@ -115,7 +115,7 @@
   <section class="pb-5 container">
     <div class="row">
       <div class="col-lg-3">
-        <img src="https://plus.unsplash.com/premium_photo-1681914446415-be46ed7f470a?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-100" alt="">
+        <img src="https://plus.unsplash.com/premium_photo-1681914446415-be46ed7f470a?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-100" alt="會員計畫">
       </div>
       <div class="col-lg-3 d-flex align-items-center">
         <div>
@@ -124,7 +124,7 @@
         </div>
       </div>
       <div class="col-lg-3 d-flex align-items-center">
-        <img src="https://images.unsplash.com/photo-1717457779714-33b88744eab3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-100" alt="">
+        <img src="https://images.unsplash.com/photo-1717457779714-33b88744eab3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-100" alt="同城速遞">
       </div>
       <div class="col-lg-3 d-flex align-items-center">
         <div>

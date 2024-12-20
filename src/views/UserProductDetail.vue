@@ -9,7 +9,7 @@
     </nav>
     <div class="row justify-content-center">
       <article class="col-8">
-        <img :src="product.imageUrl" alt="" class="img-fluid mx-auto d-block" style="height: 80%; object-fit: cover;">
+        <img :src="product.imageUrl" alt="商品圖片" class="img-fluid mx-auto d-block" style="height: 80%; object-fit: cover;">
       </article>
       <div class="col-4">
         <h2>{{ product.title }}</h2>
@@ -39,7 +39,7 @@
       <template v-for="item in recommendP" :key="item.id">
         <swiper-slide>
           <div class="card h-100">
-            <img :src=item.imageUrl class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
+            <img :src=item.imageUrl class="card-img-top" alt="商品圖片" style="height: 200px; object-fit: cover;">
             <div class="card-body">
               <h5 class="card-title">{{ item.title }}</h5>
               <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>

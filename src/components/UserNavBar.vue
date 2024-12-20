@@ -46,7 +46,7 @@
           <template v-if="cart.carts">
             <tr v-for="item in cart.carts" :key="item.id">
               <td>
-                <button type="button" class="btn btn-outline-danger btn-sm" 
+                <button type="button" class="btn btn-outline-danger btn-sm"
                 :disabled="status.loadingItem === item.id"
                 @click="removeCartItem(item.id)">
                   <i class="bi bi-x"></i>

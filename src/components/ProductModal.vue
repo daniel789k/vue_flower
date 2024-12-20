@@ -21,7 +21,7 @@
                 </label>
                 <input type="file" id="customFile" class="form-control" @change="uploadFile" ref="fileInput">
               </div>
-              <img class="img-fluid" alt="">
+              <img class="img-fluid" alt="上傳圖片">
               <div class="mt-5">
                 <div class="mb-3 input-group" >
                   <input type="url" class="form-control form-control" placeholder="請輸入連結">

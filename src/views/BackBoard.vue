@@ -1,6 +1,6 @@
 <template>
   <NavBar></NavBar>
-  
+
   <div>
     <ToastMessages></ToastMessages>
     <router-view/>
