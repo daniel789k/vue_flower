@@ -1,5 +1,5 @@
 <template>
-    <UserLoading :active="isLoading"></UserLoading>
+  <UserLoading :active="isLoading"></UserLoading>
   <table class="table mt-4">
     <thead>
       <tr>

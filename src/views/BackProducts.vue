@@ -1,10 +1,10 @@
 <template>
-    <UserLoading :active="isLoading"></UserLoading>
-    <div class="text-end">
-      <button class="btn btn-primary" type="button" @click="openModal(true)">
-        增加一個產品
-      </button>
-    </div>
+  <UserLoading :active="isLoading"></UserLoading>
+  <div class="text-end">
+    <button class="btn btn-primary" type="button" @click="openModal(true)">
+      增加一個產品
+    </button>
+  </div>
   <table class="table mt-4">
     <thead>
       <tr>
@@ -44,7 +44,7 @@
   <DelModal ref="delModal" :item="tempProduct"
   @delete-product="deleteProduct">
   </DelModal>
-  </template>
+</template>
 
 <script>
 import ProductModal from '../components/ProductModal.vue'

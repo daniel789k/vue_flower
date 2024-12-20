@@ -1,71 +1,71 @@
 <template>
-    <UserLoading :active="isLoading"></UserLoading>
-    <div class="container">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb pt-3">
-          <li class="breadcrumb-item"><router-link to="/products">產品</router-link></li>
-          <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
-        </ol>
-      </nav>
-      <div class="row justify-content-center">
-        <article class="col-8">
-          <img :src="product.imageUrl" alt="" class="img-fluid mx-auto d-block" style="height: 80%; object-fit: cover;">
-        </article>
-        <div class="col-4">
-          <h2>{{ product.title }}</h2>
-          <div>{{ product.content }}</div>
-          <pre class="mt-3">{{ product.description }}</pre>
-          <div class="h5" v-if="!product.price">{{ product.origin_price }} 元</div>
-          <del class="h6" v-if="product.price">原價 {{ product.origin_price }} 元</del>
-          <div class="h5" v-if="product.price">現在只要 {{ product.price }} 元</div>
-          <hr>
-          <button type="button" class="btn btn-outline-mainColor"
-                  @click="addToCart(product.id)">
-            加到購物車
-          </button>
-        </div>
+  <UserLoading :active="isLoading"></UserLoading>
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb pt-3">
+        <li class="breadcrumb-item"><router-link to="/products">產品</router-link></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
+      </ol>
+    </nav>
+    <div class="row justify-content-center">
+      <article class="col-8">
+        <img :src="product.imageUrl" alt="" class="img-fluid mx-auto d-block" style="height: 80%; object-fit: cover;">
+      </article>
+      <div class="col-4">
+        <h2>{{ product.title }}</h2>
+        <div>{{ product.content }}</div>
+        <pre class="mt-3">{{ product.description }}</pre>
+        <div class="h5" v-if="!product.price">{{ product.origin_price }} 元</div>
+        <del class="h6" v-if="product.price">原價 {{ product.origin_price }} 元</del>
+        <div class="h5" v-if="product.price">現在只要 {{ product.price }} 元</div>
+        <hr>
+        <button type="button" class="btn btn-outline-mainColor"
+        @click="addToCart(product.id)">
+          加到購物車
+        </button>
       </div>
-      <h2 class="mb-3">推薦商品</h2>
-      <swiper
-        :navigation="true"
-        :slidesPerView="3"
-        :spaceBetween="50"
-        :pagination="{
-          dynamicBullets: true,
-        }"
-        :modules="modules"
-        class="mySwiper pb-4 px-5"
-      >
-        <template v-for="item in recommendP" :key="item.id">
-          <swiper-slide>
-            <div class="card h-100">
-              <img :src=item.imageUrl class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
-              <div class="card-body">
-                <h5 class="card-title">{{ item.title }}</h5>
-                <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
-                <del class="h6" v-if="item.price">原價 {{ item.origin_price }} 元</del>
-                <div class="h5" v-if="item.price">現在只要 {{ item.price }} 元</div>
+    </div>
+    <h2 class="mb-3">推薦商品</h2>
+    <swiper
+      :navigation="true"
+      :slidesPerView="3"
+      :spaceBetween="50"
+      :pagination="{
+        dynamicBullets: true,
+      }"
+      :modules="modules"
+      class="mySwiper pb-4 px-5"
+    >
+      <template v-for="item in recommendP" :key="item.id">
+        <swiper-slide>
+          <div class="card h-100">
+            <img :src=item.imageUrl class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+              <h5 class="card-title">{{ item.title }}</h5>
+              <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
+              <del class="h6" v-if="item.price">原價 {{ item.origin_price }} 元</del>
+              <div class="h5" v-if="item.price">現在只要 {{ item.price }} 元</div>
 
-                <div class="btn-group btn-group-sm">
-                  <button type="button" class="btn btn-outline-secondary"
-                          @click="getrecommend(item.id)">
-                    查看更多
-                  </button>
-                  <button type="button" class="btn btn-outline-mainColor"
-                  :disabled="this.status.loadingItem === item.id"
-                  @click="addrecommend(item.id)">
-                  <div v-if="this.status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                  </div>
-                    加到購物車
-                  </button>
+              <div class="btn-group btn-group-sm">
+                <button type="button" class="btn btn-outline-secondary"
+                @click="getrecommend(item.id)">
+                  查看更多
+                </button>
+                <button type="button" class="btn btn-outline-mainColor"
+                :disabled="this.status.loadingItem === item.id"
+                @click="addrecommend(item.id)">
+                <div v-if="this.status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
+                  <span class="visually-hidden">Loading...</span>
                 </div>
+                  加到購物車
+                </button>
               </div>
             </div>
-          </swiper-slide>
-        </template>
-      </swiper>
-    </div>
+          </div>
+        </swiper-slide>
+      </template>
+    </swiper>
+  </div>
 </template>
 
 <script>

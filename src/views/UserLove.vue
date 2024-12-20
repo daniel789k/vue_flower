@@ -1,45 +1,45 @@
 <template>
-<UserLoading :active="isLoading"></UserLoading>
-<section class="container pb-5 pt-md-5">
-<div class="row">
-  <h2 class="mb-4">我的最愛</h2>
-    <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0" class="col-md-12">
-      <div class="row row-cols-2 row-cols-md-4 g-4 mb-2">
-        <template v-for="item in getloveflower" :key="item.id">
-          <div class="col mb-2">
-            <div class="card h-100 position-relative border-0" style="overflow: hidden;">
-              <div class="position-absolute top-0 start-100 bg-white" style="width: 60px; height: 60px; transform: translate(-50%,-50%) rotate(45deg);"></div>
-              <i class="bi bi-heart-fill text-danger position-absolute" style="top: 2px; right: 5px; cursor: pointer;"
-              @click="changeHeart($event), pushLoveFlower(item)"></i>
-              <img :src=item.imageUrl class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
-              <div class="card-body bg-pageBack d-flex flex-column justify-content-between">
-                <h5 class="card-title">{{ item.title }}</h5>
-                <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
-                <del class="h6" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
-                <div class="h5" v-if="item.price">NT$ {{ item.price }} 元</div>
+  <UserLoading :active="isLoading"></UserLoading>
+  <section class="container pb-5 pt-md-5">
+    <div class="row">
+      <h2 class="mb-4">我的最愛</h2>
+      <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0" class="col-md-12">
+        <div class="row row-cols-2 row-cols-md-4 g-4 mb-2">
+          <template v-for="item in getloveflower" :key="item.id">
+            <div class="col mb-2">
+              <div class="card h-100 position-relative border-0" style="overflow: hidden;">
+                <div class="position-absolute top-0 start-100 bg-white" style="width: 60px; height: 60px; transform: translate(-50%,-50%) rotate(45deg);"></div>
+                <i class="bi bi-heart-fill text-danger position-absolute" style="top: 2px; right: 5px; cursor: pointer;"
+                @click="changeHeart($event), pushLoveFlower(item)"></i>
+                <img :src=item.imageUrl class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
+                <div class="card-body bg-pageBack d-flex flex-column justify-content-between">
+                  <h5 class="card-title">{{ item.title }}</h5>
+                  <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
+                  <del class="h6" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
+                  <div class="h5" v-if="item.price">NT$ {{ item.price }} 元</div>
 
-                <div class="btn-group btn-group-sm">
-                  <button type="button" class="btn btn-outline-secondary"
-                          @click="getProduct(item.id)">
-                    查看更多
-                  </button>
-                  <button type="button" class="btn btn-outline-mainColor"
-                  :disabled="this.status.loadingItem === item.id"
-                  @click="addCart(item.id)">
-                  <div v-if="this.status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                  <div class="btn-group btn-group-sm">
+                    <button type="button" class="btn btn-outline-secondary"
+                    @click="getProduct(item.id)">
+                      查看更多
+                    </button>
+                    <button type="button" class="btn btn-outline-mainColor"
+                    :disabled="this.status.loadingItem === item.id"
+                    @click="addCart(item.id)">
+                    <div v-if="this.status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                      加到購物車
+                    </button>
                   </div>
-                    加到購物車
-                  </button>
                 </div>
               </div>
             </div>
-          </div>
-        </template>
+          </template>
+        </div>
       </div>
     </div>
-</div>
-</section>
+  </section>
 </template>
 
 <script>
