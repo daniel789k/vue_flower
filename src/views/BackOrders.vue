@@ -13,13 +13,13 @@
     </thead>
     <tbody>
       <tr v-for="item in products" :key="item.id">
-        <td v-if="item.is_paid">{{$filters.date(item.paid_date)}}</td>
+        <td v-if="item.is_paid">{{ $filters.date(item.paid_date) }}</td>
         <td v-else>尚未付款</td>
-        <td>{{item.user.email}}</td>
+        <td>{{ item.user.email }}</td>
         <td class="text-right">products
         </td>
         <td class="text-right">
-          {{$filters.currency(item.total)}}
+          {{ $filters.currency(item.total) }}
         </td>
         <td>
           <span class="text-success" v-if="item.is_paid">已付款</span>

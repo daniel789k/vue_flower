@@ -7,7 +7,7 @@
         <nav class="nav nav-pills flex-md-column" v-for="(value, index) in flowerType" :key="value+index">
           <a class="nav-link  text-dark" :href="`#item-${index+1}`" @click.prevent="scrollIntoView(`item-${index+1}`)">{{ Object.keys(value)[0] }}</a>
           <nav class="flex-column nav nav-pills" v-for="(value1, key1) in Object.values(value)[0]" :key="key1">
-            <a class="nav-link ms-3 my-1 btn btn-one" :href="`#item-${index+1}-${key1+1}`" @click.prevent="scrollIntoView(`item-${index+1}-${key1+1}`)"><span>{{value1}}</span></a>
+            <a class="nav-link ms-3 my-1 btn btn-one" :href="`#item-${index+1}-${key1+1}`" @click.prevent="scrollIntoView(`item-${index+1}-${key1+1}`)"><span>{{ value1 }}</span></a>
           </nav>
         </nav>
       </nav>
@@ -15,7 +15,7 @@
       <nav id="navbar-example3" class="navbar navbar-light bg-light p-3 sticky-top h-100 bg-pageBack d-md-none row" style="top: 57px;">
         <template v-for="(value, index) in flowerType" :key="value+index">
           <nav class="nav nav-pills col-4" v-for="(value1, key1) in Object.values(value)[0]" :key="key1">
-            <a class="nav-link ms-3 my-1 btn btn-one" :href="`#item-${index+1}-${key1+1}`" @click.prevent="scrollIntoView(`item-${index+1}-${key1+1}`)"><span>{{value1}}</span></a>
+            <a class="nav-link ms-3 my-1 btn btn-one" :href="`#item-${index+1}-${key1+1}`" @click.prevent="scrollIntoView(`item-${index+1}-${key1+1}`)"><span>{{ value1 }}</span></a>
           </nav>
         </template>
       </nav>
@@ -24,7 +24,7 @@
         <div v-for="(value, index) in flowerType" :key="value+index">
           <h4 style="padding-top: 56px; margin-top: -56px;" :id="`item-${index+1}`">{{ Object.keys(value)[0] }}</h4>
           <div v-for="(value1, key1) in Object.values(value)[0]" :key="key1">
-            <h5 style="padding-top: 56px; margin-top: -56px;" :id="`item-${index+1}-${key1+1}`">{{value1}}</h5>
+            <h5 style="padding-top: 56px; margin-top: -56px;" :id="`item-${index+1}-${key1+1}`">{{ value1 }}</h5>
             <div class="row row-cols-2 row-cols-md-3 g-4">
               <template v-for="item in products" :key="item.id">
                 <div class="col mb-2" v-if="item.category.includes(`${value1}`)">
