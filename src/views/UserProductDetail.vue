@@ -100,7 +100,6 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/product/${this.id}`
       this.isLoading = true
       this.$http.get(api).then((response) => {
-        console.log(response.data)
         this.isLoading = false
         if (response.data.success) {
           this.product = response.data.product
@@ -117,7 +116,6 @@ export default {
       this.isLoading = true
       this.$http.get(url).then((response) => {
         this.recommendP = response.data.products
-        console.log('products:', response)
         this.isLoading = false
       })
     },
@@ -143,7 +141,6 @@ export default {
       }
       this.$http.post(url, { data: cart }).then((res) => {
         this.status.loadingItem = ''
-        console.log(res)
         this.getCart()
       })
     },
@@ -151,7 +148,6 @@ export default {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
       this.isLoading = true
       this.$http.get(url).then((response) => {
-        console.log(response)
         this.cart = response.data.data
         this.isLoading = false
       })

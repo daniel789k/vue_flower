@@ -66,7 +66,6 @@ export default {
       this.isLoading = true
       this.$http.get(api)
         .then((res) => {
-          console.log(res)
           this.isLoading = false
           if (res.data.success) {
             this.products = res.data.orders

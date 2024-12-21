@@ -73,7 +73,6 @@ export default {
         .then((res) => {
           this.isLoading = false
           if (res.data.success) {
-            console.log(res.data)
             this.products = res.data.products
             this.pagination = res.data.pagination
           }
@@ -104,7 +103,6 @@ export default {
       }
       const productComponent = this.$refs.productModal
       this.$http[httpMethod](api, { data: this.tempProduct }).then((res) => {
-        console.log(res)
         productComponent.hideModal()
         if (res.data.success) {
           this.getProducts()
@@ -118,7 +116,6 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`
       const productComponent = this.$refs.delModal
       this.$http.delete(api).then((res) => {
-        console.log(res)
         productComponent.hideModal()
         this.getProducts()
       })
@@ -130,7 +127,6 @@ export default {
     const api = `${process.env.VUE_APP_API}api/user/check`
     this.$http.post(api, this.user)
       .then((res) => {
-        console.log(res)
         if (!res.data.success) {
           this.$router.push('/login')
         } else {

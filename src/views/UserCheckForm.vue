@@ -191,7 +191,6 @@ export default {
       const order = this.form
       this.$http.post(url, { data: order })
         .then((res) => {
-          console.log(res)
           this.$httpMessageState(res, '建立訂單')
           this.$router.push('/orders')
         })

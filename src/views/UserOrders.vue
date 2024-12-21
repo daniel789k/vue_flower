@@ -73,7 +73,6 @@ export default {
             })
             this.$router.push('/')
           }
-          console.log(res)
           this.isLoading = false
           if (res.data.success) {
             this.products = res.data.orders

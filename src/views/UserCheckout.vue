@@ -122,10 +122,8 @@ export default {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`
       this.$http.get(url)
         .then((res) => {
-          console.log(res)
           if (res.data.success) {
             this.order = res.data.order
-            console.log(this.order)
           }
         })
     },
@@ -133,7 +131,6 @@ export default {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`
       this.$http.post(url)
         .then((res) => {
-          console.log(res)
           if (res.data.success) {
             this.getOrder()
           }
@@ -142,7 +139,6 @@ export default {
   },
   created () {
     this.orderId = this.$route.params.orderId
-    console.log(this.orderId)
     this.getOrder()
   }
 }

@@ -199,7 +199,6 @@ export default {
       this.isLoading = true
       this.$http.post(url, { data: coupon }).then((response) => {
         if (this.coupon_code) {
-          console.log(response)
           this.$httpMessageState(response, '加入優惠券')
           this.getCart()
           this.isLoading = false
@@ -223,7 +222,6 @@ export default {
       const api = `${process.env.VUE_APP_API}api/user/check`
       this.$http.post(api, this.user)
         .then((res) => {
-          // console.log(res)
           if (!res.data.success) {
             this.loginStatus = 0
           } else {

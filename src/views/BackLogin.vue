@@ -60,7 +60,6 @@ export default {
   methods: {
     signIn () {
       const api = `${process.env.VUE_APP_API}admin/signin`
-      console.log(api)
       this.$http.post(api, this.user)
         .then((res) => {
           if (res.data.success) {
@@ -82,7 +81,6 @@ export default {
     const api = `${process.env.VUE_APP_API}api/user/check`
     this.$http.post(api, this.user)
       .then((res) => {
-        console.log(res)
         if (res.data.success) {
           this.$router.push('back/products')
         }
