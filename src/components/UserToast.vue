@@ -15,7 +15,6 @@
 import Toast from 'bootstrap/js/dist/toast'
 
 export default {
-  name: 'UserToast',
   props: [
     'msg'
   ],
