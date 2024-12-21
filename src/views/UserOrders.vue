@@ -27,8 +27,8 @@
         </td>
         <td>
           <div class="btn-group" v-if="item.is_paid == false">
-            <button class="btn btn-outline-primary btn-sm" @click="getProduct(item.id)">前往付款</button>
-            <button class="btn btn-outline-danger btn-sm" @click="openDelModal(item)">刪除</button>
+            <button type="button" class="btn btn-outline-primary btn-sm" @click="getProduct(item.id)">前往付款</button>
+            <button type="button" class="btn btn-outline-danger btn-sm" @click="openDelModal(item)">刪除</button>
           </div>
         </td>
       </tr>

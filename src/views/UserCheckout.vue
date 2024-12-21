@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <div class="container-fluid p-3 align-items-center">
       <div class="d-flex justify-content-center">
-        <button
+        <button type="button"
           class="btn bg-success text-white btn-sm rounded-pill"
           style="width: 2rem; height: 2rem"
         >
@@ -15,7 +15,7 @@
           style="height: 0.2rem"
         >
         </span>
-        <button
+        <button type="button"
           class="btn bg-success text-white btn-sm rounded-pill"
           style="width: 2rem; height: 2rem"
         >
@@ -32,13 +32,13 @@
           style="height: 0.2rem"
         >
         </span>
-        <button v-if="!order.is_paid"
+        <button type="button" v-if="!order.is_paid"
           class="btn bg-white text-black btn-sm rounded-pill"
           style="width: 2rem; height: 2rem"
         >
           3
         </button>
-        <button v-else
+        <button type="button" v-else
           class="btn bg-success text-white btn-sm rounded-pill"
           style="width: 2rem; height: 2rem"
         >
@@ -100,7 +100,7 @@
         </tbody>
       </table>
       <div class="text-end" v-if="order.is_paid === false">
-        <button class="btn btn-danger">確認付款去</button>
+        <button type="button" class="btn btn-danger">確認付款去</button>
       </div>
     </form>
   </div>

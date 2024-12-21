@@ -30,7 +30,7 @@
                   </button>
                 </div>
                 <div>
-                  <button class="btn btn-outline-primary btn-sm d-block w-100">
+                  <button type="button" class="btn btn-outline-primary btn-sm d-block w-100">
                     新增圖片
                   </button>
                 </div>

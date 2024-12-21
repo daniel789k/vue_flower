@@ -4,7 +4,7 @@
   <div class="container-fluid">
     <div class="container-fluid p-3 align-items-center">
       <div class="d-flex justify-content-center">
-        <button
+        <button type="button"
           class="btn bg-success text-white btn-sm rounded-pill"
           style="width: 2rem; height: 2rem"
         >
@@ -16,7 +16,7 @@
           style="height: 0.2rem"
         >
         </span>
-        <button
+        <button type="button"
           class="btn bg-white text-black btn-sm rounded-pill"
           style="width: 2rem; height: 2rem"
         >
@@ -28,7 +28,7 @@
           style="height: 0.2rem"
         >
         </span>
-        <button
+        <button type="button"
           class="btn bg-white text-black btn-sm rounded-pill"
           style="width: 2rem; height: 2rem"
         >
@@ -85,7 +85,7 @@
             <div class="mb-3">
             </div>
             <div class="text-end">
-              <button class="btn btn-danger">送出訂單</button>
+              <button type="button" class="btn btn-danger">送出訂單</button>
             </div>
         </UserForm>
       </div>
