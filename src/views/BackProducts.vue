@@ -45,9 +45,9 @@
 </template>
 
 <script>
-import ProductModal from '../components/ProductModal.vue'
-import DelModal from '../components/DelModal.vue'
-import UserPagination from '../components/UserPagination.vue'
+import ProductModal from '@/components/ProductModal.vue'
+import DelModal from '@/components/DelModal.vue'
+import UserPagination from '@/components/UserPagination.vue'
 
 export default {
   data () {

@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import NavBar from '../components/UserNavBar.vue'
-import FooTer from '../components/FooTer.vue'
+import NavBar from '@/components/UserNavBar.vue'
+import FooTer from '@/components/FooTer.vue'
 import emitter from '@/methods/emitter'
 import ToastMessages from '@/components/ToastMessages.vue'
-import $httpMessageState from '../methods/pushMessageState'
+import $httpMessageState from '@/methods/pushMessageState'
 
 export default {
   data () {
