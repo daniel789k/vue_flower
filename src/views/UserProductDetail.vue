@@ -52,9 +52,9 @@
                   查看更多
                 </button>
                 <button type="button" class="btn btn-outline-mainColor"
-                :disabled="this.status.loadingItem === item.id"
+                :disabled="status.loadingItem === item.id"
                 @click="addrecommend(item.id)">
-                <div v-if="this.status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
+                <div v-if="status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
                   <span class="visually-hidden">Loading...</span>
                 </div>
                   加到購物車

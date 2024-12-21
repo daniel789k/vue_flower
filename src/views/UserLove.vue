@@ -24,9 +24,9 @@
                       查看更多
                     </button>
                     <button type="button" class="btn btn-outline-mainColor"
-                    :disabled="this.status.loadingItem === item.id"
+                    :disabled="status.loadingItem === item.id"
                     @click="addCart(item.id)">
-                    <div v-if="this.status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
+                    <div v-if="status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
                       <span class="visually-hidden">Loading...</span>
                     </div>
                       加到購物車
@@ -157,21 +157,6 @@ export default {
       event.target.classList.toggle('bi-heart-fill')
       event.target.classList.toggle('text-danger')
     }
-    // pushLoveFlower (item) {
-    //   const loveLength = this.loveF.length
-    //   if (loveLength === 0) {
-    //     this.loveF.push(item)
-    //   } else {
-    //     this.loveF.forEach((value, index) => {
-    //       if (value.title === item.title) {
-    //         this.loveF.splice(index, 1)
-    //       } else if (value.title !== item.title && index === loveLength - 1) {
-    //         this.loveF.push(item)
-    //       }
-    //     })
-    //   }
-    //   this.emitter.emit('getLoveFlower', this.loveF)
-    // }
   },
   computed: {
     ...mapState(useLoveStore, ['pushLoveFlower', 'getloveflower'])

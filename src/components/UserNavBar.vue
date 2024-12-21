@@ -15,9 +15,9 @@
           <button class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click.prevent="getCart(), addCouponCode()"><p class="text-start mb-0"><i class="bi bi-cart2 me-1"></i>購物車</p></button>
           <!-- <button @click.prevent ="pushLove()" class="border-0 bg-transparent" style="color: rgba(0,0,0,0.65);"><i class="bi bi-heart me-1"></i>我的最愛</button> -->
           <router-link to="/loves" class="nav-link"><i class="bi bi-heart me-1"></i>我的最愛</router-link>
-          <router-link to="/user/login" class="nav-link" v-if="this.loginStatus === 0"><i class="bi bi-person me-1"></i>會員登入</router-link>
+          <router-link to="/user/login" class="nav-link" v-if="loginStatus === 0"><i class="bi bi-person me-1"></i>會員登入</router-link>
           <router-link @click.prevent="logout" to="/" class="nav-link" v-else><i class="bi bi-person"></i>會員您好</router-link>
-          <router-link to="/orders" class="nav-link" v-if="this.loginStatus !== 0">訂單查詢</router-link>
+          <router-link to="/orders" class="nav-link" v-if="loginStatus !== 0">訂單查詢</router-link>
           <!-- <router-link to="/login" class="nav-link">後台</router-link> -->
         </div>
       </div>
