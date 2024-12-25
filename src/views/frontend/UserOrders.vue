@@ -111,18 +111,9 @@ export default {
         productComponent.hideModal()
         if (res.data.success) {
           this.getProducts()
-          // this.emitter.emit('push-message', {
-          //   style: 'success',
-          //   title: '更新成功'
-          // })
           this.$httpMessageState(res, '更新')
         } else {
           this.$httpMessageState(res, '更新')
-          // this.emitter.emit('push-message', {
-          //   style: 'danger',
-          //   title: '更新失敗',
-          //   content: res.data.message.join(',')
-          // })
         }
       })
     },

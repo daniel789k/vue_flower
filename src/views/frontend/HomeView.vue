@@ -145,7 +145,6 @@ import { EffectCoverflow, Pagination } from 'swiper/modules'
 export default {
   data () {
     return {
-      picture: 'https://images.unsplash.com/photo-1714139797690-969497e4a65e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       recommendP: {},
       status: {
         loadingItem: ''
@@ -198,7 +197,7 @@ export default {
 </script>
 
 <style>
-.headerbg{
+.headerbg {
   background-image: url('~@/assets/images/home_picture.png');
   width: 100%;
   height: 80vh;
@@ -206,7 +205,7 @@ export default {
   background-size: cover;
   background-position: center center;
 }
-.wordbg{
+.wordbg {
   background-image: url('~@/assets/images/word_bg.jpg');
   width: 100%;
   height: 300px;

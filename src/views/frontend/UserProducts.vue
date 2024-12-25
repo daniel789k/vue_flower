@@ -67,7 +67,6 @@
 
 <script>
 import { useLoveStore } from '@/stores/loveStore'
-// import { get } from 'jquery';
 import { mapState } from 'pinia'
 export default {
   data () {

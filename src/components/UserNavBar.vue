@@ -24,8 +24,7 @@
   </nav>
 
   <!-- 購物車側欄 -->
-  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel"
-  style="background-image: url(https://images.unsplash.com/photo-1553142282-bcc4d3ec4c40?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); background-repeat: no-repeat; background-size: cover; width: 530px;">
+  <div class="offcanvas offcanvas-start cartbg" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasExampleLabel">購物車</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -237,3 +236,12 @@ export default {
   }
 }
 </script>
+
+<style>
+.cartbg {
+  background-image: url('~@/assets/images/cartbg.jpg');
+  width: 530px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
