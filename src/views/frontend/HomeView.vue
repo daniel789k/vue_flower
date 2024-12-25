@@ -11,7 +11,7 @@
     <div class="row row-cols-1 row-cols-md-4">
       <div class="col d-flex flex-row flex-md-column align-items-center justify-content-center"  data-aos="fade-up" data-aos-delay="50">
         <div class="col">
-          <img src="../assets/images/step1.jpg" alt="步驟一" class="mb-3 img-fluid">
+          <img src="@/assets/images/step1.jpg" alt="步驟一" class="mb-3 img-fluid">
         </div>
         <div class="d-flex flex-column align-items-center text-md-center ms-4 ms-md-0 col">
           <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP1</p>
@@ -21,7 +21,7 @@
       </div>
       <div class="col d-flex flex-row flex-md-column align-items-center justify-content-center" data-aos="fade-up" data-aos-delay="150">
         <div class="col">
-          <img src="../assets/images/step2.jpg" alt="步驟二" class="mb-3 img-fluid">
+          <img src="@/assets/images/step2.jpg" alt="步驟二" class="mb-3 img-fluid">
         </div>
         <div class="d-flex flex-column align-items-center text-md-center ms-4 ms-md-0 col">
           <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP2</p>
@@ -31,7 +31,7 @@
       </div>
       <div class="col d-flex flex-row flex-md-column align-items-center justify-content-center" data-aos="fade-up" data-aos-delay="250">
         <div class="col">
-          <img src="../assets/images/step3.jpg" alt="步驟三" class="mb-3 img-fluid">
+          <img src="@/assets/images/step3.jpg" alt="步驟三" class="mb-3 img-fluid">
         </div>
         <div class="d-flex flex-column align-items-center text-md-center ms-4 ms-md-0 col">
           <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP3</p>
@@ -41,7 +41,7 @@
       </div>
       <div class="col d-flex flex-row flex-md-column align-items-center justify-content-center" data-aos="fade-up" data-aos-delay="350">
         <div class="col">
-          <img src="../assets/images/step4.jpg" alt="步驟四" class="mb-3 img-fluid">
+          <img src="@/assets/images/step4.jpg" alt="步驟四" class="mb-3 img-fluid">
         </div>
         <div class="d-flex flex-column align-items-center text-md-center ms-4 ms-md-0 col">
           <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP4</p>
@@ -114,7 +114,7 @@
   <section class="pb-5 container">
     <div class="row">
       <div class="col-lg-3">
-        <img src="../assets/images/memberplan.jpg" class="w-100" alt="會員計畫">
+        <img src="@/assets/images/memberplan.jpg" class="w-100" alt="會員計畫">
       </div>
       <div class="col-lg-3 d-flex align-items-center">
         <div>
@@ -123,7 +123,7 @@
         </div>
       </div>
       <div class="col-lg-3 d-flex align-items-center">
-        <img src="../assets/images/citydelivery.jpg" class="w-100" alt="同城速遞">
+        <img src="@/assets/images/citydelivery.jpg" class="w-100" alt="同城速遞">
       </div>
       <div class="col-lg-3 d-flex align-items-center">
         <div>
@@ -207,7 +207,7 @@ export default {
   background-position: center center;
 }
 .wordbg{
-  background-image: url('../assets/images/word_bg.jpg');
+  background-image: url('~@/assets/images/word_bg.jpg');
   width: 100%;
   height: 300px;
   background-repeat: no-repeat;

@@ -4,63 +4,63 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('../views/UserBoard.vue'),
+    component: () => import('../views/frontend/UserBoard.vue'),
     children: [
       {
         path: '/',
-        component: () => import('../views/HomeView.vue')
+        component: () => import('../views/frontend/HomeView.vue')
       },
       {
         path: 'products',
-        component: () => import('../views/UserProducts.vue')
+        component: () => import('../views/frontend/UserProducts.vue')
       },
       {
         path: 'product/:productId',
-        component: () => import('../views/UserProductDetail.vue')
+        component: () => import('../views/frontend/UserProductDetail.vue')
       },
       {
         path: 'loves',
-        component: () => import('../views/UserLove.vue')
+        component: () => import('../views/frontend/UserLove.vue')
       },
       {
         path: 'checkform',
-        component: () => import('../views/UserCheckForm.vue')
+        component: () => import('../views/frontend/UserCheckForm.vue')
       },
       {
         path: 'orders',
-        component: () => import('../views/UserOrders.vue')
+        component: () => import('../views/frontend/UserOrders.vue')
       },
       {
         path: 'checkout/:orderId',
-        component: () => import('../views/UserCheckout.vue')
+        component: () => import('../views/frontend/UserCheckout.vue')
       },
       {
         path: 'user/login',
-        component: () => import('../views/UserLogin.vue')
+        component: () => import('../views/frontend/UserLogin.vue')
       }
     ]
   },
   {
     path: '/login',
     name: 'login',
-    component: () => import('../views/BackLogin.vue')
+    component: () => import('../views/backend/BackLogin.vue')
   },
   {
     path: '/back',
     name: 'back',
-    component: () => import('../views/BackBoard.vue'),
+    component: () => import('../views/backend/BackBoard.vue'),
     children: [
       {
         path: 'products',
-        component: () => import('../views/BackProducts.vue')
+        component: () => import('../views/backend/BackProducts.vue')
       },
       {
         path: 'coupons',
-        component: () => import('../views/BackCoupons.vue')
+        component: () => import('../views/backend/BackCoupons.vue')
       },
       {
         path: 'orders',
-        component: () => import('../views/BackOrders.vue')
+        component: () => import('../views/backend/BackOrders.vue')
       }
     ]
   },
@@ -72,11 +72,11 @@ const routes = [
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: () => import('../views/UserBoard.vue'),
+    component: () => import('../views/frontend/UserBoard.vue'),
     children: [
       {
         path: '/:pathMatch(.*)*',
-        component: () => import('../views/HomeView.vue')
+        component: () => import('../views/frontend/HomeView.vue')
       }
     ]
   }
