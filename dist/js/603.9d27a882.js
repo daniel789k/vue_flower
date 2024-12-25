@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvue_flower"]=self["webpackChunkvue_flower"]||[]).push([[603],{603:function(u,e,n){n.r(e),n.d(e,{default:function(){return i}});var r=n(641);const t={class:"about"},a=(0,r.Lk)("h1",null,"This is an about page",-1),s=[a];function c(u,e){return(0,r.uX)(),(0,r.CE)("div",t,s)}var o=n(6262);const f={},l=(0,o.A)(f,[["render",c]]);var i=l}}]);
+//# sourceMappingURL=603.9d27a882.js.map
