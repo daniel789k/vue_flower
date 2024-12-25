@@ -68,6 +68,17 @@ const routes = [
     path: '/about',
     name: 'about',
     component: () => import('../views/AboutView.vue')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('../views/UserBoard.vue'),
+    children: [
+      {
+        path: '/:pathMatch(.*)*',
+        component: () => import('../views/HomeView.vue')
+      }
+    ]
   }
 ]
 
