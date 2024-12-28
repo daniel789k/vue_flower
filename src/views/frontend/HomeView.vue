@@ -4,6 +4,7 @@
       <p class="fs-5">歡迎來到花之藝</p>
       <h1 class="fw-bold">用花語傳遞心意</h1>
       <p>在花之藝花店，我們相信每一朵花都有它獨特的故事與語言。<br>我們致力於為每一位顧客提供最高品質的花卉產品和無與倫比的購物體驗。<br>無論是慶祝特別的日子，還是僅僅為了給日常生活增添一抹色彩。</p>
+      <router-link to="/products" class="nav-link bg-pageBack text-dark d-inline px-3 py-2 rounded-2">前往選購</router-link>
     </div>
   </header>
 
@@ -52,9 +53,9 @@
     </div>
   </section>
 
-  <section class="mb-5 py-5 d-flex flex-column-reverse wordbg"  data-aos="fade-up">
+  <section class="mb-5 py-5 d-flex flex-column-reverse justify-content-center wordbg"  data-aos="fade-up">
     <div class="container">
-      <h2 class="text-center mb-4 justify-content-center d-flex">
+      <h2 class="text-center justify-content-center mb-0">
         花之藝花店 - 每一朵花都是一個故事<br>讓我們一起寫下最美的篇章
       </h2>
     </div>
@@ -86,7 +87,7 @@
       <template v-for="item in recommendP" :key="item.id">
         <swiper-slide class="w-25 mx-4">
           <div class="card h-100">
-            <img :src=item.imageUrl class="card-img-top" alt="推薦商品" style="height: 200px; object-fit: cover;">
+            <img :src=item.imageUrl class="card-img-top" alt="推薦商品" @click="getrecommend(item.id)" style="height: 200px; object-fit: cover; cursor: pointer;">
             <div class="card-body bg-pageBack d-flex flex-column justify-content-between">
               <h5 class="card-title">{{ item.title }}</h5>
               <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
@@ -167,6 +168,9 @@ export default {
         this.recommendP = response.data.products
         this.isLoading = false
       })
+    },
+    getrecommend (id) {
+      this.$router.push(`/product/${id}`)
     },
     addrecommend (id) {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
