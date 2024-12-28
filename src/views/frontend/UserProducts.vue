@@ -1,16 +1,24 @@
 <template>
   <UserLoading :active="isLoading"/>
-  <section class="container pb-5 pt-md-5">
+  <section class="container pb-5 pt-md-3">
+    <h2 class="text-center">花藝商品</h2>
     <div class="row">
       <!-- 電腦導覽列 -->
-      <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch p-3 col-md-4 sticky-top h-100 bg-pageBack d-none d-md-block" style="top: 57px;">
+      <!-- <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch p-3 col-md-4 sticky-top h-100 bg-pageBack d-none d-md-block" style="top: 57px;">
         <nav class="nav nav-pills flex-md-column" v-for="(value, index) in flowerType" :key="value+index">
           <a class="nav-link  text-dark" :href="`#item-${index+1}`" @click.prevent="scrollIntoView(`item-${index+1}`)">{{ Object.keys(value)[0] }}</a>
           <nav class="flex-column nav nav-pills" v-for="(value1, key1) in Object.values(value)[0]" :key="key1">
             <a class="nav-link ms-3 my-1 btn btn-one" :href="`#item-${index+1}-${key1+1}`" @click.prevent="scrollIntoView(`item-${index+1}-${key1+1}`)"><span>{{ value1 }}</span></a>
           </nav>
         </nav>
-      </nav>
+      </nav> -->
+      <div class="bg-light flex-column align-items-stretch p-3 col-md-4 sticky-top h-100 bg-pageBack d-none d-md-block" style="top: 57px;">
+        <div class="flex-md-column" v-for="(value, index) in flowerType" :key="value+index">
+          <ul class="list-group flex-column" v-for="(value1, key1) in Object.values(value)[0]" :key="key1">
+            <li class="list-group-item ms-3 my-1 btn btn-one" @click="getType($event)">{{ value1 }}</li>
+          </ul>
+        </div>
+      </div>
       <!-- 手機導覽列 -->
       <nav id="navbar-example3" class="navbar navbar-light bg-light p-3 sticky-top h-100 bg-pageBack d-md-none row" style="top: 57px;">
         <template v-for="(value, index) in flowerType" :key="value+index">
@@ -21,13 +29,13 @@
       </nav>
 
       <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0" class="col-md-8">
-        <div v-for="(value, index) in flowerType" :key="value+index">
-          <h4 style="padding-top: 56px; margin-top: -56px;" :id="`item-${index+1}`">{{ Object.keys(value)[0] }}</h4>
-          <div v-for="(value1, key1) in Object.values(value)[0]" :key="key1">
-            <h5 style="padding-top: 56px; margin-top: -56px;" :id="`item-${index+1}-${key1+1}`">{{ value1 }}</h5>
+        <!-- <div v-for="(value, index) in flowerType" :key="value+index"> -->
+          <!-- <h4 style="padding-top: 56px; margin-top: -56px;" :id="`item-${index+1}`">{{ Object.keys(value)[0] }}</h4> -->
+          <!-- <div v-for="(value1, key1) in Object.values(value)[0]" :key="key1"> -->
+            <!-- <h5 style="padding-top: 56px; margin-top: -56px;" :id="`item-${index+1}-${key1+1}`">{{ value1 }}</h5> -->
             <div class="row row-cols-2 row-cols-md-3 g-4">
               <template v-for="item in products" :key="item.id">
-                <div class="col mb-2" v-if="item.category.includes(`${value1}`)">
+                <div class="col mb-2" v-if="item.category.includes(`${nowType}`)">
                   <div class="card h-100 position-relative border-0" style="overflow: hidden;">
                     <div class="position-absolute top-0 start-100 bg-white" style="width: 60px; height: 60px; transform: translate(-50%,-50%) rotate(45deg);"></div>
                     <i v-if="getTitle.includes(item.title)" class="bi bi-heart-fill text-danger position-absolute" style="top: 2px; right: 5px; cursor: pointer;" @click="changeHeart($event), pushLoveFlower(item)"></i>
@@ -58,8 +66,8 @@
                 </div>
               </template>
             </div>
-          </div>
-        </div>
+          <!-- </div> -->
+        <!-- </div> -->
       </div>
     </div>
   </section>
@@ -89,10 +97,12 @@ export default {
       coupon_code: '',
       isLoading: false,
       flowerType: [
+        { 全部商品: ['全部商品'] },
         { 鮮花花束: ['浪漫玫瑰花束', '繽紛混合花束'] },
         { 花藝設計: ['婚禮花藝', '企業花藝'] },
         { 盆栽與多肉植物: ['綠色盆栽', '迷你多肉植物'] }
       ],
+      nowType: '',
       loveFlower: []
     }
   },
@@ -175,6 +185,12 @@ export default {
     scrollIntoView (id) {
       document.getElementById(id).scrollIntoView()
     },
+    getType (event) {
+      this.nowType = event.target.innerText
+      if (event.target.innerText === '全部商品') {
+        this.nowType = ''
+      }
+    },
     changeHeart: (event) => {
       event.target.classList.toggle('bi-heart')
       event.target.classList.toggle('bi-heart-fill')
@@ -194,6 +210,7 @@ export default {
 <style>
 .btn-one {
 color: #5a0c0c !important;
+background-color: #d3b78776;
 transition: all 0.3s;
 position: relative;
 }
