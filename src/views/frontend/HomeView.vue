@@ -63,6 +63,7 @@
   <section class="pb-5 container">
     <h2 class="text-center mb-4">熱銷商品</h2>
     <swiper
+      :navigation="true"
       :effect="'coverflow'"
       :grabCursor="true"
       :centeredSlides="true"
@@ -75,13 +76,15 @@
         slideShadows: false,
       }"
       :pagination="{
+        dynamicBullets: true,
         clickable: true,
       }"
       :modules="modules"
       class="mySwiper pb-3"
+      style="--swiper-theme-color: #564527;"
     >
       <template v-for="item in recommendP" :key="item.id">
-        <swiper-slide class="w-25 mx-3">
+        <swiper-slide class="w-25 mx-4">
           <div class="card h-100">
             <img :src=item.imageUrl class="card-img-top" alt="推薦商品" style="height: 200px; object-fit: cover;">
             <div class="card-body bg-pageBack d-flex flex-column justify-content-between">
@@ -140,7 +143,8 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import 'swiper/css/effect-coverflow'
 import 'swiper/css/pagination'
-import { EffectCoverflow, Pagination } from 'swiper/modules'
+import 'swiper/css/navigation'
+import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules'
 
 export default {
   data () {
@@ -187,7 +191,7 @@ export default {
   },
   setup () {
     return {
-      modules: [EffectCoverflow, Pagination]
+      modules: [EffectCoverflow, Pagination, Navigation]
     }
   },
   created () {

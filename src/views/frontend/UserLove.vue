@@ -1,6 +1,6 @@
 <template>
   <UserLoading :active="isLoading"/>
-  <section class="container pb-5 pt-md-5">
+  <section class="container pb-5 pt-md-5" style="height: calc(100vh - 72px - 57.6px);">
     <div class="row">
       <h2 class="mb-4">我的最愛</h2>
       <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0" class="col-md-12">

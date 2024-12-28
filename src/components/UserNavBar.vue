@@ -98,7 +98,7 @@
         </div>
       </div>
       <div class="text-end">
-        <router-link to="/checkform"><button type="button" class="btn btn-danger" aria-label="Close" data-bs-dismiss="offcanvas">前往結帳</button></router-link>
+        <router-link to="/checkform"><button type="button" class="btn btn-pageBack" aria-label="Close" data-bs-dismiss="offcanvas">前往結帳</button></router-link>
       </div>
     </div>
   </div>
