@@ -4,18 +4,10 @@
     <h2 class="text-center">花藝商品</h2>
     <div class="row">
       <!-- 電腦導覽列 -->
-      <!-- <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch p-3 col-md-4 sticky-top h-100 bg-pageBack d-none d-md-block" style="top: 57px;">
-        <nav class="nav nav-pills flex-md-column" v-for="(value, index) in flowerType" :key="value+index">
-          <a class="nav-link  text-dark" :href="`#item-${index+1}`" @click.prevent="scrollIntoView(`item-${index+1}`)">{{ Object.keys(value)[0] }}</a>
-          <nav class="flex-column nav nav-pills" v-for="(value1, key1) in Object.values(value)[0]" :key="key1">
-            <a class="nav-link ms-3 my-1 btn btn-one" :href="`#item-${index+1}-${key1+1}`" @click.prevent="scrollIntoView(`item-${index+1}-${key1+1}`)"><span>{{ value1 }}</span></a>
-          </nav>
-        </nav>
-      </nav> -->
-      <div class="bg-light flex-column align-items-stretch p-3 col-md-4 sticky-top h-100 bg-pageBack d-none d-md-block" style="top: 57px;">
-        <div class="flex-md-column" v-for="(value, index) in flowerType" :key="value+index">
-          <ul class="list-group flex-column" v-for="(value1, key1) in Object.values(value)[0]" :key="key1">
-            <li class="list-group-item ms-3 my-1 btn btn-one" @click="getType($event)">{{ value1 }}</li>
+      <div class="bg-light flex-column align-items-stretch p-3 col-md-3 sticky-top h-100 bg-pageBack d-none d-md-block" style="top: 57px;">
+        <div class="flex-md-column">
+          <ul class="list-group flex-column">
+            <li v-for="(value, index) in flowerType" :key="value+index" class="list-group-item ms-3 my-1 btn btn-one" :class="{active: value==activeType}" @click="getType($event)"><i class="bi bi-flower2" v-if="value==activeType"></i> {{ value }}</li>
           </ul>
         </div>
       </div>
@@ -28,46 +20,36 @@
         </template>
       </nav>
 
-      <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0" class="col-md-8">
-        <!-- <div v-for="(value, index) in flowerType" :key="value+index"> -->
-          <!-- <h4 style="padding-top: 56px; margin-top: -56px;" :id="`item-${index+1}`">{{ Object.keys(value)[0] }}</h4> -->
-          <!-- <div v-for="(value1, key1) in Object.values(value)[0]" :key="key1"> -->
-            <!-- <h5 style="padding-top: 56px; margin-top: -56px;" :id="`item-${index+1}-${key1+1}`">{{ value1 }}</h5> -->
-            <div class="row row-cols-2 row-cols-md-3 g-4">
-              <template v-for="item in products" :key="item.id">
-                <div class="col mb-2" v-if="item.category.includes(`${nowType}`)">
-                  <div class="card h-100 position-relative border-0" style="overflow: hidden;">
-                    <div class="position-absolute top-0 start-100 bg-white" style="width: 60px; height: 60px; transform: translate(-50%,-50%) rotate(45deg);"></div>
-                    <i v-if="getTitle.includes(item.title)" class="bi bi-heart-fill text-danger position-absolute" style="top: 2px; right: 5px; cursor: pointer;" @click="changeHeart($event), pushLoveFlower(item)"></i>
-                    <i v-else class="bi bi-heart position-absolute" style="top: 2px; right: 5px; cursor: pointer;" @click="changeHeart($event), pushLoveFlower(item)"></i>
-                    <img :src=item.imageUrl class="card-img-top" alt="商品圖片" style="height: 200px; object-fit: cover;">
-                    <div class="card-body bg-pageBack d-flex flex-column justify-content-between">
-                      <h5 class="card-title">{{ item.title }}</h5>
-                      <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
-                      <del class="h6" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
-                      <div class="h5" v-if="item.price">NT$ {{ item.price }} 元</div>
+      <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0" class="col-md-9">
+        <div class="row row-cols-2 row-cols-md-3 g-4">
+          <template v-for="item in products" :key="item.id">
+            <div class="col mb-2" v-if="item.category.includes(`${nowType}`)">
+              <div class="card h-100 position-relative border-0" style="overflow: hidden;">
+                <div class="position-absolute top-0 start-100 bg-white" style="width: 60px; height: 60px; transform: translate(-50%,-50%) rotate(45deg);"></div>
+                <i v-if="getTitle.includes(item.title)" class="bi bi-heart-fill text-danger position-absolute" style="top: 2px; right: 5px; cursor: pointer;" @click="changeHeart($event), pushLoveFlower(item)"></i>
+                <i v-else class="bi bi-heart position-absolute" style="top: 2px; right: 5px; cursor: pointer;" @click="changeHeart($event), pushLoveFlower(item)"></i>
+                <img :src=item.imageUrl class="card-img-top" alt="商品圖片" @click="getProduct(item.id)" style="height: 200px; object-fit: cover;">
+                <div class="card-body bg-navBack d-flex flex-column justify-content-between">
+                  <h5 class="card-title" @click="getProduct(item.id)">{{ item.title }}</h5>
+                  <div class="h5" @click="getProduct(item.id)" v-if="!item.price">{{ item.origin_price }} 元</div>
+                  <del class="h6" @click="getProduct(item.id)" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
+                  <div class="h5" @click="getProduct(item.id)" v-if="item.price">NT$ {{ item.price }} 元</div>
 
-                      <div class="btn-group btn-group-sm">
-                        <button type="button" class="btn btn-outline-secondary"
-                        @click="getProduct(item.id)">
-                          查看更多
-                        </button>
-                        <button type="button" class="btn btn-outline-mainColor"
-                        :disabled="status.loadingItem === item.id"
-                        @click="addCart(item.id)">
-                          <div v-if="status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                          </div>
-                            加到購物車
-                        </button>
+                  <div class="btn-group btn-group-sm">
+                    <button type="button" class="btn btn-outline-mainColor"
+                    :disabled="status.loadingItem === item.id"
+                    @click="addCart(item.id)">
+                      <div v-if="status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
                       </div>
-                    </div>
+                        加到購物車
+                    </button>
                   </div>
                 </div>
-              </template>
+              </div>
             </div>
-          <!-- </div> -->
-        <!-- </div> -->
+          </template>
+        </div>
       </div>
     </div>
   </section>
@@ -97,12 +79,13 @@ export default {
       coupon_code: '',
       isLoading: false,
       flowerType: [
-        { 全部商品: ['全部商品'] },
-        { 鮮花花束: ['浪漫玫瑰花束', '繽紛混合花束'] },
-        { 花藝設計: ['婚禮花藝', '企業花藝'] },
-        { 盆栽與多肉植物: ['綠色盆栽', '迷你多肉植物'] }
+        '全部商品',
+        '浪漫玫瑰花束', '繽紛混合花束',
+        '婚禮花藝', '企業花藝',
+        '綠色盆栽', '迷你多肉植物'
       ],
       nowType: '',
+      activeType: '全部商品',
       loveFlower: []
     }
   },
@@ -187,6 +170,7 @@ export default {
     },
     getType (event) {
       this.nowType = event.target.innerText
+      this.activeType = event.target.innerText
       if (event.target.innerText === '全部商品') {
         this.nowType = ''
       }
@@ -271,5 +255,10 @@ transform: scale(0.1, 1);
 .btn-one.active::after {
 opacity: 0;
 transform: scale(0.1, 1);
+}
+.card:hover {
+box-shadow: 0 16px 32px 0 rgba(48, 55, 66, 0.15);
+transform: translate(0,-5px);
+transition-delay: 0s !important;
 }
 </style>
