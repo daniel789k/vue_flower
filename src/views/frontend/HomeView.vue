@@ -88,10 +88,10 @@
         <swiper-slide class="w-25 mx-4">
           <div class="card h-100">
             <img :src=item.imageUrl class="card-img-top" alt="推薦商品" @click="getrecommend(item.id)" style="height: 200px; object-fit: cover; cursor: pointer;">
-            <div class="card-body bg-pageBack d-flex flex-column justify-content-between">
+            <div class="card-body bg-navBack d-flex flex-column justify-content-between">
               <h5 class="card-title">{{ item.title }}</h5>
               <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
-              <del class="h6" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
+              <del class="h6 text-muted" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
               <div class="h5" v-if="item.price">NT$ {{ item.price }} 元</div>
 
               <div class="btn-group btn-group-sm">

@@ -32,7 +32,7 @@
                 <div class="card-body bg-navBack d-flex flex-column justify-content-between">
                   <h5 class="card-title" @click="getProduct(item.id)">{{ item.title }}</h5>
                   <div class="h5" @click="getProduct(item.id)" v-if="!item.price">{{ item.origin_price }} 元</div>
-                  <del class="h6" @click="getProduct(item.id)" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
+                  <del class="h6 text-muted" @click="getProduct(item.id)" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
                   <div class="h5" @click="getProduct(item.id)" v-if="item.price">NT$ {{ item.price }} 元</div>
 
                   <div class="btn-group btn-group-sm">
