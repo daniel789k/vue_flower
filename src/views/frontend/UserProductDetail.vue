@@ -82,6 +82,8 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import { Pagination, Navigation } from 'swiper/modules'
+import { buyCountStore } from '@/stores/cartStore'
+import { mapState } from 'pinia'
 export default {
   components: {
     Swiper,
@@ -138,6 +140,7 @@ export default {
       this.$http.post(url, { data: cart }).then((response) => {
         this.isLoading = false
         this.$httpMessageState(response, '加入購物車')
+        this.getCart()
         this.$router.push('/products')
       })
     },
@@ -158,9 +161,15 @@ export default {
       this.isLoading = true
       this.$http.get(url).then((response) => {
         this.cart = response.data.data
+        if (this.cart.carts.length !== 0) {
+          this.setbuyCount(this.cart.carts.map(el => el.qty).reduce((a, b) => a + b))
+        }
         this.isLoading = false
       })
     }
+  },
+  computed: {
+    ...mapState(buyCountStore, ['getbuyCount', 'setbuyCount'])
   },
   created () {
     this.id = this.$route.params.productId

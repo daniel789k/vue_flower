@@ -57,6 +57,7 @@
 
 <script>
 import { useLoveStore } from '@/stores/loveStore'
+import { buyCountStore } from '@/stores/cartStore'
 import { mapState } from 'pinia'
 export default {
   data () {
@@ -107,6 +108,9 @@ export default {
       this.isLoading = true
       this.$http.get(url).then((response) => {
         this.cart = response.data.data
+        if (this.cart.carts.length !== 0) {
+          this.setbuyCount(this.cart.carts.map(el => el.qty).reduce((a, b) => a + b))
+        }
         this.isLoading = false
       })
     },
@@ -182,7 +186,8 @@ export default {
     }
   },
   computed: {
-    ...mapState(useLoveStore, ['pushLoveFlower', 'getloveflower', 'getTitle'])
+    ...mapState(useLoveStore, ['pushLoveFlower', 'getloveflower', 'getTitle']),
+    ...mapState(buyCountStore, ['getbuyCount', 'setbuyCount'])
   },
   created () {
     this.getProducts()

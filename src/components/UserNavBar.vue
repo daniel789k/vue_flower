@@ -12,7 +12,11 @@
         <div class="navbar-nav ms-auto">
           <!-- <router-link to="/" class="nav-link">首頁</router-link> -->
           <router-link to="/products" class="nav-link"><i class="bi bi-flower2 me-1"></i>花藝商品</router-link>
-          <button type="button" class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click.prevent="getCart(), addCouponCode()"><p class="text-start mb-0"><i class="bi bi-cart2 me-1"></i>購物車</p></button>
+          <button type="button" class="nav-link me-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click.prevent="getCart(), addCouponCode()"><p class="text-start mb-0 position-relative"><i class="bi bi-cart2 me-1"></i>購物車<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          {{ getbuyCount }}
+            <span class="visually-hidden">buycount</span>
+            </span>
+          </p></button>
           <router-link to="/loves" class="nav-link"><i class="bi bi-heart me-1"></i>我的最愛</router-link>
           <router-link to="/user/login" class="nav-link" v-if="loginStatus === 0"><i class="bi bi-person me-1"></i>會員登入</router-link>
           <router-link @click.prevent="logout" to="/" class="nav-link" v-else><i class="bi bi-person"></i>會員您好</router-link>
@@ -24,12 +28,12 @@
   </nav>
 
   <!-- 購物車側欄 -->
-  <div class="offcanvas offcanvas-start cartbg" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas offcanvas-end cartbg" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasExampleLabel">購物車</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body pt-0">
+    <div class="offcanvas-body pt-0" v-if="getbuyCount !== 0">
       <table class="table align-middle">
         <thead>
           <tr>
@@ -92,7 +96,7 @@
       <div class="input-group mb-3 input-group-sm w-50 ms-auto">
         <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" @click="addCouponCode">
+          <button class="btn btn-outline-secondary rounded-0 rounded-end" type="button" @click="addCouponCode">
             套用優惠碼
           </button>
         </div>
@@ -101,11 +105,20 @@
         <router-link to="/checkform"><button type="button" class="btn btn-pageBack" aria-label="Close" data-bs-dismiss="offcanvas">前往結帳</button></router-link>
       </div>
     </div>
+    <!-- 無商品時 -->
+    <div class="offcanvas-body pt-0" v-if="getbuyCount == 0">
+      <h2 class="mb-4">尚無商品</h2>
+      <router-link to="/products"
+      @click="this.$router.push('/products')"
+      class="nav-link ps-3 fs-5" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-flower2 me-1"></i>前往選購</router-link>
+    </div>
   </div>
 </template>
 
 <script>
 import emitter from '@/methods/emitter'
+import { buyCountStore } from '@/stores/cartStore'
+import { mapState } from 'pinia'
 
 export default {
   data () {
@@ -118,7 +131,8 @@ export default {
       nowuse_coupon_code: '',
       loginStatus: 0,
       isLoading: false,
-      loveFlower: []
+      loveFlower: [],
+      buyCount: 0
     }
   },
   inject: ['emitter'],
@@ -156,14 +170,18 @@ export default {
       this.isLoading = true
       this.$http.get(url).then((response) => {
         this.cart = response.data.data
-        this.isLoading = false
+        if (this.cart.carts.length === 0) {
+          this.setbuyCount(0)
+        }
         if (this.cart.carts.length !== 0) {
+          this.setbuyCount(this.cart.carts.map(el => el.qty).reduce((a, b) => a + b))
           if (this.coupon_code === '') {
-            if ('code' in this.cart.carts[0].coupon) {
+            if ('coupon' in this.cart.carts[0]) {
               this.coupon_code = this.cart.carts[0].coupon.code
             }
           }
         }
+        this.isLoading = false
       })
     },
     updateCart (item) {
@@ -182,14 +200,14 @@ export default {
     addCouponCode () {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`
       let coupon = {}
-      if (this.cart.carts.length === 0) {
-        this.coupon_code = ''
-        this.nowuse_coupon_code = ''
-      }
       if (this.coupon_code !== '') {
         this.nowuse_coupon_code = this.coupon_code
       } else {
         this.coupon_code = this.nowuse_coupon_code
+      }
+      if (this.cart.carts.length === 0) {
+        this.coupon_code = ''
+        this.nowuse_coupon_code = ''
       }
       coupon = {
         code: this.coupon_code
@@ -227,6 +245,9 @@ export default {
           }
         })
     }
+  },
+  computed: {
+    ...mapState(buyCountStore, ['getbuyCount', 'setbuyCount'])
   },
   created () {
     this.getCart()
