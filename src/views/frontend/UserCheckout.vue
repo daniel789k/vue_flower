@@ -49,7 +49,7 @@
       </div>
     </div>
   </div>
-  <div class="py-5 row justify-content-center container">
+  <div class="py-5 row justify-content-center container mx-auto">
     <form class="col-md-6" @submit.prevent="payOrder">
       <table class="table align-middle">
         <thead>
@@ -100,7 +100,7 @@
         </tbody>
       </table>
       <div class="text-end" v-if="order.is_paid === false">
-        <button type="button" class="btn btn-danger">確認付款去</button>
+        <button type="submit" class="btn btn-danger">確認付款去</button>
       </div>
     </form>
   </div>
