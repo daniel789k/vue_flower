@@ -11,15 +11,23 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="navbar-nav ms-auto">
           <!-- <router-link to="/" class="nav-link">首頁</router-link> -->
-          <router-link to="/products" class="nav-link"><i class="bi bi-flower2 me-1"></i>花藝商品</router-link>
-          <button type="button" class="nav-link me-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click.prevent="getCart(), addCouponCode()"><p class="text-start mb-0 position-relative"><i class="bi bi-cart2 me-1"></i>購物車<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          <router-link to="/products" class="nav-link" @click="this.$router.push('/products')" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" v-if="windowWidth < 992"><i class="bi bi-flower2 me-1"></i>花藝商品</router-link>
+          <router-link to="/products" class="nav-link" v-if="windowWidth >= 992"><i class="bi bi-flower2 me-1"></i>花藝商品</router-link>
+          <button type="button" class="nav-link me-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click.prevent="getCart(), addCouponCode()" v-if="windowWidth < 992" ><p class="text-start mb-0 position-relative" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"><i class="bi bi-cart2 me-1"></i>購物車<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
           {{ getbuyCount }}
             <span class="visually-hidden">buycount</span>
             </span>
           </p></button>
-          <router-link to="/loves" class="nav-link"><i class="bi bi-heart me-1"></i>我的最愛</router-link>
-          <router-link to="/user/login" class="nav-link" v-if="loginStatus === 0"><i class="bi bi-person me-1"></i>會員登入</router-link>
-          <router-link @click.prevent="logout" to="/" class="nav-link" v-else><i class="bi bi-person"></i>會員您好</router-link>
+          <button type="button" class="nav-link me-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click.prevent="getCart(), addCouponCode()" v-if="windowWidth >= 992"><p class="text-start mb-0 position-relative"><i class="bi bi-cart2 me-1"></i>購物車<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          {{ getbuyCount }}
+            <span class="visually-hidden">buycount</span>
+            </span>
+          </p></button>
+          <router-link to="/loves" class="nav-link" @click="this.$router.push('/loves')" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" v-if="windowWidth < 992"><i class="bi bi-heart me-1"></i>我的最愛</router-link>
+          <router-link to="/loves" class="nav-link" v-if="windowWidth >= 992"><i class="bi bi-heart me-1"></i>我的最愛</router-link>
+          <router-link to="/user/login" class="nav-link" @click="this.$router.push('/user/login')" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" v-if="loginStatus === 0 & windowWidth < 992"><i class="bi bi-person me-1"></i>會員登入</router-link>
+          <router-link to="/user/login" class="nav-link" v-if="loginStatus === 0 & windowWidth >= 992"><i class="bi bi-person me-1"></i>會員登入</router-link>
+          <router-link @click.prevent="logout" to="/" class="nav-link" v-if="loginStatus !== 0"><i class="bi bi-person"></i>會員您好</router-link>
           <router-link to="/orders" class="nav-link" v-if="loginStatus !== 0">訂單查詢</router-link>
           <!-- <router-link to="/login" class="nav-link">後台</router-link> -->
         </div>
@@ -132,7 +140,8 @@ export default {
       loginStatus: 0,
       isLoading: false,
       loveFlower: [],
-      buyCount: 0
+      buyCount: 0,
+      windowWidth: window.innerWidth
     }
   },
   inject: ['emitter'],
@@ -245,6 +254,11 @@ export default {
           }
         })
     }
+  },
+  mounted () {
+    window.addEventListener('resize', () => {
+      this.windowWidth = window.innerWidth
+    })
   },
   computed: {
     ...mapState(buyCountStore, ['getbuyCount', 'setbuyCount'])
