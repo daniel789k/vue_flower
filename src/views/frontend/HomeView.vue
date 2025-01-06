@@ -1,6 +1,6 @@
 <template>
   <header class="mb-5 header px-4 py-5 d-flex align-items-lg-center justify-content-center img-fluid headerbg">
-    <div class="text-white text-center bg-secondary bg-opacity-50 p-3">
+    <div class="text-white text-center bg-secondary bg-opacity-50 p-3 d-flex flex-column align-items-center">
       <p class="fs-5">歡迎來到花之藝</p>
       <h1 class="fw-bold">用花語傳遞心意</h1>
       <p>在花之藝花店，我們相信每一朵花都有它獨特的故事與語言。<br>我們致力於為每一位顧客提供最高品質的花卉產品和無與倫比的購物體驗。<br>無論是慶祝特別的日子，還是僅僅為了給日常生活增添一抹色彩。</p>
@@ -10,44 +10,44 @@
 
   <section class="mb-5 px-md-5 px-4">
     <div class="row row-cols-1 row-cols-md-4">
-      <div class="col d-flex flex-row flex-md-column align-items-center justify-content-center"  data-aos="fade-up" data-aos-delay="50">
-        <div class="col">
+      <div class="col d-flex flex-row flex-column align-items-center justify-content-center"  data-aos="fade-up" data-aos-delay="50">
+        <div class="d-flex flex-column">
           <img src="@/assets/images/step1.jpg" alt="步驟一" class="mb-3 img-fluid">
-        </div>
-        <div class="d-flex flex-column align-items-center text-md-center ms-4 ms-md-0 col">
-          <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP1</p>
-          <h2 class="fw-bold fs-5 mb-3 me-auto mx-md-auto">選擇產品</h2>
-          <p class="me-auto mx-md-auto">瀏覽我們的網站<br>選擇您喜愛的花卉產品</p>
+          <div class="d-flex flex-column align-items-center text-md-center">
+            <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP1</p>
+            <h2 class="fw-bold fs-5 mb-3 me-auto mx-md-auto">選擇產品</h2>
+            <p class="me-auto mx-md-auto">瀏覽我們的網站<br>選擇您喜愛的花卉產品</p>
+          </div>
         </div>
       </div>
-      <div class="col d-flex flex-row flex-md-column align-items-center justify-content-center" data-aos="fade-up" data-aos-delay="150">
-        <div class="col">
+      <div class="col d-flex flex-row flex-column align-items-center justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="d-flex flex-column">
           <img src="@/assets/images/step2.jpg" alt="步驟二" class="mb-3 img-fluid">
-        </div>
-        <div class="d-flex flex-column align-items-center text-md-center ms-4 ms-md-0 col">
-          <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP2</p>
-          <h2 class="fw-bold fs-5 mb-3 me-auto mx-md-auto">確認訂單</h2>
-          <p class="me-auto mx-md-auto">填寫訂購信息和收貨地址<br>確認訂單內容</p>
+          <div class="d-flex flex-column align-items-center text-md-center">
+            <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP2</p>
+            <h2 class="fw-bold fs-5 mb-3 me-auto mx-md-auto">確認訂單</h2>
+            <p class="me-auto mx-md-auto">填寫訂購信息和收貨地址<br>確認訂單內容</p>
+          </div>
         </div>
       </div>
       <div class="col d-flex flex-row flex-md-column align-items-center justify-content-center" data-aos="fade-up" data-aos-delay="250">
-        <div class="col">
+        <div class="d-flex flex-column">
           <img src="@/assets/images/step3.jpg" alt="步驟三" class="mb-3 img-fluid">
-        </div>
-        <div class="d-flex flex-column align-items-center text-md-center ms-4 ms-md-0 col">
-          <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP3</p>
-          <h2 class="fw-bold fs-5 mb-3 me-auto mx-md-auto">付款</h2>
-          <p class="me-auto mx-md-auto text-nowrap">支持多種支付方式<br>方便快捷</p>
+          <div class="d-flex flex-column align-items-center text-md-center">
+            <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP3</p>
+            <h2 class="fw-bold fs-5 mb-3 me-auto mx-md-auto">付款</h2>
+            <p class="me-auto mx-md-auto text-nowrap">支持多種支付方式<br>方便快捷</p>
+          </div>
         </div>
       </div>
       <div class="col d-flex flex-row flex-md-column align-items-center justify-content-center" data-aos="fade-up" data-aos-delay="350">
-        <div class="col">
+        <div class="d-flex flex-column">
           <img src="@/assets/images/step4.jpg" alt="步驟四" class="mb-3 img-fluid">
-        </div>
-        <div class="d-flex flex-column align-items-center text-md-center ms-4 ms-md-0 col">
-          <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP4</p>
-          <h2 class="fw-bold fs-5 mb-3 me-auto mx-md-auto">等待收花</h2>
-          <p class="me-auto mx-md-auto">我們會在您選擇的時間內<br>準時送達。</p>
+          <div class="d-flex flex-column align-items-center text-md-center">
+            <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP4</p>
+            <h2 class="fw-bold fs-5 mb-3 me-auto mx-md-auto">等待收花</h2>
+            <p class="me-auto mx-md-auto">我們會在您選擇的時間內<br>準時送達。</p>
+          </div>
         </div>
       </div>
     </div>
@@ -85,7 +85,33 @@
       style="--swiper-theme-color: #564527;"
     >
       <template v-for="item in recommendP" :key="item.id">
-        <swiper-slide class="w-25 mx-4">
+        <swiper-slide class="w-25 mx-4" v-if="windowWidth > 992">
+          <div class="card h-100">
+            <img :src=item.imageUrl class="card-img-top" alt="推薦商品" @click="getrecommend(item.id)" style="height: 200px; object-fit: cover; cursor: pointer;">
+            <div class="card-body bg-navBack d-flex flex-column justify-content-between">
+              <h5 class="card-title">{{ item.title }}</h5>
+              <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
+              <del class="h6 text-muted" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
+              <div class="h5" v-if="item.price">NT$ {{ item.price }} 元</div>
+
+              <div class="btn-group btn-group-sm">
+                <!-- <button type="button" class="btn btn-outline-secondary"
+                        @click="getrecommend(item.id)">
+                    查看更多
+                </button> -->
+                <button type="button" class="btn btn-outline-mainColor"
+                :disabled="status.loadingItem === item.id"
+                @click="addrecommend(item.id)">
+                <div v-if="status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                    加到購物車
+                </button>
+              </div>
+            </div>
+          </div>
+        </swiper-slide>
+        <swiper-slide class="w-50 mx-4" v-else>
           <div class="card h-100">
             <img :src=item.imageUrl class="card-img-top" alt="推薦商品" @click="getrecommend(item.id)" style="height: 200px; object-fit: cover; cursor: pointer;">
             <div class="card-body bg-navBack d-flex flex-column justify-content-between">
@@ -143,9 +169,10 @@
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import 'swiper/css/effect-coverflow'
+import 'swiper/css/effect-cards'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
-import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules'
+import { EffectCards, EffectCoverflow, Pagination, Navigation } from 'swiper/modules'
 
 export default {
   data () {
@@ -153,7 +180,8 @@ export default {
       recommendP: {},
       status: {
         loadingItem: ''
-      }
+      },
+      windowWidth: window.innerWidth
     }
   },
   components: {
@@ -195,8 +223,13 @@ export default {
   },
   setup () {
     return {
-      modules: [EffectCoverflow, Pagination, Navigation]
+      modules: [EffectCards, EffectCoverflow, Pagination, Navigation]
     }
+  },
+  mounted () {
+    window.addEventListener('resize', () => {
+      this.windowWidth = window.innerWidth
+    })
   },
   created () {
     this.getrecommendP()
