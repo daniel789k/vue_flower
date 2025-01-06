@@ -146,7 +146,7 @@
       <div class="col-lg-3">
         <img src="@/assets/images/memberplan.jpg" class="w-100" alt="會員計畫">
       </div>
-      <div class="col-lg-3 d-flex align-items-center">
+      <div class="col-lg-3 d-flex align-items-center my-3 my-lg-0">
         <div>
           <h2>會員計劃</h2>
           <p class="lh-lg text-subColor1">成為我們的會員<br>享受專屬優惠和生日禮物。</p>
@@ -155,7 +155,7 @@
       <div class="col-lg-3 d-flex align-items-center">
         <img src="@/assets/images/citydelivery.jpg" class="w-100" alt="同城速遞">
       </div>
-      <div class="col-lg-3 d-flex align-items-center">
+      <div class="col-lg-3 d-flex align-items-center mt-3 mt-lg-0">
         <div>
           <h2>同城速遞</h2>
           <p class="lh-lg text-subColor1">當天送達，讓心意不再等待。</p>
