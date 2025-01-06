@@ -1,28 +1,33 @@
 <template>
   <UserLoading :active="isLoading"/>
-  <div class="container">
+  <div class="container px-5">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb pt-3">
-        <li class="breadcrumb-item"><router-link to="/products">產品</router-link></li>
-        <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
+        <li class="breadcrumb-item"><router-link class="text-secondary text-decoration-none" to="/products">產品</router-link></li>
+        <li class="breadcrumb-item active text-mainColor" aria-current="page">{{ product.title }}</li>
       </ol>
     </nav>
-    <div class="row justify-content-center">
-      <article class="col-8">
-        <img :src="product.imageUrl" alt="商品圖片" class="img-fluid mx-auto d-block" style="height: 80%; object-fit: cover;">
+    <div class="row justify-content-center mb-5">
+      <article class="col-4">
+        <img :src="product.imageUrl" alt="商品圖片" class="img-fluid me-auto d-block" style="height: 80%; object-fit: cover;">
       </article>
-      <div class="col-4">
+      <div class="col-8">
         <h2>{{ product.title }}</h2>
         <div>{{ product.content }}</div>
         <pre class="mt-3">{{ product.description }}</pre>
         <div class="h5" v-if="!product.price">{{ product.origin_price }} 元</div>
-        <del class="h6" v-if="product.price">原價 {{ product.origin_price }} 元</del>
-        <div class="h5" v-if="product.price">現在只要 {{ product.price }} 元</div>
+        <del class="h6 text-muted" v-if="product.price">原價 {{ product.origin_price }} 元</del>
+        <div class="h5 text-subColor1" v-if="product.price">現在只要 {{ product.price }} 元</div>
         <hr>
-        <button type="button" class="btn btn-outline-mainColor"
-        @click="addToCart(product.id)">
-          加到購物車
-        </button>
+        <div class="input-group input-group-sm mb-2">
+          <input type="number" class="form-control flex-grow-0 w-25 text-center"
+          min="1" v-model.number="qty">
+          <div class="input-group-text">/ 朵</div>
+          <button type="button" class="btn btn-outline-mainColor"
+          @click="addToCart(product.id)">
+            加到購物車
+          </button>
+        </div>
       </div>
     </div>
     <h2 class="mb-3">推薦商品</h2>
@@ -32,25 +37,27 @@
       :spaceBetween="50"
       :pagination="{
         dynamicBullets: true,
+        clickable: true,
       }"
       :modules="modules"
-      class="mySwiper pb-4 px-5"
+      class="mySwiper pb-4"
+      style="--swiper-theme-color: #564527;"
     >
       <template v-for="item in recommendP" :key="item.id">
         <swiper-slide>
           <div class="card h-100">
-            <img :src=item.imageUrl class="card-img-top" alt="商品圖片" style="height: 200px; object-fit: cover;">
-            <div class="card-body">
-              <h5 class="card-title">{{ item.title }}</h5>
-              <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
-              <del class="h6" v-if="item.price">原價 {{ item.origin_price }} 元</del>
-              <div class="h5" v-if="item.price">現在只要 {{ item.price }} 元</div>
+            <img :src=item.imageUrl class="card-img-top" alt="商品圖片"
+            @click="getrecommend(item.id)" style="height: 200px; object-fit: cover;">
+            <div class="card-body bg-navBack d-flex flex-column justify-content-between">
+              <h5 class="card-title" @click="getrecommend(item.id)">{{ item.title }}</h5>
+              <div class="h5" @click="getrecommend(item.id)" v-if="!item.price">{{ item.origin_price }} 元</div>
+              <del class="h6 text-muted" @click="getrecommend(item.id)" v-if="item.price">原價 {{ item.origin_price }} 元</del>
+              <div class="h5 text-subColor1" @click="getrecommend(item.id)" v-if="item.price">現在只要 {{ item.price }} 元</div>
 
               <div class="btn-group btn-group-sm">
-                <button type="button" class="btn btn-outline-secondary"
-                @click="getrecommend(item.id)">
+                <!-- <button type="button" class="btn btn-outline-secondary">
                   查看更多
-                </button>
+                </button> -->
                 <button type="button" class="btn btn-outline-mainColor"
                 :disabled="status.loadingItem === item.id"
                 @click="addrecommend(item.id)">
@@ -65,6 +72,7 @@
         </swiper-slide>
       </template>
     </swiper>
+    <div class="py-3"></div>
   </div>
 </template>
 
@@ -74,6 +82,8 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import { Pagination, Navigation } from 'swiper/modules'
+import { buyCountStore } from '@/stores/cartStore'
+import { mapState } from 'pinia'
 export default {
   components: {
     Swiper,
@@ -91,7 +101,8 @@ export default {
       id: '',
       status: {
         loadingItem: ''
-      }
+      },
+      qty: 1
     }
   },
   inject: ['$httpMessageState'],
@@ -119,7 +130,7 @@ export default {
         this.isLoading = false
       })
     },
-    addToCart (id, qty = 1) {
+    addToCart (id, qty = this.qty) {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
       const cart = {
         product_id: id,
@@ -129,6 +140,7 @@ export default {
       this.$http.post(url, { data: cart }).then((response) => {
         this.isLoading = false
         this.$httpMessageState(response, '加入購物車')
+        this.getCart()
         this.$router.push('/products')
       })
     },
@@ -149,9 +161,15 @@ export default {
       this.isLoading = true
       this.$http.get(url).then((response) => {
         this.cart = response.data.data
+        if (this.cart.carts.length !== 0) {
+          this.setbuyCount(this.cart.carts.map(el => el.qty).reduce((a, b) => a + b))
+        }
         this.isLoading = false
       })
     }
+  },
+  computed: {
+    ...mapState(buyCountStore, ['getbuyCount', 'setbuyCount'])
   },
   created () {
     this.id = this.$route.params.productId

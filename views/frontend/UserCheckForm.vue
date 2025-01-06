@@ -46,7 +46,7 @@
         <UserForm class="col-md-11" v-slot="{ errors }"
           @submit="createOrder">
           <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
+              <label for="email" class="form-label">Email *</label>
               <UserField id="email" name="email" type="email" class="form-control"
                       :class="{ 'is-invalid': errors['email'] }"
                       placeholder="請輸入 Email" rules="email|required"
@@ -54,7 +54,7 @@
               <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
             </div>
             <div class="mb-3">
-              <label for="name" class="form-label">收件人姓名</label>
+              <label for="name" class="form-label">收件人姓名 *</label>
               <UserField id="name" name="姓名" type="text" class="form-control"
                       :class="{ 'is-invalid': errors['姓名'] }"
                       placeholder="請輸入姓名" rules="required"
@@ -62,7 +62,7 @@
               <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
             </div>
             <div class="mb-3">
-              <label for="tel" class="form-label">收件人電話</label>
+              <label for="tel" class="form-label">收件人電話 *</label>
               <UserField id="tel" name="電話" type="tel" class="form-control"
                       :class="{ 'is-invalid': errors['電話'] }"
                       placeholder="請輸入電話" rules="required"
@@ -70,7 +70,7 @@
               <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
             </div>
             <div class="mb-3">
-              <label for="address" class="form-label">收件人地址</label>
+              <label for="address" class="form-label">收件人地址 *</label>
               <UserField id="address" name="地址" type="text" class="form-control"
                       :class="{ 'is-invalid': errors['地址'] }"
                       placeholder="請輸入地址" rules="required"
@@ -85,7 +85,7 @@
             <div class="mb-3">
             </div>
             <div class="text-end">
-              <button type="button" class="btn btn-danger">送出訂單</button>
+              <button type="submit" class="btn btn-danger">送出訂單</button>
             </div>
         </UserForm>
       </div>
@@ -164,6 +164,9 @@
 </template>
 
 <script>
+import { buyCountStore } from '@/stores/cartStore'
+import { mapState } from 'pinia'
+
 export default {
   data () {
     return {
@@ -181,7 +184,8 @@ export default {
       status: {
         loadingItem: ''
       },
-      products: []
+      products: [],
+      coupon_code: ''
     }
   },
   inject: ['$httpMessageState'],
@@ -192,7 +196,8 @@ export default {
       this.$http.post(url, { data: order })
         .then((res) => {
           this.$httpMessageState(res, '建立訂單')
-          this.$router.push('/orders')
+          this.setbuyCount(0)
+          this.$router.push(`/checkout/${res.data.orderId}`)
         })
     },
     getCart () {
@@ -227,14 +232,20 @@ export default {
       } else {
         this.coupon_code = this.nowuse_coupon_code
       }
+      if (this.cart.carts.length === 0) {
+        this.coupon_code = ''
+        this.nowuse_coupon_code = ''
+      }
       coupon = {
         code: this.coupon_code
       }
       this.isLoading = true
       this.$http.post(url, { data: coupon }).then((response) => {
-        this.$httpMessageState(response, '加入優惠券')
-        this.getCart()
-        this.isLoading = false
+        if (this.coupon_code) {
+          this.$httpMessageState(response, '加入優惠券')
+          this.getCart()
+          this.isLoading = false
+        }
       })
     },
     removeCartItem (id) {
@@ -248,6 +259,9 @@ export default {
         this.isLoading = false
       })
     }
+  },
+  computed: {
+    ...mapState(buyCountStore, ['getbuyCount', 'setbuyCount'])
   },
   created () {
     this.getCart()

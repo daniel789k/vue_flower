@@ -1,8 +1,12 @@
 <template>
   <UserLoading :active="isLoading"/>
-  <section class="container pb-5 pt-md-5">
+  <section class="container pb-5 pt-md-5" :class="{ noLove: getloveflower.length==0}">
     <div class="row">
-      <h2 class="mb-4">我的最愛</h2>
+      <h2 class="mb-4" v-if="getloveflower.length!==0">我的最愛</h2>
+
+      <h2 class="mb-4" v-if="getloveflower.length==0">尚無商品</h2>
+      <router-link to="/products" class="nav-link ps-3 fs-5" v-if="getloveflower.length==0"><i class="bi bi-flower2 me-1"></i>前往選購</router-link>
+
       <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0" class="col-md-12">
         <div class="row row-cols-2 row-cols-md-4 g-4 mb-2">
           <template v-for="item in getloveflower" :key="item.id">
@@ -149,9 +153,6 @@ export default {
         .then((res) => {
         })
     },
-    scrollIntoView (id) {
-      document.getElementById(id).scrollIntoView()
-    },
     changeHeart: (event) => {
       event.target.classList.toggle('bi-heart')
       event.target.classList.toggle('bi-heart-fill')
@@ -167,3 +168,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.noLove {
+  height: calc(100vh - 72px - 57.6px)
+}
+</style>
