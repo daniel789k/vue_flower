@@ -1,6 +1,6 @@
 <template>
   <header class="mb-5 header px-4 py-5 d-flex align-items-lg-center justify-content-center img-fluid headerbg">
-    <div class="text-white text-center bg-secondary bg-opacity-50 p-3 d-flex flex-column align-items-center">
+    <div class="text-white text-center bg-secondary bg-opacity-50 p-3 d-flex flex-column align-items-center justify-content-center">
       <p class="fs-5">歡迎來到花之藝</p>
       <h1 class="fw-bold">用花語傳遞心意</h1>
       <p>在花之藝花店，我們相信每一朵花都有它獨特的故事與語言。<br>我們致力於為每一位顧客提供最高品質的花卉產品和無與倫比的購物體驗。<br>無論是慶祝特別的日子，還是僅僅為了給日常生活增添一抹色彩。</p>

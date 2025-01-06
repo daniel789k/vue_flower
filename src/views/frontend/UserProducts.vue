@@ -1,7 +1,7 @@
 <template>
   <UserLoading :active="isLoading"/>
   <section class="container pb-5 pt-md-3">
-    <h2 class="text-center">花藝商品</h2>
+    <h2 class="text-center pb-lg-3 pt-lg-0 pt-3 mb-0">花藝商品</h2>
     <div class="row">
       <!-- 電腦導覽列 -->
       <div class="bg-light flex-column align-items-stretch p-3 col-md-3 sticky-top h-100 bg-pageBack d-none d-md-block" style="top: 57px;">
@@ -12,13 +12,13 @@
         </div>
       </div>
       <!-- 手機導覽列 -->
-      <nav id="navbar-example3" class="navbar navbar-light bg-light p-3 sticky-top h-100 bg-pageBack d-md-none row" style="top: 57px;">
-        <template v-for="(value, index) in flowerType" :key="value+index">
-          <nav class="nav nav-pills col-4" v-for="(value1, key1) in Object.values(value)[0]" :key="key1">
-            <a class="nav-link ms-3 my-1 btn btn-one" :href="`#item-${index+1}-${key1+1}`" @click.prevent="scrollIntoView(`item-${index+1}-${key1+1}`)"><span>{{ value1 }}</span></a>
-          </nav>
-        </template>
-      </nav>
+      <div class="sticky-top bg-pageBack py-2 d-md-none" style="top: 57px;">
+        <div class="py-auto" style="">
+          <ul class="hideScroll mb-0" style="white-space: nowrap; overflow-x: scroll;">
+            <li v-for="(value, index) in flowerType" :key="value+index" class="my-1 btn btn-one me-3" :class="{active: value==activeType}" @click="getType($event)"><i class="bi bi-flower2" v-if="value==activeType"></i> {{ value }}</li>
+          </ul>
+        </div>
+      </div>
 
       <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0" class="col-md-9">
         <div class="row row-cols-2 row-cols-md-3 g-4">
@@ -265,5 +265,8 @@ transform: scale(0.1, 1);
 box-shadow: 0 16px 32px 0 rgba(48, 55, 66, 0.15);
 transform: translate(0,-5px);
 transition-delay: 0s !important;
+}
+.hideScroll::-webkit-scrollbar {
+  display: none;
 }
 </style>
