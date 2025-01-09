@@ -2,39 +2,45 @@
   <UserLoading :active="isLoading"/>
 
   <div class="container-fluid">
-    <div class="container-fluid p-3 align-items-center">
-      <div class="d-flex justify-content-center">
-        <button type="button"
-          class="btn bg-success text-white btn-sm rounded-pill"
-          style="width: 2rem; height: 2rem"
-        >
-          1
-        </button>
-        <p class="ms-2 my-auto text-success">訂購資料</p>
+    <div class="container-fluid p-3">
+      <div class="row">
+        <div class="col d-flex flex-column flex-md-row justify-content-center align-items-center px-1 px-md-0">
+          <button type="button"
+            class="btn bg-success text-white btn-sm rounded-pill"
+            style="width: 2rem; height: 2rem"
+          >
+            1
+          </button>
+          <p class="ms-md-2 my-2 my-md-auto text-success text-nowrap">訂購資料</p>
+        </div>
         <span
-          class="bg-white w-25 rounded my-auto mx-3"
+          class="bg-white w-25 rounded my-auto mx-0 mx-md-3 col"
           style="height: 0.2rem"
         >
         </span>
-        <button type="button"
-          class="btn bg-white text-black btn-sm rounded-pill"
-          style="width: 2rem; height: 2rem"
-        >
-          2
-        </button>
-        <p class="ms-2 my-auto text-black">確認付款</p>
+        <div class="col d-flex flex-column flex-md-row justify-content-center align-items-center px-1 px-md-0">
+          <button type="button"
+            class="btn bg-white text-black btn-sm rounded-pill"
+            style="width: 2rem; height: 2rem"
+          >
+            2
+          </button>
+          <p class="ms-md-2 my-2 my-md-auto text-black text-nowrap">確認付款</p>
+        </div>
         <span
-          class="bg-white w-25 rounded my-auto mx-3"
+          class="bg-white w-25 rounded my-auto mx-0 mx-md-3 col"
           style="height: 0.2rem"
         >
         </span>
-        <button type="button"
-          class="btn bg-white text-black btn-sm rounded-pill"
-          style="width: 2rem; height: 2rem"
-        >
-          3
-        </button>
-        <p class="ms-2 my-auto text-black">完成訂單</p>
+        <div class="col d-flex flex-column flex-md-row justify-content-center align-items-center px-1 px-md-0">
+          <button type="button"
+            class="btn bg-white text-black btn-sm rounded-pill"
+            style="width: 2rem; height: 2rem"
+          >
+            3
+          </button>
+          <p class="ms-md-2 my-2 my-md-auto text-black text-nowrap">完成訂單</p>
+        </div>
       </div>
     </div>
   </div>
@@ -151,7 +157,15 @@
           </tr>
         </tfoot>
       </table>
-      <div class="input-group input-group-sm w-50 ms-auto">
+      <div class="input-group input-group-sm w-50 ms-auto" v-if="windowWidth > 992">
+        <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" @click="addCouponCode">
+            套用優惠碼
+          </button>
+        </div>
+      </div>
+      <div class="input-group input-group-sm" v-else>
         <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button" @click="addCouponCode">
@@ -185,7 +199,8 @@ export default {
         loadingItem: ''
       },
       products: [],
-      coupon_code: ''
+      coupon_code: '',
+      windowWidth: window.innerWidth
     }
   },
   inject: ['$httpMessageState'],
@@ -262,6 +277,11 @@ export default {
   },
   computed: {
     ...mapState(buyCountStore, ['getbuyCount', 'setbuyCount'])
+  },
+  mounted () {
+    window.addEventListener('resize', () => {
+      this.windowWidth = window.innerWidth
+    })
   },
   created () {
     this.getCart()

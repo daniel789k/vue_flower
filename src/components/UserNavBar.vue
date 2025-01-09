@@ -13,7 +13,7 @@
           <!-- <router-link to="/" class="nav-link">首頁</router-link> -->
           <router-link to="/products" class="nav-link" @click="this.$router.push('/products')" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" v-if="windowWidth < 992"><i class="bi bi-flower2 me-1"></i>花藝商品</router-link>
           <router-link to="/products" class="nav-link" v-if="windowWidth >= 992"><i class="bi bi-flower2 me-1"></i>花藝商品</router-link>
-          <button type="button" class="nav-link me-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click.prevent="getCart(), addCouponCode()" v-if="windowWidth < 992" ><p class="text-start mb-0 position-relative" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"><i class="bi bi-cart2 me-1"></i>購物車<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          <button type="button" class="nav-link me-1 text-start" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click.prevent="getCart(), addCouponCode()" v-if="windowWidth < 992" ><p class="text-start mb-0 position-relative d-inline me-0" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"><i class="bi bi-cart2 me-1"></i>購物車<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
           {{ getbuyCount }}
             <span class="visually-hidden">buycount</span>
             </span>
@@ -101,8 +101,16 @@
           </tr>
         </tfoot>
       </table>
-      <div class="input-group mb-3 input-group-sm w-50 ms-auto">
-        <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼">
+      <div class="input-group mb-3 input-group-sm w-75 ms-lg-auto" v-if="windowWidth > 992">
+        <input type="text pe-auto" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary rounded-0 rounded-end" type="button" @click="addCouponCode">
+            套用優惠碼
+          </button>
+        </div>
+      </div>
+      <div class="input-group mb-3 input-group-sm" v-else>
+        <input type="text pe-auto" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary rounded-0 rounded-end" type="button" @click="addCouponCode">
             套用優惠碼

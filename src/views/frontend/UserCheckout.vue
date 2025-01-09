@@ -1,51 +1,57 @@
 <template>
   <Loading :active="isLoading"/>
   <div class="container-fluid">
-    <div class="container-fluid p-3 align-items-center">
-      <div class="d-flex justify-content-center">
-        <button type="button"
-          class="btn bg-success text-white btn-sm rounded-pill"
-          style="width: 2rem; height: 2rem"
-        >
-          1
-        </button>
-        <p class="ms-2 my-auto text-success">訂購資料</p>
+    <div class="container-fluid p-3">
+      <div class="row">
+        <div class="col d-flex flex-column flex-md-row justify-content-center align-items-center px-1 px-md-0">
+          <button type="button"
+            class="btn bg-success text-white btn-sm rounded-pill"
+            style="width: 2rem; height: 2rem"
+          >
+            1
+          </button>
+          <p class="ms-md-2 my-2 my-md-auto text-success text-nowrap">訂購資料</p>
+        </div>
         <span
-          class="bg-success w-25 rounded my-auto mx-3"
+          class="bg-success w-25 rounded my-auto mx-0 mx-md-3 col"
           style="height: 0.2rem"
         >
         </span>
-        <button type="button"
-          class="btn bg-success text-white btn-sm rounded-pill"
-          style="width: 2rem; height: 2rem"
-        >
-          2
-        </button>
-        <p class="ms-2 my-auto text-success">確認付款</p>
+        <div class="col d-flex flex-column flex-md-row justify-content-center align-items-center px-1 px-md-0">
+          <button type="button"
+            class="btn bg-success text-white btn-sm rounded-pill"
+            style="width: 2rem; height: 2rem"
+          >
+            2
+          </button>
+          <p class="ms-md-2 my-2 my-md-auto text-success text-nowrap">確認付款</p>
+        </div>
         <span v-if="!order.is_paid"
-          class="bg-white w-25 rounded my-auto mx-3"
+          class="bg-white w-25 rounded my-auto mx-0 mx-md-3 col"
           style="height: 0.2rem"
         >
         </span>
         <span v-else
-          class="bg-success w-25 rounded my-auto mx-3"
+          class="bg-success w-25 rounded my-auto mx-0 mx-md-3 col"
           style="height: 0.2rem"
         >
         </span>
-        <button type="button" v-if="!order.is_paid"
-          class="btn bg-white text-black btn-sm rounded-pill"
-          style="width: 2rem; height: 2rem"
-        >
-          3
-        </button>
-        <button type="button" v-else
-          class="btn bg-success text-white btn-sm rounded-pill"
-          style="width: 2rem; height: 2rem"
-        >
-          3
-        </button>
-        <p v-if="!order.is_paid" class="ms-2 my-auto text-black">完成訂單</p>
-        <p v-else class="ms-2 my-auto text-success">完成訂單</p>
+        <div class="col d-flex flex-column flex-md-row justify-content-center align-items-center px-1 px-md-0">
+          <button type="button" v-if="!order.is_paid"
+            class="btn bg-white text-black btn-sm rounded-pill"
+            style="width: 2rem; height: 2rem"
+          >
+            3
+          </button>
+          <button type="button" v-else
+            class="btn bg-success text-white btn-sm rounded-pill"
+            style="width: 2rem; height: 2rem"
+          >
+            3
+          </button>
+          <p v-if="!order.is_paid" class="ms-md-2 my-2 my-md-auto text-black text-nowrap">完成訂單</p>
+          <p v-else class="ms-md-2 my-2 my-md-auto text-success text-nowrap">完成訂單</p>
+        </div>
       </div>
     </div>
   </div>

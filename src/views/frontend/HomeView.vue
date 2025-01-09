@@ -84,59 +84,63 @@
       class="mySwiper pb-3"
       style="--swiper-theme-color: #564527;"
     >
-      <template v-for="item in recommendP" :key="item.id">
-        <swiper-slide class="w-25 mx-4" v-if="windowWidth > 992">
-          <div class="card h-100">
-            <img :src=item.imageUrl class="card-img-top" alt="推薦商品" @click="getrecommend(item.id)" style="height: 200px; object-fit: cover; cursor: pointer;">
-            <div class="card-body bg-navBack d-flex flex-column justify-content-between">
-              <h5 class="card-title">{{ item.title }}</h5>
-              <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
-              <del class="h6 text-muted" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
-              <div class="h5" v-if="item.price">NT$ {{ item.price }} 元</div>
-
-              <div class="btn-group btn-group-sm">
-                <!-- <button type="button" class="btn btn-outline-secondary"
-                        @click="getrecommend(item.id)">
-                    查看更多
-                </button> -->
-                <button type="button" class="btn btn-outline-mainColor"
-                :disabled="status.loadingItem === item.id"
-                @click="addrecommend(item.id)">
-                <div v-if="status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
-                  <span class="visually-hidden">Loading...</span>
+      <template v-if="windowWidth > 992">
+        <template v-for="item in recommendP" :key="item.id">
+          <swiper-slide class="w-25 mx-4">
+            <div class="card h-100">
+              <img :src=item.imageUrl class="card-img-top" alt="推薦商品" @click="getrecommend(item.id)" style="height: 200px; object-fit: cover; cursor: pointer;">
+              <div class="card-body bg-navBack d-flex flex-column justify-content-between">
+                <h5 class="card-title">{{ item.title }}</h5>
+                <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
+                <del class="h6 text-muted" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
+                <div class="h5" v-if="item.price">NT$ {{ item.price }} 元</div>
+                <div class="btn-group btn-group-sm">
+                  <!-- <button type="button" class="btn btn-outline-secondary"
+                          @click="getrecommend(item.id)">
+                      查看更多
+                  </button> -->
+                  <button type="button" class="btn btn-outline-mainColor"
+                  :disabled="status.loadingItem === item.id"
+                  @click="addrecommend(item.id)">
+                  <div v-if="status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                      加到購物車
+                  </button>
                 </div>
-                    加到購物車
-                </button>
               </div>
             </div>
-          </div>
-        </swiper-slide>
-        <swiper-slide class="w-50 mx-4" v-else>
-          <div class="card h-100">
-            <img :src=item.imageUrl class="card-img-top" alt="推薦商品" @click="getrecommend(item.id)" style="height: 200px; object-fit: cover; cursor: pointer;">
-            <div class="card-body bg-navBack d-flex flex-column justify-content-between">
-              <h5 class="card-title">{{ item.title }}</h5>
-              <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
-              <del class="h6 text-muted" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
-              <div class="h5" v-if="item.price">NT$ {{ item.price }} 元</div>
-
-              <div class="btn-group btn-group-sm">
-                <!-- <button type="button" class="btn btn-outline-secondary"
-                        @click="getrecommend(item.id)">
-                    查看更多
-                </button> -->
-                <button type="button" class="btn btn-outline-mainColor"
-                :disabled="status.loadingItem === item.id"
-                @click="addrecommend(item.id)">
-                <div v-if="status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
-                  <span class="visually-hidden">Loading...</span>
+          </swiper-slide>
+        </template>
+      </template>
+      <template v-else>
+        <template v-for="item in recommendP" :key="item.id">
+          <swiper-slide class="w-50 mx-4">
+            <div class="card h-100">
+              <img :src=item.imageUrl class="card-img-top" alt="推薦商品" @click="getrecommend(item.id)" style="height: 200px; object-fit: cover; cursor: pointer;">
+              <div class="card-body bg-navBack d-flex flex-column justify-content-between">
+                <h5 class="card-title">{{ item.title }}</h5>
+                <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
+                <del class="h6 text-muted" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
+                <div class="h5" v-if="item.price">NT$ {{ item.price }} 元</div>
+                <div class="btn-group btn-group-sm">
+                  <!-- <button type="button" class="btn btn-outline-secondary"
+                          @click="getrecommend(item.id)">
+                      查看更多
+                  </button> -->
+                  <button type="button" class="btn btn-outline-mainColor"
+                  :disabled="status.loadingItem === item.id"
+                  @click="addrecommend(item.id)">
+                  <div v-if="status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                      加到購物車
+                  </button>
                 </div>
-                    加到購物車
-                </button>
               </div>
             </div>
-          </div>
-        </swiper-slide>
+          </swiper-slide>
+        </template>
       </template>
     </swiper>
   </section>
