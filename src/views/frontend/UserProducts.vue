@@ -173,8 +173,10 @@ export default {
       document.getElementById(id).scrollIntoView()
     },
     getType (event) {
-      this.nowType = event.target.innerText
-      this.activeType = event.target.innerText
+      if (event.target.classList.contains('active') === false) {
+        this.nowType = event.target.innerText
+        this.activeType = event.target.innerText
+      }
       if (event.target.innerText === '全部商品') {
         this.nowType = ''
       }

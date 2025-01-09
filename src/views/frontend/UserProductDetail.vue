@@ -8,13 +8,13 @@
       </ol>
     </nav>
     <div class="row justify-content-center mb-5">
-      <article class="col-4">
-        <img :src="product.imageUrl" alt="商品圖片" class="img-fluid me-auto d-block" style="height: 80%; object-fit: cover;">
+      <article class="col-12 col-lg-4 d-flex align-items-center align-items-lg-start">
+        <img :src="product.imageUrl" alt="商品圖片" class="img-fluid mx-auto ms-lg-0 d-block" style="height: 80%; object-fit: cover;">
       </article>
-      <div class="col-8">
+      <div class="col-12 col-lg-8">
         <h2>{{ product.title }}</h2>
         <div>{{ product.content }}</div>
-        <pre class="mt-3">{{ product.description }}</pre>
+        <pre class="mt-3" style="overflow-x: hidden;">{{ product.description }}</pre>
         <div class="h5" v-if="!product.price">{{ product.origin_price }} 元</div>
         <del class="h6 text-muted" v-if="product.price">原價 {{ product.origin_price }} 元</del>
         <div class="h5 text-subColor1" v-if="product.price">現在只要 {{ product.price }} 元</div>
@@ -31,6 +31,7 @@
       </div>
     </div>
     <h2 class="mb-3">推薦商品</h2>
+    <!-- 電腦版推薦 -->
     <swiper
       :navigation="true"
       :slidesPerView="3"
@@ -42,9 +43,53 @@
       :modules="modules"
       class="mySwiper pb-4"
       style="--swiper-theme-color: #564527;"
+      v-if="windowWidth > 992"
     >
       <template v-for="item in recommendP" :key="item.id">
-        <swiper-slide>
+        <swiper-slide class="">
+          <div class="card h-100">
+            <img :src=item.imageUrl class="card-img-top" alt="商品圖片"
+            @click="getrecommend(item.id)" style="height: 200px; object-fit: cover;">
+            <div class="card-body bg-navBack d-flex flex-column justify-content-between">
+              <h5 class="card-title" @click="getrecommend(item.id)">{{ item.title }}</h5>
+              <div class="h5" @click="getrecommend(item.id)" v-if="!item.price">{{ item.origin_price }} 元</div>
+              <del class="h6 text-muted" @click="getrecommend(item.id)" v-if="item.price">原價 {{ item.origin_price }} 元</del>
+              <div class="h5 text-subColor1" @click="getrecommend(item.id)" v-if="item.price">現在只要 {{ item.price }} 元</div>
+
+              <div class="btn-group btn-group-sm">
+                <!-- <button type="button" class="btn btn-outline-secondary">
+                  查看更多
+                </button> -->
+                <button type="button" class="btn btn-outline-mainColor"
+                :disabled="status.loadingItem === item.id"
+                @click="addrecommend(item.id)">
+                <div v-if="status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                  加到購物車
+                </button>
+              </div>
+            </div>
+          </div>
+        </swiper-slide>
+      </template>
+    </swiper>
+    <!-- 手機板推薦 -->
+    <swiper
+      :navigation="true"
+      :slidesPerView="1"
+      :spaceBetween="50"
+      :pagination="{
+        dynamicBullets: true,
+        clickable: true,
+      }"
+      :modules="modules"
+      class="mySwiper pb-4"
+      style="--swiper-theme-color: #564527;"
+      v-else
+    >
+      <template v-for="item in recommendP" :key="item.id">
+        <swiper-slide class="">
           <div class="card h-100">
             <img :src=item.imageUrl class="card-img-top" alt="商品圖片"
             @click="getrecommend(item.id)" style="height: 200px; object-fit: cover;">
@@ -102,7 +147,8 @@ export default {
       status: {
         loadingItem: ''
       },
-      qty: 1
+      qty: 1,
+      windowWidth: window.innerWidth
     }
   },
   inject: ['$httpMessageState'],
@@ -170,6 +216,11 @@ export default {
   },
   computed: {
     ...mapState(buyCountStore, ['getbuyCount', 'setbuyCount'])
+  },
+  mounted () {
+    window.addEventListener('resize', () => {
+      this.windowWidth = window.innerWidth
+    })
   },
   created () {
     this.id = this.$route.params.productId
