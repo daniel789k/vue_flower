@@ -15,18 +15,18 @@
                 <div class="position-absolute top-0 start-100 bg-white" style="width: 60px; height: 60px; transform: translate(-50%,-50%) rotate(45deg);"></div>
                 <i class="bi bi-heart-fill text-danger position-absolute" style="top: 2px; right: 5px; cursor: pointer;"
                 @click="changeHeart($event), pushLoveFlower(item)"></i>
-                <img :src=item.imageUrl class="card-img-top" alt="最愛商品圖片" style="height: 200px; object-fit: cover;">
-                <div class="card-body bg-pageBack d-flex flex-column justify-content-between">
-                  <h5 class="card-title">{{ item.title }}</h5>
-                  <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
-                  <del class="h6" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
-                  <div class="h5" v-if="item.price">NT$ {{ item.price }} 元</div>
+                <img :src=item.imageUrl class="card-img-top" alt="最愛商品圖片" @click="getProduct(item.id)" style="height: 200px; object-fit: cover;">
+                <div class="card-body bg-navBack d-flex flex-column justify-content-between">
+                  <h5 class="card-title" @click="getProduct(item.id)">{{ item.title }}</h5>
+                  <div class="h5" @click="getProduct(item.id)" v-if="!item.price">{{ item.origin_price }} 元</div>
+                  <del class="h6" @click="getProduct(item.id)" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
+                  <div class="h5" @click="getProduct(item.id)" v-if="item.price">NT$ {{ item.price }} 元</div>
 
                   <div class="btn-group btn-group-sm">
-                    <button type="button" class="btn btn-outline-secondary"
+                    <!-- <button type="button" class="btn btn-outline-secondary"
                     @click="getProduct(item.id)">
                       查看更多
-                    </button>
+                    </button> -->
                     <button type="button" class="btn btn-outline-mainColor"
                     :disabled="status.loadingItem === item.id"
                     @click="addCart(item.id)">
