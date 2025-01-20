@@ -17,7 +17,7 @@
               </div>
               <div class="mb-3">
                 <label for="customFile" class="form-label">或 上傳圖片
-                  <i class="fas fa-spinner fa-spin"></i>
+                  <i class="fas fa-spinner fa-spin"/>
                 </label>
                 <input type="file" id="customFile" class="form-control" @change="uploadFile" ref="fileInput">
               </div>
@@ -64,11 +64,11 @@
               <hr>
               <div class="mb-3">
                 <label for="description" class="form-label">產品描述</label>
-                <textarea type="text" class="form-control" id="description" placeholder="請輸入產品描述" v-model="tempProduct.description"></textarea>
+                <textarea type="text" class="form-control" id="description" placeholder="請輸入產品描述" v-model="tempProduct.description"/>
               </div>
               <div class="mb-3">
                 <label for="content" class="form-label">說明內容</label>
-                <textarea type="text" class="form-control" id="content" placeholder="請輸入產品說明內容" v-model="tempProduct.content"></textarea>
+                <textarea type="text" class="form-control" id="content" placeholder="請輸入產品說明內容" v-model="tempProduct.content"/>
               </div>
               <div class="mb-3">
                 <div class="form-check">
@@ -95,6 +95,7 @@
 
 <script>
 import modalMixin from '@/mixins/modalMixin'
+import emitter from '@/methods/emitter'
 
 export default {
   props: {
@@ -124,6 +125,14 @@ export default {
         .then((res) => {
           if (res.data.success) {
             this.tempProduct.imageUrl = res.data.imageUrl
+          }
+        })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '上傳失敗'
+            })
           }
         })
     }

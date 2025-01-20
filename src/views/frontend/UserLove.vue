@@ -9,37 +9,31 @@
 
       <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0" class="col-md-12">
         <div class="row row-cols-2 row-cols-md-4 g-4 mb-2">
-          <template v-for="item in getloveflower" :key="item.id">
-            <div class="col mb-2">
-              <div class="card h-100 position-relative border-0" style="overflow: hidden;">
-                <div class="position-absolute top-0 start-100 bg-white" style="width: 60px; height: 60px; transform: translate(-50%,-50%) rotate(45deg);"></div>
-                <i class="bi bi-heart-fill text-danger position-absolute" style="top: 2px; right: 5px; cursor: pointer;"
-                @click="changeHeart($event), pushLoveFlower(item)"></i>
-                <img :src=item.imageUrl class="card-img-top" alt="最愛商品圖片" @click="getProduct(item.id)" style="height: 200px; object-fit: cover;">
-                <div class="card-body bg-navBack d-flex flex-column justify-content-between">
-                  <h5 class="card-title" @click="getProduct(item.id)">{{ item.title }}</h5>
-                  <div class="h5" @click="getProduct(item.id)" v-if="!item.price">{{ item.origin_price }} 元</div>
-                  <del class="h6" @click="getProduct(item.id)" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
-                  <div class="h5" @click="getProduct(item.id)" v-if="item.price">NT$ {{ item.price }} 元</div>
+          <div class="col mb-2" v-for="item in getloveflower" :key="item.id">
+            <div class="card h-100 position-relative border-0" style="overflow: hidden;">
+              <div class="position-absolute top-0 start-100 bg-white" style="width: 60px; height: 60px; transform: translate(-50%,-50%) rotate(45deg);"/>
+              <i class="bi bi-heart-fill text-danger position-absolute" style="top: 2px; right: 5px; cursor: pointer;"
+              @click="changeHeart($event), pushLoveFlower(item)"/>
+              <img :src=item.imageUrl class="card-img-top" alt="最愛商品圖片" @click="getProduct(item.id)" style="height: 200px; object-fit: cover;">
+              <div class="card-body bg-navBack d-flex flex-column justify-content-between">
+                <h5 class="card-title" @click="getProduct(item.id)">{{ item.title }}</h5>
+                <div class="h5" @click="getProduct(item.id)" v-if="!item.price">{{ item.origin_price }} 元</div>
+                <del class="h6" @click="getProduct(item.id)" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
+                <div class="h5" @click="getProduct(item.id)" v-if="item.price">NT$ {{ item.price }} 元</div>
 
-                  <div class="btn-group btn-group-sm">
-                    <!-- <button type="button" class="btn btn-outline-secondary"
-                    @click="getProduct(item.id)">
-                      查看更多
-                    </button> -->
-                    <button type="button" class="btn btn-outline-mainColor"
-                    :disabled="status.loadingItem === item.id"
-                    @click="addCart(item.id)">
-                    <div v-if="status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
-                      <span class="visually-hidden">Loading...</span>
-                    </div>
-                      加到購物車
-                    </button>
+                <div class="btn-group btn-group-sm">
+                  <button type="button" class="btn btn-outline-mainColor"
+                  :disabled="status.loadingItem === item.id"
+                  @click="addCart(item.id)">
+                  <div v-if="status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
                   </div>
+                    加到購物車
+                  </button>
                 </div>
               </div>
             </div>
-          </template>
+          </div>
         </div>
       </div>
     </div>
@@ -47,8 +41,10 @@
 </template>
 
 <script>
+import emitter from '@/methods/emitter'
 import { useLoveStore } from '@/stores/loveStore'
 import { mapState } from 'pinia'
+
 export default {
   data () {
     return {
@@ -86,6 +82,14 @@ export default {
         this.products = response.data.products
         this.isLoading = false
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '取得產品失敗'
+            })
+          }
+        })
     },
     getProduct (id) {
       this.$router.push(`/product/${id}`)
@@ -97,6 +101,14 @@ export default {
         this.cart = response.data.data
         this.isLoading = false
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '取得購物車失敗'
+            })
+          }
+        })
     },
     addCart (id) {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
@@ -109,6 +121,14 @@ export default {
         this.status.loadingItem = ''
         this.getCart()
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '添加購物車失敗'
+            })
+          }
+        })
     },
     updateCart (item) {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`
@@ -122,6 +142,14 @@ export default {
         this.status.loadingItem = ''
         this.getCart()
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '更新購物車失敗'
+            })
+          }
+        })
     },
     addCouponCode () {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`
@@ -134,6 +162,14 @@ export default {
         this.getCart()
         this.isLoading = false
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '添加優惠券失敗'
+            })
+          }
+        })
     },
     removeCartItem (id) {
       this.status.loadingItem = id
@@ -145,12 +181,28 @@ export default {
         this.getCart()
         this.isLoading = false
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '移除品項失敗'
+            })
+          }
+        })
     },
     createOrder () {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`
       const order = this.form
       this.$http.post(url, { data: order })
         .then((res) => {
+        })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '建立訂單失敗'
+            })
+          }
         })
     },
     changeHeart: (event) => {

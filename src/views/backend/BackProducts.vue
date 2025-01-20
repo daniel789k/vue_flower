@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import emitter from '@/methods/emitter'
 import ProductModal from '@/components/ProductModal.vue'
 import DelModal from '@/components/DelModal.vue'
 import UserPagination from '@/components/UserPagination.vue'
@@ -75,6 +76,14 @@ export default {
           if (res.data.success) {
             this.products = res.data.products
             this.pagination = res.data.pagination
+          }
+        })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '取得產品失敗'
+            })
           }
         })
     },
@@ -111,6 +120,14 @@ export default {
           this.$httpMessageState(res, '更新')
         }
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '更新產品失敗'
+            })
+          }
+        })
     },
     deleteProduct () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`
@@ -119,6 +136,14 @@ export default {
         productComponent.hideModal()
         this.getProducts()
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '刪除產品失敗'
+            })
+          }
+        })
     }
   },
   created () {
@@ -133,6 +158,14 @@ export default {
           this.emitter.emit('push-message', {
             style: 'success',
             title: '登錄成功'
+          })
+        }
+      })
+      .catch((err) => {
+        if (!err.data.success) {
+          emitter.emit('push-message', {
+            style: 'danger',
+            title: '登入失敗'
           })
         }
       })

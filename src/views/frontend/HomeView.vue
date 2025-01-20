@@ -84,64 +84,27 @@
       class="mySwiper pb-3"
       style="--swiper-theme-color: #564527;"
     >
-      <template v-if="windowWidth > 992">
-        <template v-for="item in recommendP" :key="item.id">
-          <swiper-slide class="w-25 mx-4">
-            <div class="card h-100">
-              <img :src=item.imageUrl class="card-img-top" alt="推薦商品" @click="getrecommend(item.id)" style="height: 200px; object-fit: cover; cursor: pointer;">
-              <div class="card-body bg-navBack d-flex flex-column justify-content-between">
-                <h5 class="card-title">{{ item.title }}</h5>
-                <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
-                <del class="h6 text-muted" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
-                <div class="h5" v-if="item.price">NT$ {{ item.price }} 元</div>
-                <div class="btn-group btn-group-sm">
-                  <!-- <button type="button" class="btn btn-outline-secondary"
-                          @click="getrecommend(item.id)">
-                      查看更多
-                  </button> -->
-                  <button type="button" class="btn btn-outline-mainColor"
-                  :disabled="status.loadingItem === item.id"
-                  @click="addrecommend(item.id)">
-                  <div v-if="status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                  </div>
-                      加到購物車
-                  </button>
-                </div>
+      <swiper-slide class="mx-4 cardWidth" v-for="item in recommendP" :key="item.id">
+        <div class="card h-100">
+          <img :src=item.imageUrl class="card-img-top" alt="推薦商品" @click="getrecommend(item.id)" style="height: 200px; object-fit: cover; cursor: pointer;">
+          <div class="card-body bg-navBack d-flex flex-column justify-content-between">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
+            <del class="h6 text-muted" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
+            <div class="h5" v-if="item.price">NT$ {{ item.price }} 元</div>
+            <div class="btn-group btn-group-sm">
+              <button type="button" class="btn btn-outline-mainColor"
+              :disabled="status.loadingItem === item.id"
+              @click="addrecommend(item.id)">
+              <div v-if="status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
               </div>
+                  加到購物車
+              </button>
             </div>
-          </swiper-slide>
-        </template>
-      </template>
-      <template v-else>
-        <template v-for="item in recommendP" :key="item.id">
-          <swiper-slide class="w-50 mx-4">
-            <div class="card h-100">
-              <img :src=item.imageUrl class="card-img-top" alt="推薦商品" @click="getrecommend(item.id)" style="height: 200px; object-fit: cover; cursor: pointer;">
-              <div class="card-body bg-navBack d-flex flex-column justify-content-between">
-                <h5 class="card-title">{{ item.title }}</h5>
-                <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
-                <del class="h6 text-muted" v-if="item.price !== item.origin_price">NT$ {{ item.origin_price }} </del>
-                <div class="h5" v-if="item.price">NT$ {{ item.price }} 元</div>
-                <div class="btn-group btn-group-sm">
-                  <!-- <button type="button" class="btn btn-outline-secondary"
-                          @click="getrecommend(item.id)">
-                      查看更多
-                  </button> -->
-                  <button type="button" class="btn btn-outline-mainColor"
-                  :disabled="status.loadingItem === item.id"
-                  @click="addrecommend(item.id)">
-                  <div v-if="status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                  </div>
-                      加到購物車
-                  </button>
-                </div>
-              </div>
-            </div>
-          </swiper-slide>
-        </template>
-      </template>
+          </div>
+        </div>
+      </swiper-slide>
     </swiper>
   </section>
 
@@ -170,6 +133,7 @@
 </template>
 
 <script>
+import emitter from '@/methods/emitter'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import 'swiper/css/effect-coverflow'
@@ -200,6 +164,14 @@ export default {
         this.recommendP = response.data.products
         this.isLoading = false
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '取得推薦產品失敗'
+            })
+          }
+        })
     },
     getrecommend (id) {
       this.$router.push(`/product/${id}`)
@@ -215,6 +187,14 @@ export default {
         this.status.loadingItem = ''
         this.getCart()
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '增加推薦產品失敗'
+            })
+          }
+        })
     },
     getCart () {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
@@ -223,6 +203,14 @@ export default {
         this.cart = response.data.data
         this.isLoading = false
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '取得購物車失敗'
+            })
+          }
+        })
     }
   },
   setup () {
@@ -256,5 +244,14 @@ export default {
   height: 300px;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.cardWidth{
+  width: 50%;
+}
+
+@media (min-width: 992px){
+  .cardWidth{
+    width: 25%;
+  }
 }
 </style>

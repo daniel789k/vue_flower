@@ -6,14 +6,13 @@
         <img src="../assets/images/flowerart-favicon-color.svg" alt="logo" width="30" height="30"> 花之藝
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"/>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="navbar-nav ms-auto">
-          <!-- <router-link to="/" class="nav-link">首頁</router-link> -->
-          <router-link to="/products" class="nav-link" @click="this.$router.push('/products')" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" v-if="windowWidth < 992"><i class="bi bi-flower2 me-1"></i>花藝商品</router-link>
-          <router-link to="/products" class="nav-link" v-if="windowWidth >= 992"><i class="bi bi-flower2 me-1"></i>花藝商品</router-link>
-          <button type="button" class="nav-link me-1 text-start" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click.prevent="getCart(), addCouponCode()" v-if="windowWidth < 992" ><p class="text-start mb-0 position-relative d-inline me-0" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"><i class="bi bi-cart2 me-1"></i>購物車<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          <router-link to="/products" class="nav-link" @click="this.$router.push('/products')" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" v-if="windowWidth < 992"><i class="bi bi-flower2 me-1"/>花藝商品</router-link>
+          <router-link to="/products" class="nav-link" v-if="windowWidth >= 992"><i class="bi bi-flower2 me-1"/>花藝商品</router-link>
+          <button type="button" class="nav-link me-1 text-start" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click.prevent="getCart(), addCouponCode()" v-if="windowWidth < 992" ><p class="text-start mb-0 position-relative d-inline me-0" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"><i class="bi bi-cart2 me-1"/>購物車<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
           {{ getbuyCount }}
             <span class="visually-hidden">buycount</span>
             </span>
@@ -23,13 +22,12 @@
             <span class="visually-hidden">buycount</span>
             </span>
           </p></button>
-          <router-link to="/loves" class="nav-link" @click="this.$router.push('/loves')" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" v-if="windowWidth < 992"><i class="bi bi-heart me-1"></i>我的最愛</router-link>
-          <router-link to="/loves" class="nav-link" v-if="windowWidth >= 992"><i class="bi bi-heart me-1"></i>我的最愛</router-link>
-          <router-link to="/user/login" class="nav-link" @click="this.$router.push('/user/login')" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" v-if="loginStatus === 0 & windowWidth < 992"><i class="bi bi-person me-1"></i>會員登入</router-link>
-          <router-link to="/user/login" class="nav-link" v-if="loginStatus === 0 & windowWidth >= 992"><i class="bi bi-person me-1"></i>會員登入</router-link>
-          <router-link @click.prevent="logout" to="/" class="nav-link" v-if="loginStatus !== 0"><i class="bi bi-person"></i>會員您好</router-link>
+          <router-link to="/loves" class="nav-link" @click="this.$router.push('/loves')" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" v-if="windowWidth < 992"><i class="bi bi-heart me-1"/>我的最愛</router-link>
+          <router-link to="/loves" class="nav-link" v-if="windowWidth >= 992"><i class="bi bi-heart me-1"/>我的最愛</router-link>
+          <router-link to="/user/login" class="nav-link" @click="this.$router.push('/user/login')" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" v-if="loginStatus === 0 & windowWidth < 992"><i class="bi bi-person me-1"/>會員登入</router-link>
+          <router-link to="/user/login" class="nav-link" v-if="loginStatus === 0 & windowWidth >= 992"><i class="bi bi-person me-1"/>會員登入</router-link>
+          <router-link @click.prevent="logout" to="/" class="nav-link" v-if="loginStatus !== 0"><i class="bi bi-person"/>會員您好</router-link>
           <router-link to="/orders" class="nav-link" v-if="loginStatus !== 0">訂單查詢</router-link>
-          <!-- <router-link to="/login" class="nav-link">後台</router-link> -->
         </div>
       </div>
     </div>
@@ -39,14 +37,14 @@
   <div class="offcanvas offcanvas-end cartbg" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasExampleLabel">購物車</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"/>
     </div>
     <div class="offcanvas-body pt-0" v-if="getbuyCount !== 0">
       <table class="table align-middle">
         <thead>
           <tr>
-            <th></th>
-            <th style="width: 120px"></th>
+            <th/>
+            <th style="width: 120px"/>
             <th style="width: 120px">品名</th>
             <th style="width: 120px">數量</th>
             <th>單價</th>
@@ -59,7 +57,7 @@
                 <button type="button" class="btn btn-outline-danger btn-sm"
                 :disabled="status.loadingItem === item.id"
                 @click="removeCartItem(item.id)">
-                  <i class="bi bi-x"></i>
+                  <i class="bi bi-x"/>
                 </button>
               </td>
                <td>
@@ -90,12 +88,12 @@
         </tbody>
         <tfoot>
           <tr>
-            <td></td>
+            <td/>
             <td colspan="3" class="text-end">總計</td>
             <td class="text-end">{{ $filters.currency(cart.total) }}</td>
           </tr>
           <tr v-if="cart.final_total !== cart.total">
-            <td></td>
+            <td/>
             <td colspan="3" class="text-end text-success">折扣價</td>
             <td class="text-end text-success">{{ $filters.currency(cart.final_total) }}</td>
           </tr>
@@ -181,6 +179,17 @@ export default {
             this.$router.push('/')
           }
         })
+        .catch((err) => {
+          if (!err.data.success) {
+            this.isLoading = false
+            this.loginStatus = 0
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '登出失敗'
+            })
+            this.$router.push('/')
+          }
+        })
     },
     getCart () {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
@@ -200,6 +209,14 @@ export default {
         }
         this.isLoading = false
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '取得購物車失敗'
+            })
+          }
+        })
     },
     updateCart (item) {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`
@@ -213,6 +230,14 @@ export default {
         this.status.loadingItem = ''
         this.getCart()
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '更新購物車失敗'
+            })
+          }
+        })
     },
     addCouponCode () {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`
@@ -237,6 +262,14 @@ export default {
           this.isLoading = false
         }
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '優惠券添加失敗'
+            })
+          }
+        })
     },
     removeCartItem (id) {
       this.status.loadingItem = id
@@ -248,6 +281,14 @@ export default {
         this.getCart()
         this.isLoading = false
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '移除品項失敗'
+            })
+          }
+        })
     },
     comfirmLogin () {
       const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
@@ -259,6 +300,14 @@ export default {
             this.loginStatus = 0
           } else {
             this.loginStatus = 1
+          }
+        })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '登入認證失敗'
+            })
           }
         })
     }

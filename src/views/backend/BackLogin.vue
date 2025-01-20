@@ -73,6 +73,14 @@ export default {
             })
           }
         })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '登入失敗'
+            })
+          }
+        })
     }
   },
   created () {
@@ -83,6 +91,14 @@ export default {
       .then((res) => {
         if (res.data.success) {
           this.$router.push('back/products')
+        }
+      })
+      .catch((err) => {
+        if (!err.data.success) {
+          emitter.emit('push-message', {
+            style: 'danger',
+            title: '登入失敗'
+          })
         }
       })
   }

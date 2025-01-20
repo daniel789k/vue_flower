@@ -77,6 +77,14 @@ export default {
             })
           }
         })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '登入失敗'
+            })
+          }
+        })
     },
     tokenChange () {
       const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
@@ -91,6 +99,14 @@ export default {
       .then((res) => {
         if (res.data.success) {
           this.$router.push('/orders')
+        }
+      })
+      .catch((err) => {
+        if (!err.data.success) {
+          emitter.emit('push-message', {
+            style: 'danger',
+            title: '登入失敗'
+          })
         }
       })
   }

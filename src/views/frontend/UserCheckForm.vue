@@ -16,8 +16,7 @@
         <span
           class="bg-white w-25 rounded my-auto mx-0 mx-md-3 col"
           style="height: 0.2rem"
-        >
-        </span>
+        />
         <div class="col d-flex flex-column flex-md-row justify-content-center align-items-center px-1 px-md-0">
           <button type="button"
             class="btn bg-white text-black btn-sm rounded-pill"
@@ -30,8 +29,7 @@
         <span
           class="bg-white w-25 rounded my-auto mx-0 mx-md-3 col"
           style="height: 0.2rem"
-        >
-        </span>
+        />
         <div class="col d-flex flex-column flex-md-row justify-content-center align-items-center px-1 px-md-0">
           <button type="button"
             class="btn bg-white text-black btn-sm rounded-pill"
@@ -56,37 +54,36 @@
               <UserField id="email" name="email" type="email" class="form-control"
                       :class="{ 'is-invalid': errors['email'] }"
                       placeholder="請輸入 Email" rules="email|required"
-                      v-model="form.user.email"></UserField>
-              <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
+                      v-model="form.user.email"/>
+              <ErrorMessage name="email" class="invalid-feedback"/>
             </div>
             <div class="mb-3">
               <label for="name" class="form-label">收件人姓名 *</label>
               <UserField id="name" name="姓名" type="text" class="form-control"
                       :class="{ 'is-invalid': errors['姓名'] }"
                       placeholder="請輸入姓名" rules="required"
-                      v-model="form.user.name"></UserField>
-              <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
+                      v-model="form.user.name"/>
+              <ErrorMessage name="姓名" class="invalid-feedback"/>
             </div>
             <div class="mb-3">
               <label for="tel" class="form-label">收件人電話 *</label>
               <UserField id="tel" name="電話" type="tel" class="form-control"
                       :class="{ 'is-invalid': errors['電話'] }"
                       placeholder="請輸入電話" rules="required"
-                      v-model="form.user.tel"></UserField>
-              <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
+                      v-model="form.user.tel"/>
+              <ErrorMessage name="電話" class="invalid-feedback"/>
             </div>
             <div class="mb-3">
               <label for="address" class="form-label">收件人地址 *</label>
               <UserField id="address" name="地址" type="text" class="form-control"
                       :class="{ 'is-invalid': errors['地址'] }"
                       placeholder="請輸入地址" rules="required"
-                      v-model="form.user.address"></UserField>
-              <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
+                      v-model="form.user.address"/>
+              <ErrorMessage name="地址" class="invalid-feedback"/>
             </div>
             <div class="mb-3">
               <label for="message" class="form-label">留言</label>
-              <textarea name="" id="message" class="form-control" cols="30" rows="3"
-                      v-model="form.message"></textarea>
+              <textarea name="" id="message" class="form-control" cols="30" rows="3" v-model="form.message"/>
             </div>
             <div class="mb-3">
             </div>
@@ -101,7 +98,7 @@
       <table class="table align-middle border-light" style="--bs-table-bg: rgba(0,0,0,0);">
         <thead>
           <tr>
-            <th></th>
+            <th/>
             <th style="width: 120px"></th>
             <th style="width: 120px">品名</th>
             <th style="width: 120px">數量</th>
@@ -115,7 +112,7 @@
                 <button type="button" class="btn btn-outline-danger btn-sm"
                 :disabled="status.loadingItem === item.id"
                 @click="removeCartItem(item.id)">
-                  <i class="bi bi-x"></i>
+                  <i class="bi bi-x"/>
                 </button>
               </td>
               <td>
@@ -146,7 +143,7 @@
         </tbody>
         <tfoot>
           <tr>
-            <td></td>
+            <td/>
             <td colspan="3" class="text-end">總計</td>
             <td class="text-end">{{ $filters.currency(cart.total) }}</td>
           </tr>
@@ -178,6 +175,7 @@
 </template>
 
 <script>
+import emitter from '@/methods/emitter'
 import { buyCountStore } from '@/stores/cartStore'
 import { mapState } from 'pinia'
 
@@ -214,6 +212,14 @@ export default {
           this.setbuyCount(0)
           this.$router.push(`/checkout/${res.data.orderId}`)
         })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '建立訂單失敗'
+            })
+          }
+        })
     },
     getCart () {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
@@ -225,6 +231,14 @@ export default {
           this.coupon_code = this.cart.carts[0].coupon.code
         }
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '取得購物車失敗'
+            })
+          }
+        })
     },
     updateCart (item) {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`
@@ -238,6 +252,14 @@ export default {
         this.status.loadingItem = ''
         this.getCart()
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '更新購物車失敗'
+            })
+          }
+        })
     },
     addCouponCode () {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`
@@ -262,6 +284,14 @@ export default {
           this.isLoading = false
         }
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '優惠券添加失敗'
+            })
+          }
+        })
     },
     removeCartItem (id) {
       this.status.loadingItem = id
@@ -273,6 +303,14 @@ export default {
         this.getCart()
         this.isLoading = false
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '移除品項失敗'
+            })
+          }
+        })
     }
   },
   computed: {

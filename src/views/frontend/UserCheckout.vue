@@ -15,8 +15,7 @@
         <span
           class="bg-success w-25 rounded my-auto mx-0 mx-md-3 col"
           style="height: 0.2rem"
-        >
-        </span>
+        />
         <div class="col d-flex flex-column flex-md-row justify-content-center align-items-center px-1 px-md-0">
           <button type="button"
             class="btn bg-success text-white btn-sm rounded-pill"
@@ -29,13 +28,11 @@
         <span v-if="!order.is_paid"
           class="bg-white w-25 rounded my-auto mx-0 mx-md-3 col"
           style="height: 0.2rem"
-        >
-        </span>
+        />
         <span v-else
           class="bg-success w-25 rounded my-auto mx-0 mx-md-3 col"
           style="height: 0.2rem"
-        >
-        </span>
+        />
         <div class="col d-flex flex-column flex-md-row justify-content-center align-items-center px-1 px-md-0">
           <button type="button" v-if="!order.is_paid"
             class="btn bg-white text-black btn-sm rounded-pill"
@@ -113,6 +110,8 @@
 </template>
 
 <script>
+import emitter from '@/methods/emitter'
+
 export default {
   data () {
     return {
@@ -132,6 +131,14 @@ export default {
             this.order = res.data.order
           }
         })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '取得訂單失敗'
+            })
+          }
+        })
     },
     payOrder () {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`
@@ -139,6 +146,14 @@ export default {
         .then((res) => {
           if (res.data.success) {
             this.getOrder()
+          }
+        })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '訂單付款失敗'
+            })
           }
         })
     }

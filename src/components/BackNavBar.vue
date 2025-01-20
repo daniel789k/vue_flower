@@ -4,7 +4,7 @@
       <a class="navbar-brand" href="#">
       <img src="../assets/images/flowerart-favicon-color.svg" alt="logo" width="30" height="30"> 花之藝</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"/>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="navbar-nav ms-auto">
@@ -55,6 +55,14 @@ export default {
         .then((res) => {
           if (res.data.success) {
             this.$router.push('/')
+          }
+        })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '登出失敗'
+            })
           }
         })
     }

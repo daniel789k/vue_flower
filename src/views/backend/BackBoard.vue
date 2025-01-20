@@ -38,6 +38,14 @@ export default {
           this.$router.push('login')
         }
       })
+      .catch((err) => {
+        if (!err.data.success) {
+          emitter.emit('push-message', {
+            style: 'danger',
+            title: '登入失敗'
+          })
+        }
+      })
   }
 }
 </script>

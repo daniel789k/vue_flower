@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import emitter from '@/methods/emitter'
 import CouponModal from '@/components/CouponModal.vue'
 import DelModal from '@/components/DelModal.vue'
 export default {
@@ -91,6 +92,14 @@ export default {
         this.coupons = response.data.coupons
         this.isLoading = false
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '取得優惠券失敗'
+            })
+          }
+        })
     },
     updateCoupon (tempCoupon) {
       if (this.isNew) {
@@ -100,6 +109,14 @@ export default {
           this.getCoupons()
           this.$refs.couponModal.hideModal()
         })
+          .catch((err) => {
+            if (!err.data.success) {
+              emitter.emit('push-message', {
+                style: 'danger',
+                title: '新增優惠券失敗'
+              })
+            }
+          })
       } else {
         const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon/${this.tempCoupon.id}`
         this.$http.put(url, { data: this.tempCoupon }).then((response) => {
@@ -107,6 +124,14 @@ export default {
           this.getCoupons()
           this.$refs.couponModal.hideModal()
         })
+          .catch((err) => {
+            if (!err.data.success) {
+              emitter.emit('push-message', {
+                style: 'danger',
+                title: '新增優惠券失敗'
+              })
+            }
+          })
       }
     },
     delCoupon () {
@@ -118,6 +143,14 @@ export default {
         delComponent.hideModal()
         this.getCoupons()
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '刪除優惠券失敗'
+            })
+          }
+        })
     }
   },
   created () {

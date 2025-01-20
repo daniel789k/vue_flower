@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import emitter from '@/methods/emitter'
 import ProductModal from '@/components/ProductModal.vue'
 import DelModal from '@/components/DelModal.vue'
 import UserPagination from '@/components/UserPagination.vue'
@@ -79,6 +80,14 @@ export default {
             this.pagination = res.data.pagination
           }
         })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '取得產品失敗'
+            })
+          }
+        })
     },
     getProduct (id) {
       this.$router.push(`/checkout/${id}`)
@@ -116,6 +125,14 @@ export default {
           this.$httpMessageState(res, '更新')
         }
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '更新品項失敗'
+            })
+          }
+        })
     },
     deleteProduct () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`
@@ -124,6 +141,14 @@ export default {
         productComponent.hideModal()
         this.getProducts()
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '刪除產品失敗'
+            })
+          }
+        })
     }
   },
   created () {

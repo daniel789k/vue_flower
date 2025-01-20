@@ -45,34 +45,29 @@
       style="--swiper-theme-color: #564527;"
       v-if="windowWidth > 992"
     >
-      <template v-for="item in recommendP" :key="item.id">
-        <swiper-slide class="">
-          <div class="card h-100">
-            <img :src=item.imageUrl class="card-img-top" alt="商品圖片"
-            @click="getrecommend(item.id)" style="height: 200px; object-fit: cover;">
-            <div class="card-body bg-navBack d-flex flex-column justify-content-between">
-              <h5 class="card-title" @click="getrecommend(item.id)">{{ item.title }}</h5>
-              <div class="h5" @click="getrecommend(item.id)" v-if="!item.price">{{ item.origin_price }} 元</div>
-              <del class="h6 text-muted" @click="getrecommend(item.id)" v-if="item.price">原價 {{ item.origin_price }} 元</del>
-              <div class="h5 text-subColor1" @click="getrecommend(item.id)" v-if="item.price">現在只要 {{ item.price }} 元</div>
+      <swiper-slide v-for="item in recommendP" :key="item.id">
+        <div class="card h-100">
+          <img :src=item.imageUrl class="card-img-top" alt="商品圖片"
+          @click="getrecommend(item.id)" style="height: 200px; object-fit: cover;">
+          <div class="card-body bg-navBack d-flex flex-column justify-content-between">
+            <h5 class="card-title" @click="getrecommend(item.id)">{{ item.title }}</h5>
+            <div class="h5" @click="getrecommend(item.id)" v-if="!item.price">{{ item.origin_price }} 元</div>
+            <del class="h6 text-muted" @click="getrecommend(item.id)" v-if="item.price">原價 {{ item.origin_price }} 元</del>
+            <div class="h5 text-subColor1" @click="getrecommend(item.id)" v-if="item.price">現在只要 {{ item.price }} 元</div>
 
-              <div class="btn-group btn-group-sm">
-                <!-- <button type="button" class="btn btn-outline-secondary">
-                  查看更多
-                </button> -->
-                <button type="button" class="btn btn-outline-mainColor"
-                :disabled="status.loadingItem === item.id"
-                @click="addrecommend(item.id)">
-                <div v-if="status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
-                  加到購物車
-                </button>
+            <div class="btn-group btn-group-sm">
+              <button type="button" class="btn btn-outline-mainColor"
+              :disabled="status.loadingItem === item.id"
+              @click="addrecommend(item.id)">
+              <div v-if="status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
               </div>
+                加到購物車
+              </button>
             </div>
           </div>
-        </swiper-slide>
-      </template>
+        </div>
+      </swiper-slide>
     </swiper>
     <!-- 手機板推薦 -->
     <swiper
@@ -88,40 +83,36 @@
       style="--swiper-theme-color: #564527;"
       v-else
     >
-      <template v-for="item in recommendP" :key="item.id">
-        <swiper-slide class="">
-          <div class="card h-100">
-            <img :src=item.imageUrl class="card-img-top" alt="商品圖片"
-            @click="getrecommend(item.id)" style="height: 200px; object-fit: cover;">
-            <div class="card-body bg-navBack d-flex flex-column justify-content-between">
-              <h5 class="card-title" @click="getrecommend(item.id)">{{ item.title }}</h5>
-              <div class="h5" @click="getrecommend(item.id)" v-if="!item.price">{{ item.origin_price }} 元</div>
-              <del class="h6 text-muted" @click="getrecommend(item.id)" v-if="item.price">原價 {{ item.origin_price }} 元</del>
-              <div class="h5 text-subColor1" @click="getrecommend(item.id)" v-if="item.price">現在只要 {{ item.price }} 元</div>
+      <swiper-slide v-for="item in recommendP" :key="item.id">
+        <div class="card h-100">
+          <img :src=item.imageUrl class="card-img-top" alt="商品圖片"
+          @click="getrecommend(item.id)" style="height: 200px; object-fit: cover;">
+          <div class="card-body bg-navBack d-flex flex-column justify-content-between">
+            <h5 class="card-title" @click="getrecommend(item.id)">{{ item.title }}</h5>
+            <div class="h5" @click="getrecommend(item.id)" v-if="!item.price">{{ item.origin_price }} 元</div>
+            <del class="h6 text-muted" @click="getrecommend(item.id)" v-if="item.price">原價 {{ item.origin_price }} 元</del>
+            <div class="h5 text-subColor1" @click="getrecommend(item.id)" v-if="item.price">現在只要 {{ item.price }} 元</div>
 
-              <div class="btn-group btn-group-sm">
-                <!-- <button type="button" class="btn btn-outline-secondary">
-                  查看更多
-                </button> -->
-                <button type="button" class="btn btn-outline-mainColor"
-                :disabled="status.loadingItem === item.id"
-                @click="addrecommend(item.id)">
-                <div v-if="status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
-                  加到購物車
-                </button>
+            <div class="btn-group btn-group-sm">
+              <button type="button" class="btn btn-outline-mainColor"
+              :disabled="status.loadingItem === item.id"
+              @click="addrecommend(item.id)">
+              <div v-if="status.loadingItem === item.id" class="spinner-grow text-mainColor spinner-grow-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
               </div>
+                加到購物車
+              </button>
             </div>
           </div>
-        </swiper-slide>
-      </template>
+        </div>
+      </swiper-slide>
     </swiper>
     <div class="py-3"></div>
   </div>
 </template>
 
 <script>
+import emitter from '@/methods/emitter'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -129,6 +120,7 @@ import 'swiper/css/navigation'
 import { Pagination, Navigation } from 'swiper/modules'
 import { buyCountStore } from '@/stores/cartStore'
 import { mapState } from 'pinia'
+
 export default {
   components: {
     Swiper,
@@ -162,6 +154,14 @@ export default {
           this.product = response.data.product
         }
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '取得產品失敗'
+            })
+          }
+        })
     },
     getrecommend (id) {
       this.id = id
@@ -175,6 +175,14 @@ export default {
         this.recommendP = response.data.products
         this.isLoading = false
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '取得推薦產品失敗'
+            })
+          }
+        })
     },
     addToCart (id, qty = this.qty) {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
@@ -189,6 +197,14 @@ export default {
         this.getCart()
         this.$router.push('/products')
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '添加購物車失敗'
+            })
+          }
+        })
     },
     addrecommend (id) {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
@@ -201,6 +217,14 @@ export default {
         this.status.loadingItem = ''
         this.getCart()
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '添加推薦失敗'
+            })
+          }
+        })
     },
     getCart () {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
@@ -212,6 +236,14 @@ export default {
         }
         this.isLoading = false
       })
+        .catch((err) => {
+          if (!err.data.success) {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: '取得購物車失敗'
+            })
+          }
+        })
     }
   },
   computed: {
