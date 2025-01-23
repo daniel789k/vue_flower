@@ -1,6 +1,6 @@
 <template>
   <UserLoading :active="isLoading"/>
-  <div class="container px-5">
+  <div class="container px-5" style="min-height: calc(100vh - 72px - 57.6px);">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb pt-3">
         <li class="breadcrumb-item"><router-link class="text-secondary text-decoration-none" to="/products">產品</router-link></li>
