@@ -22,8 +22,8 @@
 
       <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0" class="col-md-9">
         <div class="row row-cols-2 row-cols-md-3 g-4">
-          <div class="col mb-2" v-for="item in products" :key="item.id">
-            <div class="card h-100 position-relative border-0" style="overflow: hidden; cursor: pointer;" v-if="item.category.includes(`${nowType}`)">
+          <div class="col mb-2" v-for="item in nowProducts" :key="item.id">
+            <div class="card h-100 position-relative border-0" style="overflow: hidden; cursor: pointer;">
               <div class="position-absolute top-0 start-100 bg-white" style="width: 60px; height: 60px; transform: translate(-50%,-50%) rotate(45deg);"/>
               <i v-if="getTitle.includes(item.title)" class="bi bi-heart-fill text-danger position-absolute" style="top: 2px; right: 5px; cursor: pointer;" @click="changeHeart($event), pushLoveFlower(item)"/>
               <i v-else class="bi bi-heart position-absolute" style="top: 2px; right: 5px; cursor: pointer;" @click="changeHeart($event), pushLoveFlower(item)"/>
@@ -86,6 +86,7 @@ export default {
         '綠色盆栽', '迷你多肉植物'
       ],
       nowType: '',
+      nowProducts: [],
       activeType: '全部商品',
       loveFlower: []
     }
@@ -97,6 +98,7 @@ export default {
       this.isLoading = true
       this.$http.get(url).then((response) => {
         this.products = response.data.products
+        this.nowProducts = this.products
         this.isLoading = false
       })
         .catch((err) => {
@@ -232,9 +234,11 @@ export default {
       if (event.target.classList.contains('active') === false) {
         this.nowType = event.target.innerText
         this.activeType = event.target.innerText
+        this.nowProducts = this.products.filter(e => e.category.includes(this.nowType))
       }
       if (event.target.innerText === '全部商品') {
         this.nowType = ''
+        this.nowProducts = this.products
       }
     },
     changeHeart: (event) => {
