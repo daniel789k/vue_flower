@@ -12,40 +12,40 @@
     <div class="row row-cols-1 row-cols-md-4">
       <div class="col d-flex flex-row flex-column align-items-center justify-content-center"  data-aos="fade-up" data-aos-delay="50">
         <div class="d-flex flex-column">
-          <img src="@/assets/images/step1.jpg" alt="步驟一" class="mb-3 img-fluid">
+          <img src="@/assets/images/step1.jpg" alt="步驟一" class="mb-2 mb-lg-3 img-fluid">
           <div class="d-flex flex-column align-items-center text-md-center">
-            <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP1</p>
-            <h2 class="fw-bold fs-5 mb-3 me-auto mx-md-auto">選擇產品</h2>
+            <p class="kalam-bold text-main fs-5 me-auto mx-md-auto mb-2 mb-lg-3">STEP1</p>
+            <h2 class="fw-bold fs-5 me-auto mx-md-auto mb-2 mb-lg-3">選擇產品</h2>
             <p class="me-auto mx-md-auto">瀏覽我們的網站<br>選擇您喜愛的花卉產品</p>
           </div>
         </div>
       </div>
       <div class="col d-flex flex-row flex-column align-items-center justify-content-center" data-aos="fade-up" data-aos-delay="150">
         <div class="d-flex flex-column">
-          <img src="@/assets/images/step2.jpg" alt="步驟二" class="mb-3 img-fluid">
+          <img src="@/assets/images/step2.jpg" alt="步驟二" class="mb-2 mb-lg-3 img-fluid">
           <div class="d-flex flex-column align-items-center text-md-center">
-            <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP2</p>
-            <h2 class="fw-bold fs-5 mb-3 me-auto mx-md-auto">確認訂單</h2>
+            <p class="kalam-bold text-main fs-5 me-auto mx-md-auto mb-2 mb-lg-3">STEP2</p>
+            <h2 class="fw-bold fs-5 mb-2 mb-lg-3 me-auto mx-md-auto">確認訂單</h2>
             <p class="me-auto mx-md-auto">填寫訂購信息和收貨地址<br>確認訂單內容</p>
           </div>
         </div>
       </div>
       <div class="col d-flex flex-row flex-md-column align-items-center justify-content-center" data-aos="fade-up" data-aos-delay="250">
         <div class="d-flex flex-column">
-          <img src="@/assets/images/step3.jpg" alt="步驟三" class="mb-3 img-fluid">
+          <img src="@/assets/images/step3.jpg" alt="步驟三" class="mb-2 mb-lg-3 img-fluid">
           <div class="d-flex flex-column align-items-center text-md-center">
-            <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP3</p>
-            <h2 class="fw-bold fs-5 mb-3 me-auto mx-md-auto">付款</h2>
+            <p class="kalam-bold text-main fs-5 me-auto mx-md-auto mb-2 mb-lg-3">STEP3</p>
+            <h2 class="fw-bold fs-5 me-auto mx-md-auto mb-2 mb-lg-3">付款</h2>
             <p class="me-auto mx-md-auto text-nowrap">支持多種支付方式<br>方便快捷</p>
           </div>
         </div>
       </div>
       <div class="col d-flex flex-row flex-md-column align-items-center justify-content-center" data-aos="fade-up" data-aos-delay="350">
         <div class="d-flex flex-column">
-          <img src="@/assets/images/step4.jpg" alt="步驟四" class="mb-3 img-fluid">
+          <img src="@/assets/images/step4.jpg" alt="步驟四" class="mb-2 mb-lg-3 img-fluid">
           <div class="d-flex flex-column align-items-center text-md-center">
-            <p class="kalam-bold text-main fs-5 me-auto mx-md-auto">STEP4</p>
-            <h2 class="fw-bold fs-5 mb-3 me-auto mx-md-auto">等待收花</h2>
+            <p class="kalam-bold text-main fs-5 me-auto mx-md-auto mb-2 mb-lg-3">STEP4</p>
+            <h2 class="fw-bold fs-5 me-auto mx-md-auto mb-2 mb-lg-3">等待收花</h2>
             <p class="me-auto mx-md-auto">我們會在您選擇的時間內<br>準時送達。</p>
           </div>
         </div>

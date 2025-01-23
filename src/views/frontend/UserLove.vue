@@ -1,6 +1,6 @@
 <template>
   <UserLoading :active="isLoading"/>
-  <section class="container pb-5 pt-md-5" :class="{ noLove: getloveflower.length==0}">
+  <section class="container pb-5 pt-md-5" style="min-height: calc(100vh - 72px - 57.6px);">
     <div class="row">
       <h2 class="mb-4" v-if="getloveflower.length!==0">我的最愛</h2>
 
@@ -10,7 +10,7 @@
       <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0" class="col-md-12">
         <div class="row row-cols-2 row-cols-md-4 g-4 mb-2">
           <div class="col mb-2" v-for="item in getloveflower" :key="item.id">
-            <div class="card h-100 position-relative border-0" style="overflow: hidden;">
+            <div class="card h-100 position-relative border-0" style="overflow: hidden; cursor: pointer;">
               <div class="position-absolute top-0 start-100 bg-white" style="width: 60px; height: 60px; transform: translate(-50%,-50%) rotate(45deg);"/>
               <i class="bi bi-heart-fill text-danger position-absolute" style="top: 2px; right: 5px; cursor: pointer;"
               @click="changeHeart($event), pushLoveFlower(item)"/>
@@ -220,9 +220,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.noLove {
-  height: calc(100vh - 72px - 57.6px)
-}
-</style>

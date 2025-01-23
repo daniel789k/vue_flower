@@ -46,7 +46,7 @@
       v-if="windowWidth > 992"
     >
       <swiper-slide v-for="item in recommendP" :key="item.id">
-        <div class="card h-100">
+        <div class="card h-100" style="cursor: pointer;">
           <img :src=item.imageUrl class="card-img-top" alt="商品圖片"
           @click="getrecommend(item.id)" style="height: 200px; object-fit: cover;">
           <div class="card-body bg-navBack d-flex flex-column justify-content-between">

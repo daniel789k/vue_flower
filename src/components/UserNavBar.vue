@@ -17,7 +17,7 @@
             <span class="visually-hidden">buycount</span>
             </span>
           </p></button>
-          <button type="button" class="nav-link me-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click.prevent="getCart(), addCouponCode()" v-if="windowWidth >= 992"><p class="text-start mb-0 position-relative"><i class="bi bi-cart2 me-1"></i>購物車<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          <button type="button" class="nav-link me-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" @click.prevent="getCart(), addCouponCode()" v-if="windowWidth >= 992"><p class="text-start mb-0 position-relative"><i class="bi bi-cart2 me-1"></i>購物車<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" v-if="getbuyCount > 0">
           {{ getbuyCount }}
             <span class="visually-hidden">buycount</span>
             </span>
@@ -50,41 +50,39 @@
             <th>單價</th>
           </tr>
         </thead>
-        <tbody>
-          <template v-if="cart.carts">
-            <tr v-for="item in cart.carts" :key="item.id">
+        <tbody v-if="cart.carts">
+          <tr v-for="item in cart.carts" :key="item.id">
+            <td>
+              <button type="button" class="btn btn-outline-danger btn-sm"
+              :disabled="status.loadingItem === item.id"
+              @click="removeCartItem(item.id)">
+                <i class="bi bi-x"/>
+              </button>
+            </td>
               <td>
-                <button type="button" class="btn btn-outline-danger btn-sm"
-                :disabled="status.loadingItem === item.id"
-                @click="removeCartItem(item.id)">
-                  <i class="bi bi-x"/>
-                </button>
-              </td>
-               <td>
-                <img :src="item.product.imageUrl" alt="" class="img-fluid">
-              </td>
-              <td>
-                {{ item.product.title }}
-                <div class="text-success" v-if="item.coupon">
-                  已套用優惠券
-                </div>
-              </td>
-              <td>
-                <div class="input-group input-group-sm">
-                  <input type="number" class="form-control"
-                  min="1"
-                  :disabled="item.id === status.loadingItem"
-                  @change="updateCart(item)"
-                  v-model.number="item.qty">
-                  <div class="input-group-text">/ {{ item.product.unit }}</div>
-                </div>
-              </td>
-              <td class="text-end">
-                <small v-if="cart.final_total !== cart.total" class="text-success">折扣價：</small>
-                {{ $filters.currency(item.final_total) }}
-              </td>
-            </tr>
-          </template>
+              <img :src="item.product.imageUrl" alt="" class="img-fluid">
+            </td>
+            <td>
+              {{ item.product.title }}
+              <div class="text-success" v-if="item.coupon">
+                已套用優惠券
+              </div>
+            </td>
+            <td>
+              <div class="input-group input-group-sm">
+                <input type="number" class="form-control"
+                min="1"
+                :disabled="item.id === status.loadingItem"
+                @change="updateCart(item)"
+                v-model.number="item.qty">
+                <div class="input-group-text">/ {{ item.product.unit }}</div>
+              </div>
+            </td>
+            <td class="text-end">
+              <small v-if="cart.final_total !== cart.total" class="text-success">折扣價：</small>
+              {{ $filters.currency(item.final_total) }}
+            </td>
+          </tr>
         </tbody>
         <tfoot>
           <tr>

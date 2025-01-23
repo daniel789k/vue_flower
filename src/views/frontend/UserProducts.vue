@@ -1,13 +1,13 @@
 <template>
   <UserLoading :active="isLoading"/>
-  <section class="container pb-5 pt-md-3">
-    <h2 class="text-center pb-lg-3 pt-lg-0 pt-3 mb-0">花藝商品</h2>
+  <section class="container pb-5" style="min-height: calc(100vh - 72px - 57.6px);">
+    <h2 class="text-center py-md-5 pt-3 mb-0">花藝商品</h2>
     <div class="row">
       <!-- 電腦導覽列 -->
-      <div class="bg-light flex-column align-items-stretch p-3 col-md-3 sticky-top h-100 bg-pageBack d-none d-md-block" style="top: 57px;">
+      <div class="bg-light flex-column align-items-stretch p-3 pt-0 col-md-3 sticky-top h-100 bg-pageBack d-none d-md-block" style="top: 65px;">
         <div class="flex-md-column">
           <ul class="list-group flex-column">
-            <li v-for="(value, index) in flowerType" :key="value+index" class="list-group-item ms-3 my-1 btn btn-one" :class="{active: value==activeType}" @click="getType($event)"><i class="bi bi-flower2" v-if="value==activeType"/> {{ value }}</li>
+            <li v-for="(value, index) in flowerType" :key="value+index" class="list-group-item ms-3 mb-2 btn btn-one" :class="{active: value==activeType}" @click="getType($event)"><i class="bi bi-flower2" v-if="value==activeType"/> {{ value }}</li>
           </ul>
         </div>
       </div>
@@ -23,7 +23,7 @@
       <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0" class="col-md-9">
         <div class="row row-cols-2 row-cols-md-3 g-4">
           <div class="col mb-2" v-for="item in products" :key="item.id">
-            <div class="card h-100 position-relative border-0" style="overflow: hidden;" v-if="item.category.includes(`${nowType}`)">
+            <div class="card h-100 position-relative border-0" style="overflow: hidden; cursor: pointer;" v-if="item.category.includes(`${nowType}`)">
               <div class="position-absolute top-0 start-100 bg-white" style="width: 60px; height: 60px; transform: translate(-50%,-50%) rotate(45deg);"/>
               <i v-if="getTitle.includes(item.title)" class="bi bi-heart-fill text-danger position-absolute" style="top: 2px; right: 5px; cursor: pointer;" @click="changeHeart($event), pushLoveFlower(item)"/>
               <i v-else class="bi bi-heart position-absolute" style="top: 2px; right: 5px; cursor: pointer;" @click="changeHeart($event), pushLoveFlower(item)"/>
