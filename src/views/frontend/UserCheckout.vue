@@ -2,7 +2,7 @@
   <Loading :active="isLoading"/>
 
   <div style="min-height: calc(100vh - 72px - 57.6px);">
-    <div class="container-fluid">
+    <div class="container-fluid py-3">
       <div class="container-fluid p-3">
         <div class="row">
           <div class="col d-flex flex-column flex-md-row justify-content-center align-items-center px-1 px-md-0">

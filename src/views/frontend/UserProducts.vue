@@ -217,6 +217,12 @@ export default {
       const order = this.form
       this.$http.post(url, { data: order })
         .then((res) => {
+          if (res.data.success) {
+            emitter.emit('push-message', {
+              style: 'success',
+              title: '建立訂單成功'
+            })
+          }
         })
         .catch((err) => {
           if (!err.data.success) {
@@ -241,7 +247,7 @@ export default {
         this.nowProducts = this.products
       }
     },
-    changeHeart: (event) => {
+    changeHeart (event) {
       event.target.classList.toggle('bi-heart')
       event.target.classList.toggle('bi-heart-fill')
       event.target.classList.toggle('text-danger')
@@ -264,6 +270,9 @@ color: #5a0c0c !important;
 background-color: #d3b78776;
 transition: all 0.3s;
 position: relative;
+}
+.btn-one.active {
+  border-color: #F0EADC;
 }
 .active {
   background-color: #DCCBAE !important;
